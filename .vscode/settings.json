@@ -55,7 +55,9 @@
         "Temp/": true
     },
     "search.exclude": {
-        "**/*.log": true
+        "**/*.json": true,
+        "**/*.log": true,
+        "**/*.md": true
     },
     "search.useIgnoreFiles": false
 }
