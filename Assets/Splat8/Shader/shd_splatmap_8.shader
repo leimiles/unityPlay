@@ -2,7 +2,6 @@ Shader "funnyland/env/splatmap_8"
 {
     Properties
     {
-        //Terrain To Mesh Properties/////////////////////////////////////////////////////////////////////////////////////////////////////////
         [HideInInspector] _T2M_Layer_Count ("Layer Count", float) = 0
 
         [Space]
@@ -165,10 +164,7 @@ Shader "funnyland/env/splatmap_8"
                 half3 sh : TEXCOORD7;
             };
 
-            struct TerrainInputData 
-            { 
-
-            };
+            struct TerrainInputData { };
 
             struct TerrainSurfaceData
             {
@@ -234,12 +230,13 @@ Shader "funnyland/env/splatmap_8"
                 finalColor0 += weight0.g * layer_1_Color;
                 finalColor0 += weight0.b * layer_2_Color;
                 finalColor0 += weight0.a * layer_3_Color;
-
+                /*
                 half3 finalColor1 = 0;
                 finalColor1 += weight1.r * layer_4_Color;
                 finalColor1 += weight1.g * layer_5_Color;
                 finalColor1 += weight1.b * layer_6_Color;
                 finalColor1 += weight1.a * layer_7_Color;
+                */
 
                 half3 finalColor = finalColor0;
 
@@ -307,9 +304,9 @@ Shader "funnyland/env/splatmap_8"
                 data.smoothness = 0.5;
             }
 
-            void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData)
+            void InitializeInputData(Varyings input, half3 normalTS, out TerrainInputData terrainInputData)
             {
-                inputData = (InputData)0;
+                terrainInputData = (TerrainInputData)0;
             }
 
             half4 Frag(Varyings i) : SV_TARGET
@@ -323,11 +320,7 @@ Shader "funnyland/env/splatmap_8"
 
                 TerrainSurfaceData terrainSurfaceData;
                 InitializeTerrainSufaceData(i.uv0, splatWeightData, terrainSurfaceData);
-                return half4(i.sh * terrainSurfaceData.diffuse, 1.0);
-
-                //return UniversalFragmentPBR()
-                //return 0.5;
-
+                return 1;
             }
 
             ENDHLSL
