@@ -10,7 +10,16 @@ Material:
   m_Name: funnyland_chr_skin
   m_Shader: {fileID: 4800000, guid: 35e3cf0ee0436cf4380654b314c80704, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ENERGYCONSERVATION_ON
+  - _ENVIRONMENTREFLECTIONS_OFF
+  - _NORMALINDEPTHNORMALPASS
+  - _RAMP_OFF
+  - _RECEIVEDECALS
+  - _SIMPLEFUZZ
+  - _SSAO_ENABLED
+  - _SSAO_FLATSHADED
+  - _TEXMODE_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -21,6 +30,34 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 64dc5056fc6ef974193d6a06b928d415, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BentNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BestFittingNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: c3bb1d5298b924d80959c9f822ffe414, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoatMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -28,7 +65,201 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GradientMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 64dc5056fc6ef974193d6a06b928d415, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondaryMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadedBaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _AOfromGI: 0
+    - _AddLightFallOff: 1
+    - _AlphaClip: 0
+    - _AlphaFromMaskMap: 1
+    - _Anisotropic: 0
+    - _Anisotropy: 0
+    - _ApplyNormal: 0
+    - _ApplyNormalDepthNormal: 1
+    - _BestFittingNormalEnabled: 0
+    - _Blend: 0
+    - _Border: 10
+    - _BumpScale: 1
+    - _CameraFadeDist: 1
+    - _CameraFadeShadows: 0
+    - _CameraFadingEnabled: 0
+    - _CameraShadowFadeDist: 1
+    - _ClearCoatSmoothness: 0.5
+    - _ClearCoatThickness: 0.5
+    - _ColorMask: 15
+    - _ColorizedShadowsAdd: 0
+    - _ColorizedShadowsMain: 0
+    - _CompensateScale: 0
+    - _Coverage: 0
+    - _Cull: 2
+    - _CullOutline: 1
+    - _Culling: 0
+    - _CustomWrap: 0.4
+    - _Cutoff: 0.5
+    - _DecalTransmission: 1
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
+    - _DiffuseFallOff: 0.01
+    - _DiffuseStep: 0
+    - _DisableGBufferPass: 0
+    - _Distortion: 0.01
+    - _DstBlend: 0
+    - _Dummy: 0
+    - _Emission: 0
+    - _EnableBaseMap: 0
+    - _EnableBentNormal: 0
+    - _EnableCoatMask: 0
+    - _EnableFuzzyLighting: 1
+    - _EnableMaskMap: 0
+    - _EnableMetalSpec: 0
+    - _EnableNormal: 0
+    - _EnableOcclusion: 0
+    - _EnableParallax: 0
+    - _EnableParallaxShadows: 0
+    - _EnableSecColor: 0
+    - _EnableSecondaryLobe: 0
+    - _EnableSecondaryMask: 0
+    - _EnableStandardLighting: 0
+    - _EnableToonRim: 0
+    - _EnergyConservation: 1
+    - _EnvironmentReflections: 0
+    - _FlatShadedDepthNormal: 1
+    - _FoldAdvanced: 0
+    - _FoldAdvancedSurfaceInputs: 1
+    - _FoldRimLightingInputs: 0
+    - _FoldStencilOptions: 0
+    - _FoldSurfaceDetailInputs: 1
+    - _FoldSurfaceInputs: 1
+    - _FoldSurfaceOptions: 0
+    - _FuzzAmbient: 1
+    - _FuzzBias: 0
+    - _FuzzPower: 4
+    - _FuzzStrength: 2
+    - _FuzzWrap: 0.5
+    - _GItoAO: 10
+    - _GItoAOBias: 0
+    - _GeometricSpecularAA: 0
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Help: 0
+    - _HelpA: 0
+    - _HelpB: 0
+    - _HelpX: 0
+    - _HorizonOcclusion: 0.5
+    - _LightColorContribution: 1
+    - _LuxBlend: 0
+    - _LuxSurface: 0
+    - _MaskByShadowStrength: 0
+    - _Metallic: 0.145
+    - _Occlusion: 1
+    - _OcclusionStrength: 1
+    - _OutlineInScreenSpace: 0
+    - _Parallax: 0.02
+    - _QueueOffset: 0
+    - _Ramp: 0
+    - _ReadMask: 255
+    - _ReceiveDecals: 1
+    - _ReceiveSSAO: 1
+    - _ReceiveShadows: 1
+    - _Rim: 0
+    - _RimFrequency: 0
+    - _RimMinPower: 1
+    - _RimPerPositionFrequency: 1
+    - _RimPower: 2
+    - _SAAThreshold: 0.2
+    - _ScreenSpaceVariance: 0.1
+    - _ShadoBiasDirectional: 0
+    - _ShadowBiasAdditional: 0
+    - _ShadowFallOff: 0.75
+    - _ShadowOffset: 1
+    - _ShadowStrength: 0.7
+    - _Shadows: 0
+    - _Smoothness: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularFallOff: 0.01
+    - _SpecularHighlights: 1
+    - _SpecularStep: 0.45
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilFail: 0
+    - _StencilOp: 0
+    - _StencilZFail: 0
+    - _Steps: 1
+    - _Surface: 0
+    - _TexMode: 0
+    - _ToonRimAttenuation: 0
+    - _ToonRimFallOff: 1
+    - _ToonRimPower: 0.5
+    - _TranslucencyPower: 1.8
+    - _TranslucencyStrength: 0.088
+    - _UseCottonWool: 0
+    - _UseScattering: 0
+    - _WorkflowMode: 1
+    - _WriteMask: 255
+    - _ZTest: 4
+    - _ZTestOutline: 4
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ClearCoatSpecular: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadedBaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShadedDecalColor: {r: 0.5, g: 5.5000005, b: 0.5, a: 1}
+    - _SheenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SpecColor2nd: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    - _ToonRimColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

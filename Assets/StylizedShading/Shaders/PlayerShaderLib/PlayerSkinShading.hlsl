@@ -1,7 +1,7 @@
 #ifndef PLAYERSHADING_HLSL_INCLUDED
 #define PLAYERSHADING_HLSL_INCLUDED
 
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+#include "PlayerSkinLighting.hlsl"
 
 struct Attributes
 {
@@ -23,21 +23,30 @@ struct Varyings
     half3 sh : COLOR0;
 };
 
-
 Varyings vert(Attributes v)
 {
     Varyings o = (Varyings)0;
+    // position
     VertexPositionInputs vpi = GetVertexPositionInputs(v.positionOS.xyz);
     o.positionCS = vpi.positionCS;
-    o.uv0 = TRANSFORM_TEX(v.uv0, _BaseMap);
     o.positionWS = vpi.positionWS;
+    // uv
+    o.uv0 = TRANSFORM_TEX(v.uv0, _BaseMap);
+    // normal
     VertexNormalInputs vni = GetVertexNormalInputs(v.normalOS);
     o.normalWS = vni.normalWS;
+    // view
     o.viewDirWS = SafeNormalize(GetWorldSpaceNormalizeViewDir(vpi.positionWS));
-    o.shadowCoord = TransformWorldToShadowCoord(vpi.positionWS);
+    // shadow
+    //o.shadowCoord = TransformWorldToShadowCoord(vpi.positionWS);
+    vpi.positionWS += vni.normalWS.xyz * _SkinShadowSampleBias;
+    o.shadowCoord = GetShadowCoord(vpi);
+    // fog
     o.vertexLightAndFog.rgb = VertexLighting(vpi.positionWS, vni.normalWS);
     o.vertexLightAndFog.w = ComputeFogFactor(vpi.positionCS.z);
+    // sh
     o.sh = SampleSH(vni.normalWS);
+
     return o;
 }
 
@@ -57,16 +66,28 @@ void InitializeInputData(Varyings input, out InputData inputData)
     inputData.tangentToWorld = 0;
 }
 
+void InitializeSkinSurfaceData(float2 uv, out SurfaceData surfaceData)
+{
+    surfaceData = (SurfaceData)0;
+    surfaceData.albedo = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap)) * _BaseColor;
+}
+
 half4 frag(Varyings input) : SV_Target
 {
-    
     half4 baseColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, input.uv0);
-    InputData inputdata;
-    InitializeInputData(input, inputdata);
+    InputData inputData;
+    InitializeInputData(input, inputData);
+    SurfaceData surfaceData;
+    InitializeSkinSurfaceData(input.uv0, surfaceData);
+    #ifdef _ADDITIONAL_LIGHTS_VERTEX
+        return half4(1.0, 0.0, 0.0, 1.0);
+    #endif
     //return half4(inputdata.normalizedScreenSpaceUV.rg, 1, 1);
-    return half4(inputdata.vertexLighting, 1);
-
-    AmbientOcclusionFactor ao = CreateAmbientOcclusionFactor(inputdata.normalizedScreenSpaceUV, 0.5);
-    return half4(ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, 1.0) * baseColor;
+    //return half4(inputdata.vertexLighting, 1);
+    //return half4(surfaceData.albedo, 1.0h);
+    //AmbientOcclusionFactor ao = CreateAmbientOcclusionFactor(inputdata.normalizedScreenSpaceUV, 0.5);
+    //return half4(ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, 1.0) * baseColor;
+    half4 color = SkinPBR(inputData, surfaceData);
+    return color;
 }
 #endif
