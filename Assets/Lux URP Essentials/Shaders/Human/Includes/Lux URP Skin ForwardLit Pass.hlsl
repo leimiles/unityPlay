@@ -1,45 +1,45 @@
 //  Structs
 struct Attributes
 {
-    float3 positionOS                   : POSITION;
-    float3 normalOS                     : NORMAL;
-    float4 tangentOS                    : TANGENT;
-    float2 texcoord                     : TEXCOORD0;
+    float3 positionOS : POSITION;
+    float3 normalOS : NORMAL;
+    float4 tangentOS : TANGENT;
+    float2 texcoord : TEXCOORD0;
     #if defined(LIGHTMAP_ON)
-        float2 staticLightmapUV         : TEXCOORD1;
+        float2 staticLightmapUV : TEXCOORD1;
     #endif
     #ifdef DYNAMICLIGHTMAP_ON
-        float2 dynamicLightmapUV        : TEXCOORD2;
+        float2 dynamicLightmapUV : TEXCOORD2;
     #endif
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
-    
+
 struct Varyings
 {
-    float2 uv                           : TEXCOORD0;
+    float2 uv : TEXCOORD0;
     #if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
-        float3 positionWS               : TEXCOORD1;
+        float3 positionWS : TEXCOORD1;
     #endif
-    half3 normalWS                      : TEXCOORD2;
+    half3 normalWS : TEXCOORD2;
     #ifdef _NORMALMAP
-        half4 tangentWS                 : TEXCOORD3;
+        half4 tangentWS : TEXCOORD3;
     #endif
     #ifdef _ADDITIONAL_LIGHTS_VERTEX
-        half4 fogFactorAndVertexLight   : TEXCOORD4;
+        half4 fogFactorAndVertexLight : TEXCOORD4;
     #else
-        half  fogFactor                 : TEXCOORD4;
+        half fogFactor : TEXCOORD4;
     #endif
     #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-        float4 shadowCoord              : TEXCOORD5;
+        float4 shadowCoord : TEXCOORD5;
     #endif
     DECLARE_LIGHTMAP_OR_SH(staticLightmapUV, vertexSH, 6);
     #ifdef DYNAMICLIGHTMAP_ON
-        float2  dynamicLightmapUV       : TEXCOORD7;
+        float2 dynamicLightmapUV : TEXCOORD7;
     #endif
 
-    float4 positionCS                   : SV_POSITION;
+    float4 positionCS : SV_POSITION;
     
-    half fade                           : TEXCOORD8;
+    half fade : TEXCOORD8;
 
     //UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
@@ -55,12 +55,12 @@ Varyings LitPassVertex(Attributes input)
     //UNITY_TRANSFER_INSTANCE_ID(input, output);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
-//  Set distance fade value
+    //  Set distance fade value
     #if defined(_DISTANCEFADE)
         float3 worldInstancePos = UNITY_MATRIX_M._m03_m13_m23;
         float3 diff = (_WorldSpaceCameraPos - worldInstancePos);
         float dist = dot(diff, diff);
-        output.fade = saturate( (_DistanceFade.x - dist) * _DistanceFade.y );
+        output.fade = saturate((_DistanceFade.x - dist) * _DistanceFade.y);
     #else
         output.fade = 1.0h;
     #endif
@@ -101,7 +101,7 @@ Varyings LitPassVertex(Attributes input)
     #endif
 
     #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-    //  tweak the sampling position
+        //  tweak the sampling position
         vertexInput.positionWS += output.normalWS.xyz * _SkinShadowSamplingBias;
         output.shadowCoord = GetShadowCoord(vertexInput);
     #endif
@@ -122,16 +122,16 @@ inline void InitializeSkinLitSurfaceData(float2 uv, half fade, out SurfaceData o
     outSurfaceData.metallic = half(0.0);
     outSurfaceData.specular = _SpecularColor.rgb;
 
-//  Normal Map
-    #if defined (_NORMALMAP)
+    //  Normal Map
+    #if defined(_NORMALMAP)
         outSurfaceData.normalTS = SampleNormal(uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
         
         #if defined(_DETAILNORMALMAP)
-        //  Get detail normal
+            //  Get detail normal
             float2 detailUV = TRANSFORM_TEX(uv, _DetailBumpMap);
             half4 sampleDetailNormal = SAMPLE_TEXTURE2D(_DetailBumpMap, sampler_BumpMap, detailUV);
             half3 detailNormalTS = UnpackNormalScale(sampleDetailNormal, _DetailBumpScale);
-        //  With UNITY_NO_DXT5nm unpacked vector is not normalized for BlendNormalRNM
+            //  With UNITY_NO_DXT5nm unpacked vector is not normalized for BlendNormalRNM
             // For visual consistancy we going to do in all cases
             detailNormalTS = normalize(detailNormalTS);
             outSurfaceData.normalTS = BlendNormalRNM(outSurfaceData.normalTS, detailNormalTS);
@@ -139,14 +139,14 @@ inline void InitializeSkinLitSurfaceData(float2 uv, half fade, out SurfaceData o
 
         #if defined(_NORMALMAPDIFFUSE)
             half4 sampleNormalDiffuse = SAMPLE_TEXTURE2D_BIAS(_BumpMap, sampler_BumpMap, uv, _Bias);
-        //  Do not manually unpack the normal map as it might use RGB.
+            //  Do not manually unpack the normal map as it might use RGB.
             outAdditionalSurfaceData.diffuseNormalTS = UnpackNormal(sampleNormalDiffuse);
         #else
-            outAdditionalSurfaceData.diffuseNormalTS = half3(0,0,1);
+            outAdditionalSurfaceData.diffuseNormalTS = half3(0, 0, 1);
         #endif
     #else
-        outSurfaceData.normalTS = half3(0,0,1);
-        outAdditionalSurfaceData.diffuseNormalTS = half3(0,0,1);
+        outSurfaceData.normalTS = half3(0, 0, 1);
+        outAdditionalSurfaceData.diffuseNormalTS = half3(0, 0, 1);
     #endif
 
     half4 SSSAOSample = SAMPLE_TEXTURE2D(_SSSAOMap, sampler_SSSAOMap, uv);
@@ -160,15 +160,14 @@ inline void InitializeSkinLitSurfaceData(float2 uv, half fade, out SurfaceData o
 
     outSurfaceData.clearCoatMask = half(0.0);
     outSurfaceData.clearCoatSmoothness = half(0.0);
-
 }
 
 void InitializeInputData(Varyings input, half3 normalTS, half3 diffuseNormalTS, out InputData inputData
-    #ifdef _NORMALMAP
-        , inout float3 bitangent
-    #endif
-    , inout half3 diffuseNormalWS
-    )
+#ifdef _NORMALMAP
+    , inout float3 bitangent
+#endif
+, inout half3 diffuseNormalWS
+)
 {
     inputData = (InputData)0;
     #if defined(REQUIRES_WORLD_SPACE_POS_INTERPOLATOR)
@@ -187,7 +186,7 @@ void InitializeInputData(Varyings input, half3 normalTS, half3 diffuseNormalTS, 
             diffuseNormalWS = TransformTangentToWorld(diffuseNormalTS, ToW);
             diffuseNormalWS = NormalizeNormalPerPixel(diffuseNormalWS);
         #else
-        //  Here we let the user decide to use the per vertex or the specular normal.
+            //  Here we let the user decide to use the per vertex or the specular normal.
             diffuseNormalWS = (_VertexNormal) ? NormalizeNormalPerPixel(input.normalWS.xyz) : inputData.normalWS;
         #endif
     #else
@@ -222,16 +221,15 @@ void InitializeInputData(Varyings input, half3 normalTS, half3 diffuseNormalTS, 
     inputData.shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
 
     #if defined(DEBUG_DISPLAY)
-    #if defined(DYNAMICLIGHTMAP_ON)
-    inputData.dynamicLightmapUV = input.dynamicLightmapUV;
+        #if defined(DYNAMICLIGHTMAP_ON)
+            inputData.dynamicLightmapUV = input.dynamicLightmapUV;
+        #endif
+        #if defined(LIGHTMAP_ON)
+            inputData.staticLightmapUV = input.staticLightmapUV;
+        #else
+            inputData.vertexSH = input.vertexSH;
+        #endif
     #endif
-    #if defined(LIGHTMAP_ON)
-    inputData.staticLightmapUV = input.staticLightmapUV;
-    #else
-    inputData.vertexSH = input.vertexSH;
-    #endif
-    #endif
-
 }
 
 half4 LitPassFragment(Varyings input) : SV_Target
@@ -239,53 +237,54 @@ half4 LitPassFragment(Varyings input) : SV_Target
     //UNITY_SETUP_INSTANCE_ID(input);
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
-//  Get the surface description
+    //  Get the surface description
     SurfaceData surfaceData;
     AdditionalSurfaceData additionalSurfaceData;
     InitializeSkinLitSurfaceData(input.uv.xy, input.fade, surfaceData, additionalSurfaceData);
 
-//  Prepare surface data (like bring normal into world space and get missing inputs like gi
+    //  Prepare surface data (like bring normal into world space and get missing inputs like gi
     half3 diffuseNormalWS;
     InputData inputData;
     #ifdef _NORMALMAP
         float3 bitangent;
     #endif
     InitializeInputData(input, surfaceData.normalTS, additionalSurfaceData.diffuseNormalTS, inputData
-        #ifdef _NORMALMAP
-            , bitangent
-        #endif
-        , diffuseNormalWS
+    #ifdef _NORMALMAP
+        , bitangent
+    #endif
+    , diffuseNormalWS
     );
 
-#ifdef _DBUFFER
-    #if defined(_RECEIVEDECALS)
-        half3 albedo = surfaceData.albedo;
-        ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
-        half suppression = 1.0h - saturate( abs( dot(albedo, albedo) - dot(surfaceData.albedo, surfaceData.albedo) ) * 256.0h );
-        additionalSurfaceData.skinMask *= suppression;
-        additionalSurfaceData.translucency *= lerp(suppression, 1, _DecalTransmission);
+    #ifdef _DBUFFER
+        #if defined(_RECEIVEDECALS)
+            half3 albedo = surfaceData.albedo;
+            ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
+            half suppression = 1.0h - saturate(abs(dot(albedo, albedo) - dot(surfaceData.albedo, surfaceData.albedo)) * 256.0h);
+            additionalSurfaceData.skinMask *= suppression;
+            additionalSurfaceData.translucency *= lerp(suppression, 1, _DecalTransmission);
+        #endif
     #endif
-#endif
 
     #if defined(_RIMLIGHTING)
-        half rim = saturate(1.0h - saturate( dot(inputData.normalWS, inputData.viewDirectionWS) ) );
+        half rim = saturate(1.0h - saturate(dot(inputData.normalWS, inputData.viewDirectionWS)));
         half power = _RimPower;
-        if(_RimFrequency > 0 ) {
-            half perPosition = lerp(0.0h, 1.0h, dot(1.0h, frac(UNITY_MATRIX_M._m03_m13_m23) * 2.0h - 1.0h ) * _RimPerPositionFrequency ) * 3.1416h;
-            power = lerp(power, _RimMinPower, (1.0h + sin(_Time.y * _RimFrequency + perPosition) ) * 0.5h );
+        if (_RimFrequency > 0)
+        {
+            half perPosition = lerp(0.0h, 1.0h, dot(1.0h, frac(UNITY_MATRIX_M._m03_m13_m23) * 2.0h - 1.0h) * _RimPerPositionFrequency) * 3.1416h;
+            power = lerp(power, _RimMinPower, (1.0h + sin(_Time.y * _RimFrequency + perPosition)) * 0.5h);
         }
         surfaceData.emission += pow(rim, power) * _RimColor.rgb * _RimColor.a;
     #endif
 
-//  Apply lighting
+    //  Apply lighting
     half4 color = LuxURPSkinFragmentPBR(
-        inputData, 
+        inputData,
         surfaceData,
-    //  Subsurface Scattering
+        //  Subsurface Scattering
         half4(_TranslucencyStrength * additionalSurfaceData.translucency, _TranslucencyPower, _ShadowStrength, _Distortion),
-    //  AmbientReflection Strength
+        //  AmbientReflection Strength
         _AmbientReflectionStrength,
-    //  Diffuse Normal
+        //  Diffuse Normal
         // #if defined(_NORMALMAP) && defined(_NORMALMAPDIFFUSE)
         //     NormalizeNormalPerPixel( TransformTangentToWorld(surfaceData.diffuseNormalTS, half3x3(input.tangentWS.xyz, bitangent, input.normalWS.xyz)) )
         // #else
@@ -294,13 +293,12 @@ half4 LitPassFragment(Varyings input) : SV_Target
         diffuseNormalWS,
         _SubsurfaceColor.rgb,
         (_SampleCurvature) ? additionalSurfaceData.curvature * _Curvature : lerp(additionalSurfaceData.translucency, 1, _Curvature),
-    //  Lerp lighting towards standard according the distance fade
+        //  Lerp lighting towards standard according the distance fade
         additionalSurfaceData.skinMask * input.fade,
         _MaskByShadowStrength,
         _Backscatter
-        );    
-
-//  Add fog
+    );
+    //  Add fog
     color.rgb = MixFog(color.rgb, inputData.fogCoord);
 
     return color;

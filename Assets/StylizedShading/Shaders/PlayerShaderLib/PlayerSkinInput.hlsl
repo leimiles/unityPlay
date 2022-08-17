@@ -8,12 +8,13 @@ CBUFFER_START(UnityPerMaterial)
     half4 _BaseColor;
     float4 _BaseMap_ST;
     float4 _EmissionMap_ST;
+    half _SpecularAO;
+    half _SkinShadowSampleBias;
 CBUFFER_END
 
 // no need, declared in surfaceinput.hlsl
 //TEXTURE2D(_BaseMap);       SAMPLER(sampler_BaseMap);
 //TEXTURE2D(_EmissionMap);       SAMPLER(sampler_EmissionMap);
 
-half _SkinShadowSampleBias = 1.0h;
 
 #endif

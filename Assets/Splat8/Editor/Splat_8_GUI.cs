@@ -7,9 +7,6 @@ using UnityEngine.Rendering;
 public class Splat_8_GUI : ShaderGUI {
     MaterialEditor materialEditor { get; set; }
     MaterialProperty[] properties { get; set; }
-
-    Material material { get; set; }
-
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties) {
         //base.OnGUI(materialEditor, properties);
         this.materialEditor = materialEditor;

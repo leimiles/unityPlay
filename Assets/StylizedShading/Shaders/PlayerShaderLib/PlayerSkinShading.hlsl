@@ -70,6 +70,13 @@ void InitializeSkinSurfaceData(float2 uv, out SurfaceData surfaceData)
 {
     surfaceData = (SurfaceData)0;
     surfaceData.albedo = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap)) * _BaseColor;
+    // no need surface ao
+    surfaceData.occlusion = half(1.0);
+    // no need clear coat
+    surfaceData.clearCoatSmoothness = half(0.0);
+    surfaceData.clearCoatMask = half(0.0);
+    // constant smoothness for skin
+    surfaceData.smoothness = half(0.45);
 }
 
 half4 frag(Varyings input) : SV_Target
@@ -79,15 +86,11 @@ half4 frag(Varyings input) : SV_Target
     InitializeInputData(input, inputData);
     SurfaceData surfaceData;
     InitializeSkinSurfaceData(input.uv0, surfaceData);
-    #ifdef _ADDITIONAL_LIGHTS_VERTEX
-        return half4(1.0, 0.0, 0.0, 1.0);
-    #endif
-    //return half4(inputdata.normalizedScreenSpaceUV.rg, 1, 1);
-    //return half4(inputdata.vertexLighting, 1);
-    //return half4(surfaceData.albedo, 1.0h);
-    //AmbientOcclusionFactor ao = CreateAmbientOcclusionFactor(inputdata.normalizedScreenSpaceUV, 0.5);
+
+    //AmbientOcclusionFactor ao = CreateAmbientOcclusionFactor(inputData.normalizedScreenSpaceUV, surfaceData.occlusion);
     //return half4(ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, 1.0) * baseColor;
-    half4 color = SkinPBR(inputData, surfaceData);
+    half4 color = SkinPBR(inputData, surfaceData, _SpecularAO);
     return color;
+
 }
 #endif

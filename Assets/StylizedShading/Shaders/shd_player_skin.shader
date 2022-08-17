@@ -5,6 +5,8 @@ Shader "funnyland/chr/skin"
         _BaseColor ("Base Color", Color) = (1, 1, 1, 1)
         _BaseMap ("Base Map", 2D) = "white" { }
         _EmissionMap ("Emission Map", 2D) = "black" { }
+        _SpecularAO ("Specular AO", Range(0.0, 1)) = 1
+        _SkinShadowSampleBias ("SkinShadow Bias", Range(0.0, 1)) = 1
     }
     SubShader
     {
@@ -20,8 +22,11 @@ Shader "funnyland/chr/skin"
             #pragma vertex vert
             #pragma fragment frag
 
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
-            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+            #pragma multi_compile _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
+
+
 
             #include "./PlayerShaderLib/PlayerSkinInput.hlsl"
             #include "./PlayerShaderLib/PlayerSkinShading.hlsl"

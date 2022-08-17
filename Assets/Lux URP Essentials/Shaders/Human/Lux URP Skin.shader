@@ -14,147 +14,144 @@ Shader "Lux URP/Human/Skin"
         [Header(Surface Options)]
         [Space(8)]
         [ToggleOff(_RECEIVE_SHADOWS_OFF)]
-        _ReceiveShadows             ("Receive Shadows", Float) = 1.0
-        _SkinShadowBias             ("     Shadow Caster Bias", Range(.1, 1.0)) = 1.0
-        _SkinShadowSamplingBias     ("     Shadow Sampling Bias", Range(0, 0.05)) = 0
+        _ReceiveShadows ("Receive Shadows", Float) = 1.0
+        _SkinShadowBias ("     Shadow Caster Bias", Range(.1, 1.0)) = 1.0
+        _SkinShadowSamplingBias ("     Shadow Sampling Bias", Range(0, 0.05)) = 0
 
         [Space(5)]
         [Toggle(_NORMALINDEPTHNORMALPASS)]
-        _ApplyNormalDepthNormal     ("Enable Normal in Depth Normal Pass", Float) = 1.0
+        _ApplyNormalDepthNormal ("Enable Normal in Depth Normal Pass", Float) = 1.0
         [Toggle(_RECEIVEDECALS)]
-        _ReceiveDecals              ("Receive Decals", Float) = 1.0
+        _ReceiveDecals ("Receive Decals", Float) = 1.0
         
         [Header(Surface Inputs)]
         [Space(8)]
         [NoScaleOffset] [MainTexture]
-        _BaseMap                    ("Albedo (RGB) Smoothness (A)", 2D) = "white" {}
+        _BaseMap ("Albedo (RGB) Smoothness (A)", 2D) = "white" { }
         [MainColor]
-        _BaseColor                  ("Color", Color) = (1,1,1,1)
+        _BaseColor ("Color", Color) = (1, 1, 1, 1)
         
         [Space(5)]
-        _Smoothness                 ("Smoothness", Range(0.0, 1.0)) = 0.5
-    //  For some reason android did not like _SpecColor!?
-        _SpecularColor              ("Specular", Color) = (0.2, 0.2, 0.2)
+        _Smoothness ("Smoothness", Range(0.0, 1.0)) = 0.5
+        //  For some reason android did not like _SpecColor!?
+        _SpecularColor ("Specular", Color) = (0.2, 0.2, 0.2)
 
         [Space(5)]
         [Toggle(_NORMALMAP)]
-        _ApplyNormal                ("Enable Normal Map", Float) = 0.0
+        _ApplyNormal ("Enable Normal Map", Float) = 0.0
         [NoScaleOffset]
-        _BumpMap                    ("     Normal Map", 2D) = "bump" {}
-        _BumpScale                  ("     Normal Scale", Float) = 1.0
+        _BumpMap ("     Normal Map", 2D) = "bump" { }
+        _BumpScale ("     Normal Scale", Float) = 1.0
         [Toggle(_NORMALMAPDIFFUSE)]
-        _ApplyNormalDiffuse         ("     Enable Diffuse Normal Sample", Float) = 0.0
-        _Bias                       ("     Bias", Range(0.0, 8.0)) = 3.0
-        [Toggle]_VertexNormal       ("          Use Vertex Normal for Diffuse", Float) = 1
+        _ApplyNormalDiffuse ("     Enable Diffuse Normal Sample", Float) = 0.0
+        _Bias ("     Bias", Range(0.0, 8.0)) = 3.0
+        [Toggle]_VertexNormal ("          Use Vertex Normal for Diffuse", Float) = 1
 
         [Space(5)]
         [Toggle(_DETAILNORMALMAP)]
-        _ApplyDetailNormal          ("Enable Detail Normal Map", Float) = 0.0
-        _DetailBumpMap              ("     Detail Normal Map", 2D) = "bump" {}
-        _DetailBumpScale            ("     Detail Normal Scale", Float) = 1.0
+        _ApplyDetailNormal ("Enable Detail Normal Map", Float) = 0.0
+        _DetailBumpMap ("     Detail Normal Map", 2D) = "bump" { }
+        _DetailBumpScale ("     Detail Normal Scale", Float) = 1.0
 
         [Header(Skin Lighting)]
         [Space(8)]
-        [NoScaleOffset] _SSSAOMap   ("Skin Mask (R) Thickness (G) Curvature (B) Occlusion (A)", 2D) = "white" {}
+        [NoScaleOffset] _SSSAOMap ("Skin Mask (R) Thickness (G) Curvature (B) Occlusion (A)", 2D) = "white" { }
         
-        _OcclusionStrength          ("Occlusion Strength", Range(0.0, 1.0)) = 1.0
+        _OcclusionStrength ("Occlusion Strength", Range(0.0, 1.0)) = 1.0
 
         [Toggle]
-        _SampleCurvature            ("Sample Curvature", Float) = 0
-        _Curvature                  ("Curvature", Range(0.0, 1.0)) = 0.5
+        _SampleCurvature ("Sample Curvature", Float) = 0
+        _Curvature ("Curvature", Range(0.0, 1.0)) = 0.5
 
-        _SubsurfaceColor            ("Subsurface Color", Color) = (1.0, 0.4, 0.25, 1.0)
-        _TranslucencyPower          ("Transmission Power", Range(0.0, 10.0)) = 7.0
-        _TranslucencyStrength       ("Transmission Strength", Range(0.0, 1.0)) = 1.0
-        _ShadowStrength             ("Shadow Strength", Range(0.0, 1.0)) = 0.7
-        _MaskByShadowStrength       ("Mask by incoming Shadow Strength", Range(0.0, 1.0)) = 1.0
-        _Distortion                 ("Transmission Distortion", Range(0.0, 0.1)) = 0.01
-        _DecalTransmission          ("Decal Transmission", Range(0.0, 1)) = 1
+        _SubsurfaceColor ("Subsurface Color", Color) = (1.0, 0.4, 0.25, 1.0)
+        _TranslucencyPower ("Transmission Power", Range(0.0, 10.0)) = 7.0
+        _TranslucencyStrength ("Transmission Strength", Range(0.0, 1.0)) = 1.0
+        _ShadowStrength ("Shadow Strength", Range(0.0, 1.0)) = 0.7
+        _MaskByShadowStrength ("Mask by incoming Shadow Strength", Range(0.0, 1.0)) = 1.0
+        _Distortion ("Transmission Distortion", Range(0.0, 0.1)) = 0.01
+        _DecalTransmission ("Decal Transmission", Range(0.0, 1)) = 1
 
         [Space(5)]
         [Toggle(_BACKSCATTER)]
-        _EnableBackscatter          ("Enable Ambient Back Scattering", Float) = 0
-        _Backscatter                ("Ambient Back Scattering", Range(0.0, 8.0)) = 1
+        _EnableBackscatter ("Enable Ambient Back Scattering", Float) = 0
+        _Backscatter ("Ambient Back Scattering", Range(0.0, 8.0)) = 1
 
         [Space(5)]
-        _AmbientReflectionStrength  ("Ambient Reflection Strength", Range(0.0, 1)) = 1
+        _AmbientReflectionStrength ("Ambient Reflection Strength", Range(0.0, 1)) = 1
 
         [Space(5)]
-        [NoScaleOffset] _SkinLUT    ("Skin LUT", 2D) = "white" {}
+        [NoScaleOffset] _SkinLUT ("Skin LUT", 2D) = "white" { }
 
         [Header(Distance Fading)]
         [Space(8)]
         [Toggle(_DISTANCEFADE)]
-        _EnableDistanceFade         ("Enable Distance Fade", Float) = 0.0
+        _EnableDistanceFade ("Enable Distance Fade", Float) = 0.0
         [LuxURPDistanceFadeDrawer]
-        _DistanceFade               ("Distance Fade Params", Vector) = (2500, 0.001, 0, 0)
+        _DistanceFade ("Distance Fade Params", Vector) = (2500, 0.001, 0, 0)
 
 
         [Header(Rim Lighting)]
         [Space(8)]
         [Toggle(_RIMLIGHTING)]
-        _Rim                        ("Enable Rim Lighting", Float) = 0
-        [HDR] _RimColor             ("Rim Color", Color) = (0.5,0.5,0.5,1)
-        _RimPower                   ("Rim Power", Float) = 2
-        _RimFrequency               ("Rim Frequency", Float) = 0
-        _RimMinPower                ("     Rim Min Power", Float) = 1
-        _RimPerPositionFrequency    ("     Rim Per Position Frequency", Range(0.0, 1.0)) = 1
+        _Rim ("Enable Rim Lighting", Float) = 0
+        [HDR] _RimColor ("Rim Color", Color) = (0.5, 0.5, 0.5, 1)
+        _RimPower ("Rim Power", Float) = 2
+        _RimFrequency ("Rim Frequency", Float) = 0
+        _RimMinPower ("     Rim Min Power", Float) = 1
+        _RimPerPositionFrequency ("     Rim Per Position Frequency", Range(0.0, 1.0)) = 1
 
         [Header(Advanced)]
         [Space(8)]
         [ToggleOff]
-        _SpecularHighlights         ("Enable Specular Highlights", Float) = 1.0
+        _SpecularHighlights ("Enable Specular Highlights", Float) = 1.0
         [ToggleOff]
-        _EnvironmentReflections     ("Environment Reflections", Float) = 1.0
+        _EnvironmentReflections ("Environment Reflections", Float) = 1.0
 
 
         [Header(Stencil)]
         [Space(8)]
-        [IntRange] _Stencil         ("Stencil Reference", Range (0, 255)) = 0
-        [IntRange] _ReadMask        ("     Read Mask", Range (0, 255)) = 255
-        [IntRange] _WriteMask       ("     Write Mask", Range (0, 255)) = 255
+        [IntRange] _Stencil ("Stencil Reference", Range(0, 255)) = 0
+        [IntRange] _ReadMask ("     Read Mask", Range(0, 255)) = 255
+        [IntRange] _WriteMask ("     Write Mask", Range(0, 255)) = 255
         [Enum(UnityEngine.Rendering.CompareFunction)]
-        _StencilComp                ("Stencil Comparison", Int) = 8     // always 
+        _StencilComp ("Stencil Comparison", Int) = 8     // always
         [Enum(UnityEngine.Rendering.StencilOp)]
-        _StencilOp                  ("Stencil Operation", Int) = 0      // 0 = keep, 2 = replace
+        _StencilOp ("Stencil Operation", Int) = 0      // 0 = keep, 2 = replace
         [Enum(UnityEngine.Rendering.StencilOp)]
-        _StencilFail                ("Stencil Fail Op", Int) = 0        // 0 = keep
-        [Enum(UnityEngine.Rendering.StencilOp)] 
-        _StencilZFail               ("Stencil ZFail Op", Int) = 0       // 0 = keep
+        _StencilFail ("Stencil Fail Op", Int) = 0        // 0 = keep
+        [Enum(UnityEngine.Rendering.StencilOp)]
+        _StencilZFail ("Stencil ZFail Op", Int) = 0       // 0 = keep
 
-    //  Needed by the inspector
-        [HideInInspector] _Culling  ("Culling", Float) = 0.0
+        //  Needed by the inspector
+        [HideInInspector] _Culling ("Culling", Float) = 0.0
 
-    //  Lightmapper and outline selection shader need _MainTex, _Color and _Cutoff
-        [HideInInspector] _MainTex  ("Albedo", 2D) = "white" {}
-        [HideInInspector] _Color    ("Color", Color) = (1,1,1,1)
-        [HideInInspector] _Cutoff   ("Alpha Cutoff", Range(0.0, 1.0)) = 0.0
+        //  Lightmapper and outline selection shader need _MainTex, _Color and _Cutoff
+        [HideInInspector] _MainTex ("Albedo", 2D) = "white" { }
+        [HideInInspector] _Color ("Color", Color) = (1, 1, 1, 1)
+        [HideInInspector] _Cutoff ("Alpha Cutoff", Range(0.0, 1.0)) = 0.0
 
-    //  URP 10.1. needs this for the depthnormal pass 
-        [HideInInspector] _Cutoff   ("     Threshold", Range(0.0, 1.0)) = 0.5
-        [HideInInspector] _Surface("__surface", Float) = 0.0
+        //  URP 10.1. needs this for the depthnormal pass
+        [HideInInspector] _Cutoff ("     Threshold", Range(0.0, 1.0)) = 0.5
+        [HideInInspector] _Surface ("__surface", Float) = 0.0
     }
 
 
     SubShader
     {
-        Tags{
-            "RenderType" = "Opaque"
-            "RenderPipeline" = "UniversalPipeline"
-            "UniversalMaterialType" = "Lit"
-            "IgnoreProjector" = "True"
-            "ShaderModel"="4.5"
-        }
+        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline"
+            "UniversalMaterialType" = "Lit" "IgnoreProjector" = "True"
+            "ShaderModel" = "4.5" }
         LOD 300
 
-    //  ForwardLit -----------------------------------------------------
+        //  ForwardLit -----------------------------------------------------
         Pass
         {
             Name "ForwardLit"
-        //  Needs "UniversalForwardOnly" to render in deferred
-            Tags{"LightMode" = "UniversalForwardOnly"}
+            //  Needs "UniversalForwardOnly" to render in deferred
+            Tags { "LightMode" = "UniversalForwardOnly" }
 
-            Stencil {
+            Stencil
+            {
                 Ref   [_Stencil]
                 ReadMask [_ReadMask]
                 WriteMask [_WriteMask]
@@ -217,7 +214,7 @@ Shader "Lux URP/Human/Skin"
             #pragma instancing_options renderinglayer
             // #pragma multi_compile _ DOTS_INSTANCING_ON
 
-        //  Include base inputs and all other needed "base" includes
+            //  Include base inputs and all other needed "base" includes
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin ForwardLit Pass.hlsl"
 
@@ -227,11 +224,11 @@ Shader "Lux URP/Human/Skin"
             ENDHLSL
         }
 
-    //  Shadows -----------------------------------------------------
+        //  Shadows -----------------------------------------------------
         Pass
         {
             Name "ShadowCaster"
-            Tags{"LightMode" = "ShadowCaster"}
+            Tags { "LightMode" = "ShadowCaster" }
 
             ZWrite On
             ZTest LEqual
@@ -256,24 +253,24 @@ Shader "Lux URP/Human/Skin"
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
 
-        //  Include base inputs and all other needed "base" includes
+            //  Include base inputs and all other needed "base" includes
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin ShadowCaster Pass.hlsl"
-        
+            
             ENDHLSL
         }
 
-    //  GBuffer Pass not needed any more? It is - fucking decals and ortho normals
-    //  GBuffer Pass - minimalized which only outputs depth and writes into the normal buffers  
+        //  GBuffer Pass not needed any more? It is - fucking decals and ortho normals
+        //  GBuffer Pass - minimalized which only outputs depth and writes into the normal buffers
         Pass
         {
             Name "GBuffer"
-            Tags{"LightMode" = "UniversalGBuffer"}
+            Tags { "LightMode" = "UniversalGBuffer" }
 
             ZWrite On
             Cull Back
             
-        //  We only write to the normals buffer
+            //  We only write to the normals buffer
             ColorMask 0 0       // albedo, materialFlags
             ColorMask 0 1       // specular, occlusion
             ColorMask RGB 2     // encoded-normal(rgb), smoothness
@@ -305,28 +302,30 @@ Shader "Lux URP/Human/Skin"
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
             
-           
-            struct Attributes {
-                float3 positionOS                   : POSITION;
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
-                    float2 texcoord                 : TEXCOORD0;
+            
+            struct Attributes
+            {
+                float3 positionOS : POSITION;
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                    float2 texcoord : TEXCOORD0;
                 #endif
-                float3 normalOS                     : NORMAL;
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
-                    float4 tangentOS                : TANGENT;
+                float3 normalOS : NORMAL;
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                    float4 tangentOS : TANGENT;
                 #endif
 
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
-            struct Varyings {
-                float4 positionCS     : SV_POSITION;
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
-                    float2 uv         : TEXCOORD0;
+            struct Varyings
+            {
+                float4 positionCS : SV_POSITION;
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                    float2 uv : TEXCOORD0;
                 #endif
-                half3 normalWS        : TEXCOORD1;
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
-                    half4 tangentWS   : TEXCOORD2;
+                half3 normalWS : TEXCOORD1;
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                    half4 tangentWS : TEXCOORD2;
                 #endif
                 //UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
@@ -340,17 +339,17 @@ Shader "Lux URP/Human/Skin"
                 //UNITY_TRANSFER_INSTANCE_ID(input, output);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
                     output.uv = input.texcoord; //TRANSFORM_TEX(input.texcoord, _BaseMap);
                 #endif
                 output.positionCS = TransformObjectToHClip(input.positionOS.xyz);
 
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
                     VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, input.tangentOS);
                     half sign = input.tangentOS.w * GetOddNegativeScale();
                     output.tangentWS = half4(normalInput.tangentWS.xyz, sign);
                 #else
-                    VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, float4(1,1,1,1));
+                    VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS, float4(1, 1, 1, 1));
                 #endif
                 output.normalWS = normalInput.normalWS;
                 return output;
@@ -361,7 +360,7 @@ Shader "Lux URP/Human/Skin"
                 //UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
                 
-                #if defined (_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
+                #if defined(_NORMALMAP) && defined(_NORMALINDEPTHNORMALPASS) && defined(_NORMALMAPDIFFUSE)
                     
                     half4 sampleNormalDiffuse = SAMPLE_TEXTURE2D_BIAS(_BumpMap, sampler_BumpMap, input.uv, _Bias);
                     half3 normalTS = UnpackNormalScale(sampleNormalDiffuse, _BumpScale);
@@ -375,17 +374,17 @@ Shader "Lux URP/Human/Skin"
 
                 half3 packedNormalWS = PackNormal(input.normalWS);
                 FragmentOutput output = (FragmentOutput)0;
-                output.GBuffer2 = half4(packedNormalWS, 1);  
+                output.GBuffer2 = half4(packedNormalWS, 1);
                 return output;
             }
 
             ENDHLSL
         }
 
-    //  Depth Only -----------------------------------------------------
+        //  Depth Only -----------------------------------------------------
         Pass
         {
-            Tags{"LightMode" = "DepthOnly"}
+            Tags { "LightMode" = "DepthOnly" }
 
             ZWrite On
             ColorMask 0
@@ -411,11 +410,11 @@ Shader "Lux URP/Human/Skin"
             ENDHLSL
         }
 
-    //  Depth Normals --------------------------------------------
+        //  Depth Normals --------------------------------------------
         Pass
         {
             Name "DepthNormals"
-            Tags{"LightMode" = "DepthNormals"}
+            Tags { "LightMode" = "DepthNormals" }
 
             ZWrite On
             Cull Back
@@ -435,8 +434,8 @@ Shader "Lux URP/Human/Skin"
 
             // -------------------------------------
             // Unity defined keywords
-//  Breaks decals
-//          #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
+            //  Breaks decals
+            //          #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
 
             //--------------------------------------
             // GPU Instancing
@@ -448,10 +447,10 @@ Shader "Lux URP/Human/Skin"
             ENDHLSL
         }
 
-    //  Meta -----------------------------------------------------
+        //  Meta -----------------------------------------------------
         Pass
         {
-            Tags{"LightMode" = "Meta"}
+            Tags { "LightMode" = "Meta" }
 
             Cull Off
 
@@ -464,39 +463,34 @@ Shader "Lux URP/Human/Skin"
 
             #define _SPECULAR_SETUP
 
-        //  First include all our custom stuff
+            //  First include all our custom stuff
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin Meta Pass.hlsl"
-        
+            
 
-        //  Finally include the meta pass related stuff  
+            //  Finally include the meta pass related stuff
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitMetaPass.hlsl"
 
             ENDHLSL
         }
-        
     }
 
-//  --------------------------------------------------
+    //  --------------------------------------------------
 
     SubShader
     {
-        Tags
-        {
-            "RenderType" = "Opaque"
-            "RenderPipeline" = "UniversalPipeline"
-            "UniversalMaterialType" = "Lit"
-            "IgnoreProjector" = "True"
-            "ShaderModel"="2.0"
-        }
+        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline"
+            "UniversalMaterialType" = "Lit" "IgnoreProjector" = "True"
+            "ShaderModel" = "2.0" }
         LOD 300
 
         Pass
         {
             Name "ForwardLit"
-            Tags{"LightMode" = "UniversalForward"}
+            Tags { "LightMode" = "UniversalForward" }
 
-            Stencil {
+            Stencil
+            {
                 Ref   [_Stencil]
                 ReadMask [_ReadMask]
                 WriteMask [_WriteMask]
@@ -557,7 +551,7 @@ Shader "Lux URP/Human/Skin"
             #pragma multi_compile_instancing
             // #pragma multi_compile _ DOTS_INSTANCING_ON // needs shader target 4.5
 
-        //  Include base inputs and all other needed "base" includes
+            //  Include base inputs and all other needed "base" includes
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin ForwardLit Pass.hlsl"
 
@@ -568,11 +562,11 @@ Shader "Lux URP/Human/Skin"
         }
 
 
-    //  Shadows -----------------------------------------------------
+        //  Shadows -----------------------------------------------------
         Pass
         {
             Name "ShadowCaster"
-            Tags{"LightMode" = "ShadowCaster"}
+            Tags { "LightMode" = "ShadowCaster" }
 
             ZWrite On
             ZTest LEqual
@@ -597,17 +591,17 @@ Shader "Lux URP/Human/Skin"
             #pragma vertex ShadowPassVertex
             #pragma fragment ShadowPassFragment
 
-        //  Include base inputs and all other needed "base" includes
+            //  Include base inputs and all other needed "base" includes
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin ShadowCaster Pass.hlsl"
-        
+            
             ENDHLSL
         }
 
-    //  Depth Only -----------------------------------------------------
+        //  Depth Only -----------------------------------------------------
         Pass
         {
-            Tags{"LightMode" = "DepthOnly"}
+            Tags { "LightMode" = "DepthOnly" }
 
             ZWrite On
             ColorMask 0
@@ -633,11 +627,11 @@ Shader "Lux URP/Human/Skin"
             ENDHLSL
         }
 
-    //  Depth Normals --------------------------------------------
+        //  Depth Normals --------------------------------------------
         Pass
         {
             Name "DepthNormals"
-            Tags{"LightMode" = "DepthNormals"}
+            Tags { "LightMode" = "DepthNormals" }
 
             ZWrite On
             Cull Back
@@ -663,13 +657,13 @@ Shader "Lux URP/Human/Skin"
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin DepthNormal Pass.hlsl"
             ENDHLSL
-        } 
+        }
 
 
-    //  Meta -----------------------------------------------------
+        //  Meta -----------------------------------------------------
         Pass
         {
-            Tags{"LightMode" = "Meta"}
+            Tags { "LightMode" = "Meta" }
 
             Cull Off
 
@@ -682,19 +676,19 @@ Shader "Lux URP/Human/Skin"
 
             #define _SPECULAR_SETUP
 
-        //  First include all our custom stuff
+            //  First include all our custom stuff
             #include "Includes/Lux URP Skin Inputs.hlsl"
             #include "Includes/Lux URP Skin Meta Pass.hlsl"
-        
+            
 
-        //  Finally include the meta pass related stuff  
+            //  Finally include the meta pass related stuff
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitMetaPass.hlsl"
 
             ENDHLSL
         }
 
-    //  End Passes -----------------------------------------------------
-    
+        //  End Passes -----------------------------------------------------
+
     }
     CustomEditor "LuxURPCustomSkinShaderGUI"
     FallBack "Hidden/InternalErrorShader"
