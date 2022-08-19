@@ -1,5 +1,9 @@
 ﻿Shader "funnyland/env/sky"
 {
+    Properties
+    {
+        [NoScaleOffset] _MainCube ("Cubemap (HDR)", Cube) = "black" { }
+    }
     SubShader
     {
         Tags { "Queue" = "Background" "RenderType" = "Background" "PreviewType" = "Skybox" "IgnoreProjector" = "True" }
@@ -13,31 +17,37 @@
         Pass
         {
             HLSLPROGRAM
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma target 4.5
 
-            #pragma vertex vertex_program
-            #pragma fragment fragment_program
-            #pragma target 3.0
-            #include "UnityCG.cginc"
             struct Attributes
             {
-                float4 vertex : POSITION;
+                float4 positionOS : POSITION;
             };
 
             struct Varyings
             {
-                float4 Position : SV_POSITION;
+                float4 positionCS : SV_POSITION;
+                float3 xyz : TEXCOORD0;
             };
 
-            Varyings vertex_program(Attributes v)
+            TEXTURECUBE(_MainCube); SAMPLER(sampler_MainCube);
+
+            Varyings vert(Attributes v)
             {
-                Varyings Output = (Varyings)0;
-                Output.Position = UnityObjectToClipPos(v.vertex);
-                return Output;
+                Varyings o = (Varyings)0;
+                VertexPositionInputs vpi = GetVertexPositionInputs(v.positionOS.xyz);
+                o.positionCS = vpi.positionCS;
+                o.xyz = v.positionOS.xyz;
+                return o;
             }
 
-            float4 fragment_program(Varyings Input) : SV_Target
+            half4 frag(Varyings input) : SV_Target
             {
-                return float4(1, 1, 1, 1.0);
+                half4 encodedIrradiance = SAMPLE_TEXTURECUBE(_MainCube, sampler_MainCube, input.xyz);
+                return encodedIrradiance;
             }
 
             ENDHLSL
