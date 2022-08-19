@@ -55,7 +55,7 @@ void InitializeInputData(Varyings input, out InputData inputData)
     inputData = (InputData)0;
     inputData.positionWS = input.positionWS;
     inputData.positionCS = input.positionCS;
-    inputData.normalWS = input.normalWS;
+    inputData.normalWS = SafeNormalize(input.normalWS);
     inputData.viewDirectionWS = input.viewDirWS;
     inputData.shadowCoord = input.shadowCoord;
     inputData.fogCoord = input.vertexLightAndFog.w;
@@ -66,7 +66,7 @@ void InitializeInputData(Varyings input, out InputData inputData)
     inputData.tangentToWorld = 0;
 }
 
-void InitializeSkinSurfaceData(float2 uv, out SurfaceData surfaceData)
+void InitializeSkinSurfaceData(float2 uv, out SurfaceData surfaceData, out SkinSurfaceData skinSurfaceData)
 {
     surfaceData = (SurfaceData)0;
     surfaceData.albedo = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap)) * _BaseColor;
@@ -76,7 +76,15 @@ void InitializeSkinSurfaceData(float2 uv, out SurfaceData surfaceData)
     surfaceData.clearCoatSmoothness = half(0.0);
     surfaceData.clearCoatMask = half(0.0);
     // constant smoothness for skin
-    surfaceData.smoothness = half(0.45);
+    surfaceData.smoothness = _Smoothness;
+    surfaceData.specular = _SpecularColor.rgb;
+
+    skinSurfaceData = (SkinSurfaceData)0;
+    half4 CEAT_Color = SAMPLE_TEXTURE2D(_CEATMap, sampler_CEATMap, uv);
+    skinSurfaceData.curvature = CEAT_Color.r;
+    skinSurfaceData.emission_Mask = CEAT_Color.g;
+    skinSurfaceData.ao = CEAT_Color.b;
+    skinSurfaceData.thickness = CEAT_Color.a * _ScatteringStrength;
 }
 
 half4 frag(Varyings input) : SV_Target
@@ -85,12 +93,13 @@ half4 frag(Varyings input) : SV_Target
     InputData inputData;
     InitializeInputData(input, inputData);
     SurfaceData surfaceData;
-    InitializeSkinSurfaceData(input.uv0, surfaceData);
+    SkinSurfaceData skinSurfaceData;
+    InitializeSkinSurfaceData(input.uv0, surfaceData, skinSurfaceData);
+    half3 diffuseNormalWS = NormalizeNormalPerPixel(input.normalWS);
 
     //AmbientOcclusionFactor ao = CreateAmbientOcclusionFactor(inputData.normalizedScreenSpaceUV, surfaceData.occlusion);
     //return half4(ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, ao.indirectAmbientOcclusion, 1.0) * baseColor;
-    half4 color = SkinPBR(inputData, surfaceData, _SpecularAO);
+    half4 color = SkinPBR(inputData, surfaceData, skinSurfaceData, _SubSurfaceColor, diffuseNormalWS, _SpecularAO, _BackScattering);
     return color;
-
 }
 #endif

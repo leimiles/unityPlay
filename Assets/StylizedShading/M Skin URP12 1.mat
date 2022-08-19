@@ -94,7 +94,7 @@ Material:
     - _ApplyNormal: 0
     - _ApplyNormalDepthNormal: 1
     - _ApplyNormalDiffuse: 1
-    - _Backscatter: 0
+    - _Backscatter: 8
     - _Bias: 2.6
     - _Blend: 0
     - _BumpScale: 1
@@ -105,7 +105,7 @@ Material:
     - _DecalTransmission: 1
     - _DetailBumpScale: 0.4
     - _DetailScale: 1
-    - _Distortion: 0.01
+    - _Distortion: 0.02
     - _DstBlend: 0
     - _EnableBackscatter: 1
     - _EnableDistanceFade: 1
@@ -133,7 +133,7 @@ Material:
     - _Shadows: 0
     - _SkinShadowBias: 0.2
     - _SkinShadowSamplingBias: 0.01
-    - _Smoothness: 0.442
+    - _Smoothness: 0.42
     - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -144,7 +144,7 @@ Material:
     - _StencilRef: 0
     - _StencilZFail: 0
     - _Surface: 0
-    - _TranslucencyPower: 10
+    - _TranslucencyPower: 2
     - _TranslucencyStrength: 0.025
     - _VertexNormal: 0
     - _Wind: 0
@@ -159,6 +159,6 @@ Material:
     - _RimColor: {r: 0, g: 0.43020812, b: 0.8490566, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SubsurfaceColor: {r: 0.9056604, g: 0.46297684, b: 0.21787111, a: 1}
+    - _SubsurfaceColor: {r: 1, g: 0.13333334, b: 0.098039225, a: 1}
     - _WindMultiplier: {r: 1, g: 2, b: 1, a: 0}
   m_BuildTextureStacks: []
