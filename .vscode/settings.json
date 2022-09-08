@@ -55,9 +55,11 @@
         "Temp/": true
     },
     "search.exclude": {
+        "**/*.csproj": true,
         "**/*.json": true,
         "**/*.log": true,
-        "**/*.md": true
+        "**/*.md": true,
+        "**/*.shadersubgraph": true
     },
     "search.useIgnoreFiles": false
 }
