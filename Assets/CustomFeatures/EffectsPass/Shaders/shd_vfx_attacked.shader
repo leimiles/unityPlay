@@ -3,9 +3,7 @@ Shader "funnyland/vfx/attacked"
     Properties
     {
         [HDR]_Color ("Color", Color) = (1, 0, 0, 0)
-        _Edge ("Edge", Range(0.5, 5.0)) = 1.0
-        _Fat ("Fat", Range(0.0, 2.0)) = 0.0
-        _Blend ("Blend", Range(0.0, 1.0)) = 0.5
+        _Intensity ("Intensity", Range(0.0, 1.0)) = 1.0
     }
 
     SubShader
@@ -14,7 +12,7 @@ Shader "funnyland/vfx/attacked"
 
         Pass
         {
-            Blend SrcAlpha OneMinusSrcAlpha
+            Blend One OneMinusSrcAlpha
             Name "Attacked"
             Tags { "LightMode" = "UniversalForward" }
 
@@ -36,9 +34,9 @@ Shader "funnyland/vfx/attacked"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
-                half _Edge;
-                half _Fat;
-                half _Blend;
+                //half _Edge;
+                //half _Blend;
+                half _Intensity;
             CBUFFER_END
 
             struct varyings
@@ -56,7 +54,6 @@ Shader "funnyland/vfx/attacked"
             varyings vert(attributes input)
             {
                 varyings o = (varyings)0;
-                //input.positionOS = input.positionOS + 0.005 * input.normalOS;
                 VertexPositionInputs vpi = GetVertexPositionInputs(input.positionOS);
                 o.positionCS = vpi.positionCS;
                 VertexNormalInputs vni = GetVertexNormalInputs(input.normalOS);
@@ -69,8 +66,8 @@ Shader "funnyland/vfx/attacked"
             {
                 //half fresnel;
                 //fresnelEffect(SafeNormalize(i.normalWS), SafeNormalize(i.viewDirWS), _Edge, fresnel);
-                //return half4(_Color.rgb, _Color.a * fresnel);
-                return half4(_Color.rgb, _Blend);
+                _Color = _Color * _Intensity;
+                return half4(_Color.rgb, _Intensity);
             }
             ENDHLSL
         }
