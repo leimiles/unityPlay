@@ -28,6 +28,6 @@ public class UseCmdClear : MonoBehaviour {
                 break;
         }
         // still only after or before skybox events will work
-        camera.AddCommandBuffer(CameraEvent.BeforeForwardOpaque, commandBuffer);
+        camera.AddCommandBuffer(CameraEvent.AfterSkybox, commandBuffer);
     }
 }
