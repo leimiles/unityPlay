@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6239951067377757431
+--- !u!114 &-5254667497922040281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee1f1bd85bd6a745bf7d1a547d06834, type: 3}
-  m_Name: EffectsFeature
+  m_Script: {fileID: 11500000, guid: cb68c09cef5574b4a959cdf0e9b60056, type: 3}
+  m_Name: NewTargetFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  renderPassEvent: 500
-  material: {fileID: 2100000, guid: 8349123f33457ca4fbca4814fe683c96, type: 2}
+  settings:
+    renderPassEvent: 500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,8 +30,8 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: -6239951067377757431}
-  m_RendererFeatureMap: 0913219d903d67a9
+  - {fileID: -5254667497922040281}
+  m_RendererFeatureMap: 27ee9045c0ab13b7
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
