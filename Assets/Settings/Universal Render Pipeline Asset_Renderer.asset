@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb68c09cef5574b4a959cdf0e9b60056, type: 3}
   m_Name: NewTargetFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     renderPassEvent: 500
 --- !u!114 &11400000
