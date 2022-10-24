@@ -61,5 +61,5 @@
         "**/*.md": true,
         "**/*.shadersubgraph": true
     },
-    "search.useIgnoreFiles": false
+    "search.useIgnoreFiles": true
 }
