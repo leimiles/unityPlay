@@ -40,6 +40,7 @@ public class MIDControllerEditor : Editor {
         }
         GUI.backgroundColor = buttonStates[3] ? Color.red : Color.yellow;
         if (GUILayout.Button("By Shader And Keywords")) {
+            Test();
             SetButtonState(3);
         }
 
@@ -51,7 +52,13 @@ public class MIDControllerEditor : Editor {
         SetMIDMode();
     }
 
+    void Test() {
+    }
+
     void ShowStatstics() {
+        if (mIDFeature == null) {
+            return;
+        }
         switch (mIDFeature.midMode) {
             case MIDFeature.MIDMode.Off:
                 break;
@@ -62,7 +69,7 @@ public class MIDControllerEditor : Editor {
                 GUILayout.Label("Shader Count: " + mIDFeature.ShadersCount);
                 break;
             case MIDFeature.MIDMode.ByShaderAndKeywords:
-                GUILayout.Label("Variant Count: " + 10);
+                GUILayout.Label("Variant Count: " + mIDFeature.VariantsCount);
                 break;
         }
     }

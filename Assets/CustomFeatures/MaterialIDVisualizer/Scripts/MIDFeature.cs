@@ -18,30 +18,18 @@ public class MIDFeature : ScriptableRendererFeature {
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
             CommandBuffer commandBuffer = CommandBufferPool.Get(name: "MID Pass");
             if (meshRenderers != null && meshRenderers.Length > 0) {
-                /*
-                foreach (MeshRenderer meshRenderer in meshRenderers) {
-                    foreach (Material material in meshRenderer.sharedMaterials) {
-                        if (material == null) {
-                        } else {
-                            commandBuffer.DrawRenderer(meshRenderer, material);
-                        }
-                    }
-                }
-                */
                 switch (mIDMode) {
                     case MIDMode.Off:
                         MIDManager.Clear();
                         break;
                     case MIDMode.ByMaterial:
-                        //MIDManager.Clear();
                         DrawRenderersByMaterial(ref commandBuffer);
                         break;
                     case MIDMode.ByShader:
-                        //MIDManager.Clear();
                         DrawRenderersByShader(ref commandBuffer);
                         break;
                     case MIDMode.ByShaderAndKeywords:
-                        //MIDManager.Clear();
+                        DrawRenderersByShaderAndKeywords(ref commandBuffer);
                         break;
                 }
             }
@@ -57,8 +45,6 @@ public class MIDFeature : ScriptableRendererFeature {
                 }
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
                 materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial.shader));
-                //material.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial.shader));
-                //commandBuffer.DrawRenderer(meshRenderer, material);
                 meshRenderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(meshRenderer, material);
             }
@@ -76,15 +62,60 @@ public class MIDFeature : ScriptableRendererFeature {
                 commandBuffer.DrawRenderer(meshRenderer, material);
             }
         }
+        void DrawRenderersByShaderAndKeywords(ref CommandBuffer commandBuffer) {
+            foreach (MeshRenderer meshRenderer in meshRenderers) {
+                if (meshRenderer.sharedMaterials.Length > 1) {
+                    Debug.Log("multi materials");
+                    continue;
+                }
+                meshRenderer.GetPropertyBlock(materialPropertyBlock);
+                Color shaderColor = MIDManager.GetColor(meshRenderer.sharedMaterial.shader);
+                MIDManager.KeywordsSet keywordsSet = new MIDManager.KeywordsSet(meshRenderer.sharedMaterial);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(shaderColor, keywordsSet.FullVariantName));
+                meshRenderer.SetPropertyBlock(materialPropertyBlock);
+                commandBuffer.DrawRenderer(meshRenderer, material);
+            }
+        }
     }
 
     class MIDManager {
-        //static HashSet<Material> materialsSet;
+        public class KeywordsSet {
+            string shaderName;
+            string fullVariantsName;
+            List<GlobalKeyword> globalKeywords;
+            List<LocalKeyword> localKeywords;
+            public KeywordsSet(Material material) {
+                this.shaderName = material.shader.name;
+                this.localKeywords = new List<LocalKeyword>(material.enabledKeywords);
+                this.localKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
+                this.globalKeywords = new List<GlobalKeyword>(Shader.enabledGlobalKeywords);
+                this.globalKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
+                SetFullName();
+            }
+
+            void SetFullName() {
+                fullVariantsName = this.shaderName + "|";
+                foreach (GlobalKeyword globalKeyword in this.globalKeywords) {
+                    fullVariantsName += globalKeyword.name;
+                    fullVariantsName += "|";
+                }
+                foreach (LocalKeyword localKeyword in this.localKeywords) {
+                    fullVariantsName += localKeyword.name;
+                    fullVariantsName += "|";
+                }
+            }
+            public string FullVariantName {
+                get {
+                    return fullVariantsName;
+                }
+            }
+        }
+
         public static Dictionary<Material, Color> materialsSet;
         public static Dictionary<Shader, Color> shadersSet;
-        public static Color GetColor(LocalKeyword[] localKeywords) {
-            return Color.yellow;
-        }
+        public static Dictionary<string, Color> variantsSet;
+        public static List<KeywordsSet> keywordsSets;
+
         public static Color GetColor(Material material) {
             RegisterMaterial(material);
             return materialsSet[material];
@@ -93,14 +124,20 @@ public class MIDFeature : ScriptableRendererFeature {
             RegisterShader(shader);
             return shadersSet[shader];
         }
-        public static void Clear() {
-            if (materialsSet != null) {
-                materialsSet.Clear();
-            }
-            if (shadersSet != null) {
-                shadersSet.Clear();
-            }
 
+        public static Color GetColor(Color shaderColor, string shaderVariants) {
+            RigisterShaderVariant(shaderVariants);
+            return shaderColor * variantsSet[shaderVariants];
+        }
+
+        static void RigisterShaderVariant(string shaderVariants) {
+            if (variantsSet == null) {
+                variantsSet = new Dictionary<string, Color>();
+            }
+            if (!variantsSet.ContainsKey(shaderVariants)) {
+                Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
+                variantsSet.Add(shaderVariants, newColor);
+            }
         }
         static void RegisterMaterial(Material material) {
             if (materialsSet == null) {
@@ -110,7 +147,6 @@ public class MIDFeature : ScriptableRendererFeature {
                 Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
                 materialsSet.Add(material, newColor);
             }
-            //Debug.Log(materialsSet.Count);
         }
         static void RegisterShader(Shader shader) {
             if (shadersSet == null) {
@@ -120,7 +156,17 @@ public class MIDFeature : ScriptableRendererFeature {
                 Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
                 shadersSet.Add(shader, newColor);
             }
-            //Debug.Log(materialsSet.Count);
+        }
+        public static void Clear() {
+            if (materialsSet != null) {
+                materialsSet.Clear();
+            }
+            if (shadersSet != null) {
+                shadersSet.Clear();
+            }
+            if (keywordsSets != null) {
+                keywordsSets.Clear();
+            }
         }
 
     }
@@ -131,6 +177,15 @@ public class MIDFeature : ScriptableRendererFeature {
                 return 0;
             } else {
                 return MIDManager.materialsSet.Count;
+            }
+        }
+    }
+    public int VariantsCount {
+        get {
+            if (MIDManager.variantsSet == null) {
+                return 0;
+            } else {
+                return MIDManager.variantsSet.Count;
             }
         }
     }
