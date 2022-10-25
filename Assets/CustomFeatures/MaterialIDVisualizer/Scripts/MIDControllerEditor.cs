@@ -59,7 +59,7 @@ public class MIDControllerEditor : Editor {
                 GUILayout.Label("Material Count: " + mIDFeature.MaterialsCount);
                 break;
             case MIDFeature.MIDMode.ByShader:
-                GUILayout.Label("Shader Count: " + 10);
+                GUILayout.Label("Shader Count: " + mIDFeature.ShadersCount);
                 break;
             case MIDFeature.MIDMode.ByShaderAndKeywords:
                 GUILayout.Label("Variant Count: " + 10);

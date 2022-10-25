@@ -38,7 +38,7 @@ public class MIDFeature : ScriptableRendererFeature {
                         break;
                     case MIDMode.ByShader:
                         //MIDManager.Clear();
-                        //DrawRenderersByShader(ref commandBuffer);
+                        DrawRenderersByShader(ref commandBuffer);
                         break;
                     case MIDMode.ByShaderAndKeywords:
                         //MIDManager.Clear();
@@ -55,19 +55,21 @@ public class MIDFeature : ScriptableRendererFeature {
                     Debug.Log("multi materials");
                     continue;
                 }
-                material.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial.shader));
+                meshRenderer.GetPropertyBlock(materialPropertyBlock);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial.shader));
+                //material.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial.shader));
+                //commandBuffer.DrawRenderer(meshRenderer, material);
+                meshRenderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(meshRenderer, material);
             }
         }
 
         void DrawRenderersByMaterial(ref CommandBuffer commandBuffer) {
-
             foreach (MeshRenderer meshRenderer in meshRenderers) {
                 if (meshRenderer.sharedMaterials.Length > 1) {
                     Debug.Log("multi materials");
                     continue;
                 }
-                //material.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial));
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
                 materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial));
                 meshRenderer.SetPropertyBlock(materialPropertyBlock);
@@ -79,20 +81,24 @@ public class MIDFeature : ScriptableRendererFeature {
     class MIDManager {
         //static HashSet<Material> materialsSet;
         public static Dictionary<Material, Color> materialsSet;
+        public static Dictionary<Shader, Color> shadersSet;
         public static Color GetColor(LocalKeyword[] localKeywords) {
             return Color.yellow;
         }
         public static Color GetColor(Material material) {
             RegisterMaterial(material);
             return materialsSet[material];
-            //return Color.green;
         }
         public static Color GetColor(Shader shader) {
-            return Color.blue;
+            RegisterShader(shader);
+            return shadersSet[shader];
         }
         public static void Clear() {
             if (materialsSet != null) {
                 materialsSet.Clear();
+            }
+            if (shadersSet != null) {
+                shadersSet.Clear();
             }
 
         }
@@ -106,12 +112,35 @@ public class MIDFeature : ScriptableRendererFeature {
             }
             //Debug.Log(materialsSet.Count);
         }
+        static void RegisterShader(Shader shader) {
+            if (shadersSet == null) {
+                shadersSet = new Dictionary<Shader, Color>();
+            }
+            if (!shadersSet.ContainsKey(shader)) {
+                Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
+                shadersSet.Add(shader, newColor);
+            }
+            //Debug.Log(materialsSet.Count);
+        }
 
     }
 
     public int MaterialsCount {
         get {
-            return MIDManager.materialsSet.Count;
+            if (MIDManager.materialsSet == null) {
+                return 0;
+            } else {
+                return MIDManager.materialsSet.Count;
+            }
+        }
+    }
+    public int ShadersCount {
+        get {
+            if (MIDManager.shadersSet == null) {
+                return 0;
+            } else {
+                return MIDManager.shadersSet.Count;
+            }
         }
     }
 
