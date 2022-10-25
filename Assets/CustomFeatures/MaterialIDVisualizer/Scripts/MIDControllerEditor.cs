@@ -43,18 +43,28 @@ public class MIDControllerEditor : Editor {
             SetButtonState(3);
         }
 
+
         EditorGUILayout.EndVertical();
         GUILayout.EndArea();
+        ShowStatstics();
         Handles.EndGUI();
-
-        // statstics section
-        Handles.BeginGUI();
-        GUILayout.BeginArea(new Rect(20, 20, 180, 120));
-        GUILayout.EndArea();
-        Handles.EndGUI();
-
-
         SetMIDMode();
+    }
+
+    void ShowStatstics() {
+        switch (mIDFeature.midMode) {
+            case MIDFeature.MIDMode.Off:
+                break;
+            case MIDFeature.MIDMode.ByMaterial:
+                GUILayout.Label("Material Count: " + mIDFeature.MaterialsCount);
+                break;
+            case MIDFeature.MIDMode.ByShader:
+                GUILayout.Label("Shader Count: " + 10);
+                break;
+            case MIDFeature.MIDMode.ByShaderAndKeywords:
+                GUILayout.Label("Variant Count: " + 10);
+                break;
+        }
     }
 
     void SetMIDMode() {

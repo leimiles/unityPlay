@@ -8,8 +8,10 @@ public class MIDFeature : ScriptableRendererFeature {
     class MIDPass : ScriptableRenderPass {
         Material material;
         public MeshRenderer[] meshRenderers;
+        MaterialPropertyBlock materialPropertyBlock;
         public MIDPass(Material material) {
             this.material = material;
+            materialPropertyBlock = new MaterialPropertyBlock();
         }
 
         public MIDMode mIDMode;
@@ -28,17 +30,18 @@ public class MIDFeature : ScriptableRendererFeature {
                 */
                 switch (mIDMode) {
                     case MIDMode.Off:
+                        MIDManager.Clear();
                         break;
                     case MIDMode.ByMaterial:
-                        MIDManager.Clear();
+                        //MIDManager.Clear();
                         DrawRenderersByMaterial(ref commandBuffer);
                         break;
                     case MIDMode.ByShader:
-                        MIDManager.Clear();
-                        DrawRenderersByShader(ref commandBuffer);
+                        //MIDManager.Clear();
+                        //DrawRenderersByShader(ref commandBuffer);
                         break;
                     case MIDMode.ByShaderAndKeywords:
-                        MIDManager.Clear();
+                        //MIDManager.Clear();
                         break;
                 }
             }
@@ -58,26 +61,31 @@ public class MIDFeature : ScriptableRendererFeature {
         }
 
         void DrawRenderersByMaterial(ref CommandBuffer commandBuffer) {
+
             foreach (MeshRenderer meshRenderer in meshRenderers) {
                 if (meshRenderer.sharedMaterials.Length > 1) {
                     Debug.Log("multi materials");
                     continue;
                 }
-                material.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial));
+                //material.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial));
+                meshRenderer.GetPropertyBlock(materialPropertyBlock);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial));
+                meshRenderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(meshRenderer, material);
             }
-
         }
     }
 
     class MIDManager {
-        static HashSet<Material> materialsSet;
+        //static HashSet<Material> materialsSet;
+        public static Dictionary<Material, Color> materialsSet;
         public static Color GetColor(LocalKeyword[] localKeywords) {
             return Color.yellow;
         }
         public static Color GetColor(Material material) {
             RegisterMaterial(material);
-            return Color.green;
+            return materialsSet[material];
+            //return Color.green;
         }
         public static Color GetColor(Shader shader) {
             return Color.blue;
@@ -90,12 +98,21 @@ public class MIDFeature : ScriptableRendererFeature {
         }
         static void RegisterMaterial(Material material) {
             if (materialsSet == null) {
-                materialsSet = new HashSet<Material>();
+                materialsSet = new Dictionary<Material, Color>();
             }
-            materialsSet.Add(material);
+            if (!materialsSet.ContainsKey(material)) {
+                Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
+                materialsSet.Add(material, newColor);
+            }
             //Debug.Log(materialsSet.Count);
         }
 
+    }
+
+    public int MaterialsCount {
+        get {
+            return MIDManager.materialsSet.Count;
+        }
     }
 
     public enum MIDMode {
@@ -119,6 +136,7 @@ public class MIDFeature : ScriptableRendererFeature {
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData) {
         if (renderingData.cameraData.cameraType == CameraType.SceneView) {
             mIDPass.mIDMode = midMode;
+            // todo opt
             MeshRenderer[] meshRenderers = GameObject.FindObjectsOfType<MeshRenderer>();
             mIDPass.meshRenderers = meshRenderers;
             renderer.EnqueuePass(mIDPass);

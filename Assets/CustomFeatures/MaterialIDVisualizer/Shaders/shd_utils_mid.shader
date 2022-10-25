@@ -2,7 +2,7 @@ Shader "cf/utils/mid"
 {
     Properties
     {
-        [HideInInspector]_Color ("Color", Color) = (0, 0, 0, 0)
+        [HideInInspector][PerRendererData]_Color ("Color", Color) = (0, 0, 0, 0)
     }
 
     SubShader
