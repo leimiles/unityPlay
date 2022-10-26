@@ -16,7 +16,7 @@ Shader "cf/utils/mid"
             Tags { "LightMode" = "UniversalForward" }
 
             HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
+            //#pragma exclude_renderers gles gles3 glcore
             #pragma target 4.5
             #pragma multi_compile _ DOTS_INSTANCING_ON
 

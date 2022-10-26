@@ -40,7 +40,7 @@ public class MIDFeature : ScriptableRendererFeature {
         void DrawRenderersByShader(ref CommandBuffer commandBuffer) {
             foreach (MeshRenderer meshRenderer in meshRenderers) {
                 if (meshRenderer.sharedMaterials.Length > 1) {
-                    Debug.Log("multi materials");
+                    Debug.Log(meshRenderer.name + " has multi materials");
                     continue;
                 }
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
@@ -53,7 +53,7 @@ public class MIDFeature : ScriptableRendererFeature {
         void DrawRenderersByMaterial(ref CommandBuffer commandBuffer) {
             foreach (MeshRenderer meshRenderer in meshRenderers) {
                 if (meshRenderer.sharedMaterials.Length > 1) {
-                    Debug.Log("multi materials");
+                    Debug.Log(meshRenderer.name + " has multi materials");
                     continue;
                 }
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
@@ -65,7 +65,7 @@ public class MIDFeature : ScriptableRendererFeature {
         void DrawRenderersByShaderAndKeywords(ref CommandBuffer commandBuffer) {
             foreach (MeshRenderer meshRenderer in meshRenderers) {
                 if (meshRenderer.sharedMaterials.Length > 1) {
-                    Debug.Log("multi materials");
+                    Debug.Log(meshRenderer.name + " has multi materials");
                     continue;
                 }
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
@@ -80,7 +80,7 @@ public class MIDFeature : ScriptableRendererFeature {
         }
     }
 
-    class MIDManager {
+    public class MIDManager {
         public static Dictionary<Material, Color> materialsSet;
         public static Dictionary<Shader, Color> shadersSet;
         public static Dictionary<string, Color> variantsSet;

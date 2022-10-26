@@ -15,7 +15,7 @@ public class MIDControllerEditor : Editor {
         }
         // button section
         Handles.BeginGUI();
-        GUILayout.BeginArea(new Rect(20, 20, 180, 120));
+        GUILayout.BeginArea(new Rect(20, 20, 220, 120));
         var rect = EditorGUILayout.BeginVertical();
         GUI.color = Color.yellow;
         GUI.Box(rect, GUIContent.none);
@@ -40,19 +40,20 @@ public class MIDControllerEditor : Editor {
         }
         GUI.backgroundColor = buttonStates[3] ? Color.red : Color.yellow;
         if (GUILayout.Button("By Shader And Keywords")) {
-            Test();
             SetButtonState(3);
         }
 
-
         EditorGUILayout.EndVertical();
         GUILayout.EndArea();
+        Handles.EndGUI();
+        Handles.BeginGUI();
+        GUILayout.BeginArea(new Rect(20, 150, 220, 800));
         ShowStatstics();
+        GUILayout.EndArea();
         Handles.EndGUI();
         SetMIDMode();
     }
-
-    void Test() {
+    void ShowSelectionArea() {
     }
 
     void ShowStatstics() {
