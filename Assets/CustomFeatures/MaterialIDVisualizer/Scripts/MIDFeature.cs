@@ -70,52 +70,20 @@ public class MIDFeature : ScriptableRendererFeature {
                 }
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
                 Color shaderColor = MIDManager.GetColor(meshRenderer.sharedMaterial.shader);
-                MIDManager.KeywordsSet keywordsSet = new MIDManager.KeywordsSet(meshRenderer.sharedMaterial);
-                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(shaderColor, keywordsSet.FullVariantName));
+                string fullVariantName = MIDManager.GetFullVariantName(meshRenderer.sharedMaterial);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(shaderColor, fullVariantName));
                 meshRenderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(meshRenderer, material);
             }
+
+
         }
     }
 
     class MIDManager {
-        public class KeywordsSet {
-            string shaderName;
-            string fullVariantsName;
-            List<GlobalKeyword> globalKeywords;
-            List<LocalKeyword> localKeywords;
-            public KeywordsSet(Material material) {
-                this.shaderName = material.shader.name;
-                this.localKeywords = new List<LocalKeyword>(material.enabledKeywords);
-                this.localKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
-                this.globalKeywords = new List<GlobalKeyword>(Shader.enabledGlobalKeywords);
-                this.globalKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
-                SetFullName();
-            }
-
-            void SetFullName() {
-                fullVariantsName = this.shaderName + "|";
-                foreach (GlobalKeyword globalKeyword in this.globalKeywords) {
-                    fullVariantsName += globalKeyword.name;
-                    fullVariantsName += "|";
-                }
-                foreach (LocalKeyword localKeyword in this.localKeywords) {
-                    fullVariantsName += localKeyword.name;
-                    fullVariantsName += "|";
-                }
-            }
-            public string FullVariantName {
-                get {
-                    return fullVariantsName;
-                }
-            }
-        }
-
         public static Dictionary<Material, Color> materialsSet;
         public static Dictionary<Shader, Color> shadersSet;
         public static Dictionary<string, Color> variantsSet;
-        public static List<KeywordsSet> keywordsSets;
-
         public static Color GetColor(Material material) {
             RegisterMaterial(material);
             return materialsSet[material];
@@ -125,9 +93,27 @@ public class MIDFeature : ScriptableRendererFeature {
             return shadersSet[shader];
         }
 
-        public static Color GetColor(Color shaderColor, string shaderVariants) {
-            RigisterShaderVariant(shaderVariants);
-            return shaderColor * variantsSet[shaderVariants];
+        public static Color GetColor(Color shaderColor, string shaderVariantsName) {
+            RigisterShaderVariant(shaderVariantsName);
+            return shaderColor * new Color(shaderColor.r, variantsSet[shaderVariantsName].g, shaderColor.b);
+        }
+
+        public static string GetFullVariantName(Material material) {
+            string shaderName = material.shader.name;
+            List<LocalKeyword> localKeywords = new List<LocalKeyword>(material.enabledKeywords);
+            localKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
+            List<GlobalKeyword> globalKeywords = new List<GlobalKeyword>(Shader.enabledGlobalKeywords);
+            globalKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
+            string fullVariantsName = shaderName + "|";
+            foreach (GlobalKeyword globalKeyword in globalKeywords) {
+                fullVariantsName += globalKeyword.name;
+                fullVariantsName += "|";
+            }
+            foreach (LocalKeyword localKeyword in localKeywords) {
+                fullVariantsName += localKeyword.name;
+                fullVariantsName += "|";
+            }
+            return fullVariantsName;
         }
 
         static void RigisterShaderVariant(string shaderVariants) {
@@ -135,6 +121,7 @@ public class MIDFeature : ScriptableRendererFeature {
                 variantsSet = new Dictionary<string, Color>();
             }
             if (!variantsSet.ContainsKey(shaderVariants)) {
+                //Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
                 Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
                 variantsSet.Add(shaderVariants, newColor);
             }
@@ -164,8 +151,8 @@ public class MIDFeature : ScriptableRendererFeature {
             if (shadersSet != null) {
                 shadersSet.Clear();
             }
-            if (keywordsSets != null) {
-                keywordsSets.Clear();
+            if (variantsSet != null) {
+                variantsSet.Clear();
             }
         }
 
@@ -207,7 +194,9 @@ public class MIDFeature : ScriptableRendererFeature {
     }
     public MIDMode midMode = MIDMode.Off;
     private RenderPassEvent renderPassEvent = RenderPassEvent.AfterRendering;
-    public bool excludeSkybox = true;
+    //public bool excludeSkybox = true;
+    public bool On_SkinnedMesh = false;
+    public bool On_MultiSubMeshes = false;
     private Material material;
     private MIDPass mIDPass;
     public override void Create() {
