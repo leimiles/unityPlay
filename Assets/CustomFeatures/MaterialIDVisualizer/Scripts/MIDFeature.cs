@@ -71,7 +71,7 @@ public class MIDFeature : ScriptableRendererFeature {
                 meshRenderer.GetPropertyBlock(materialPropertyBlock);
                 Color shaderColor = MIDManager.GetColor(meshRenderer.sharedMaterial.shader);
                 string fullVariantName = MIDManager.GetFullVariantName(meshRenderer.sharedMaterial);
-                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(shaderColor, fullVariantName));
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(shaderColor, fullVariantName, meshRenderer.gameObject));
                 meshRenderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(meshRenderer, material);
             }
@@ -84,6 +84,7 @@ public class MIDFeature : ScriptableRendererFeature {
         public static Dictionary<Material, Color> materialsSet;
         public static Dictionary<Shader, Color> shadersSet;
         public static Dictionary<string, Color> variantsSet;
+        public static Dictionary<string, List<GameObject>> variantsSetToObjects;
         public static Color GetColor(Material material) {
             RegisterMaterial(material);
             return materialsSet[material];
@@ -93,8 +94,8 @@ public class MIDFeature : ScriptableRendererFeature {
             return shadersSet[shader];
         }
 
-        public static Color GetColor(Color shaderColor, string shaderVariantsName) {
-            RigisterShaderVariant(shaderVariantsName);
+        public static Color GetColor(Color shaderColor, string shaderVariantsName, GameObject renderer = null) {
+            RigisterShaderVariant(shaderVariantsName, renderer);
             return shaderColor * new Color(shaderColor.r, variantsSet[shaderVariantsName].g, shaderColor.b);
         }
 
@@ -104,26 +105,31 @@ public class MIDFeature : ScriptableRendererFeature {
             localKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
             List<GlobalKeyword> globalKeywords = new List<GlobalKeyword>(Shader.enabledGlobalKeywords);
             globalKeywords.Sort((n1, n2) => n1.name.CompareTo(n2.name));
-            string fullVariantsName = shaderName + "|";
+            string fullVariantsName = shaderName + "| ";
             foreach (GlobalKeyword globalKeyword in globalKeywords) {
                 fullVariantsName += globalKeyword.name;
-                fullVariantsName += "|";
+                fullVariantsName += "| ";
             }
             foreach (LocalKeyword localKeyword in localKeywords) {
                 fullVariantsName += localKeyword.name;
-                fullVariantsName += "|";
+                fullVariantsName += "| ";
             }
             return fullVariantsName;
         }
 
-        static void RigisterShaderVariant(string shaderVariants) {
+        static void RigisterShaderVariant(string shaderVariants, GameObject renderer) {
             if (variantsSet == null) {
                 variantsSet = new Dictionary<string, Color>();
+                variantsSetToObjects = new Dictionary<string, List<GameObject>>();
             }
             if (!variantsSet.ContainsKey(shaderVariants)) {
                 //Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
                 Color newColor = new Color(Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f, Random.Range(0.0f, 1.0f) * 0.5f + 0.5f);
                 variantsSet.Add(shaderVariants, newColor);
+                variantsSetToObjects[shaderVariants] = new List<GameObject>();
+                variantsSetToObjects[shaderVariants].Add(renderer);
+            } else {
+                variantsSetToObjects[shaderVariants].Add(renderer);
             }
         }
         static void RegisterMaterial(Material material) {
@@ -153,6 +159,15 @@ public class MIDFeature : ScriptableRendererFeature {
             }
             if (variantsSet != null) {
                 variantsSet.Clear();
+                variantsSetToObjects.Clear();
+            }
+        }
+
+        public static GameObject[] GetGameObjectsByVariantsSet(string variantsSetName) {
+            if (variantsSetToObjects != null) {
+                return variantsSetToObjects[variantsSetName].ToArray();
+            } else {
+                return null;
             }
         }
 
