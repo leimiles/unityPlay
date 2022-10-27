@@ -21,7 +21,7 @@ class MIDPass : ScriptableRenderPass {
         if (renderers != null && renderers.Length > 0) {
             switch (mIDMode) {
                 case MIDFeature.MIDMode.ByMaterial:
-                    //DrawRenderersByMaterial(ref commandBuffer);
+                    DrawRenderersByMaterial(ref commandBuffer);
                     break;
                 case MIDFeature.MIDMode.ByShader:
                     DrawRenderersByShader(ref commandBuffer);
@@ -34,20 +34,25 @@ class MIDPass : ScriptableRenderPass {
         context.ExecuteCommandBuffer(commandBuffer);
         CommandBufferPool.Release(commandBuffer);
     }
-    /*
+
     void DrawRenderersByMaterial(ref CommandBuffer commandBuffer) {
-        foreach (MeshRenderer meshRenderer in meshRenderers) {
-            if (meshRenderer.sharedMaterials.Length > 1) {
-                Debug.Log(meshRenderer.name + " has multi materials");
-                continue;
+        foreach (Renderer renderer in renderers) {
+            if (renderer.sharedMaterials.Length > 1) {
+                for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
+                    renderer.GetPropertyBlock(materialPropertyBlock);
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterials[i], renderer.gameObject));
+                    renderer.SetPropertyBlock(materialPropertyBlock);
+                    commandBuffer.DrawRenderer(renderer, material, i);
+                }
+            } else {
+                renderer.GetPropertyBlock(materialPropertyBlock);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterial, renderer.gameObject));
+                renderer.SetPropertyBlock(materialPropertyBlock);
+                commandBuffer.DrawRenderer(renderer, material);
             }
-            meshRenderer.GetPropertyBlock(materialPropertyBlock);
-            materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(meshRenderer.sharedMaterial));
-            meshRenderer.SetPropertyBlock(materialPropertyBlock);
-            commandBuffer.DrawRenderer(meshRenderer, material);
         }
     }
-    */
+
     void DrawRenderersByShader(ref CommandBuffer commandBuffer) {
         foreach (Renderer renderer in renderers) {
             if (renderer.sharedMaterials.Length > 1) {
@@ -85,20 +90,5 @@ class MIDPass : ScriptableRenderPass {
             }
         }
     }
-    /*
-    void DrawRenderersByShaderAndKeywords(ref CommandBuffer commandBuffer) {
-        foreach (Renderer renderer in renderers) {
-            if (meshRenderer.sharedMaterials.Length > 1) {
-                Debug.Log(meshRenderer.name + " has multi materials");
-                continue;
-            }
-            meshRenderer.GetPropertyBlock(materialPropertyBlock);
-            Color shaderColor = MIDManager.GetColor(renderers.sharedMaterial.shader);
-            string fullVariantName = MIDManager.GetFullVariantName(meshRenderer.sharedMaterial);
-            materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(fullVariantName, meshRenderer.gameObject));
-            meshRenderer.SetPropertyBlock(materialPropertyBlock);
-            commandBuffer.DrawRenderer(meshRenderer, material);
-        }
-    }
-    */
+
 }

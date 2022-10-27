@@ -24,6 +24,7 @@ Shader "cf/utils/mid"
             #pragma fragment frag
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             struct attributes
             {
@@ -40,6 +41,7 @@ Shader "cf/utils/mid"
                 float4 positionCS : SV_POSITION;
                 half3 normalWS : TEXCOORD0;
                 half3 viewDirWS : TEXCOORD1;
+                half3 vertexSH : TEXCOORD2;
             };
 
             varyings vert(attributes input)
@@ -50,11 +52,13 @@ Shader "cf/utils/mid"
                 VertexNormalInputs vni = GetVertexNormalInputs(input.normalOS);
                 o.normalWS = vni.normalWS;
                 o.viewDirWS = GetWorldSpaceNormalizeViewDir(vpi.positionWS);
+                o.vertexSH = SampleSH(vni.normalWS);
                 return o;
             }
 
             half4 frag(varyings i) : SV_Target
             {
+                //_Color.rgb *= (i.normalWS * 0.5 + 0.5);
                 return _Color;
             }
             ENDHLSL

@@ -5,12 +5,14 @@ using UnityEngine.Rendering;
 
 public class MIDManager {
     public static Dictionary<Material, Color> materialsSet;
+    public static Dictionary<Material, List<GameObject>> materialsSetToObjects;
+    public static Dictionary<Material, int> materialsSetToTrisCount;
     public static Dictionary<Shader, Color> shadersSet;
     public static Dictionary<Shader, List<GameObject>> shadersSetToObjects;
     public static Dictionary<string, Color> variantsSet;
     public static Dictionary<string, List<GameObject>> variantsSetToObjects;
-    public static Color GetColor(Material material) {
-        RegisterMaterial(material);
+    public static Color GetColor(Material material, GameObject gameObject) {
+        RegisterMaterial(material, gameObject);
         return materialsSet[material];
     }
     public static Color GetColor(Shader shader, GameObject gameObject) {
@@ -70,13 +72,20 @@ public class MIDManager {
             }
         }
     }
-    static void RegisterMaterial(Material material) {
+    static void RegisterMaterial(Material material, GameObject gameObject) {
         if (materialsSet == null) {
             materialsSet = new Dictionary<Material, Color>();
+            materialsSetToObjects = new Dictionary<Material, List<GameObject>>();
         }
         if (!materialsSet.ContainsKey(material)) {
             Color newColor = GetNewColor();
             materialsSet.Add(material, newColor);
+            materialsSetToObjects[material] = new List<GameObject>();
+            materialsSetToObjects[material].Add(gameObject);
+        } else {
+            if (!materialsSetToObjects[material].Contains(gameObject)) {
+                materialsSetToObjects[material].Add(gameObject);
+            }
         }
     }
     static void RegisterShader(Shader shader, GameObject gameObject) {
@@ -98,6 +107,7 @@ public class MIDManager {
     public static void Clear() {
         if (materialsSet != null) {
             materialsSet.Clear();
+            materialsSetToObjects.Clear();
         }
         if (shadersSet != null) {
             shadersSet.Clear();
