@@ -118,11 +118,11 @@ public class MIDManager {
 
     static int GetTrisCount(GameObject gameObject) {
         MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
-        if (meshFilter != null) {
+        if (meshFilter != null && meshFilter.sharedMesh != null) {
             return meshFilter.sharedMesh.triangles.Length / 3;
         }
         SkinnedMeshRenderer skinnedMeshRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
-        if (skinnedMeshRenderer != null) {
+        if (skinnedMeshRenderer != null && skinnedMeshRenderer.sharedMesh != null) {
             return skinnedMeshRenderer.sharedMesh.triangles.Length / 3;
         }
         return 0;
