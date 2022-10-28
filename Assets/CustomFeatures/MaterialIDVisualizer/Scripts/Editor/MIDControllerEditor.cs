@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using System;
 
 [CustomEditor(typeof(MIDController))]
@@ -77,6 +75,8 @@ public class MIDControllerEditor : Editor {
                         }
                         detialsButton.text = " " + MIDManager.materialsSetToObjects[material].Count.ToString() + " ";
                         GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
+                        detialsButton.text = " " + MIDManager.materialsSetToTrisCount[material].ToString() + " ";
+                        GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
                         GUILayout.EndHorizontal();
                     }
                 }
@@ -91,6 +91,8 @@ public class MIDControllerEditor : Editor {
                             Selection.objects = MIDManager.shadersSetToObjects[shader].ToArray();
                         }
                         detialsButton.text = " " + MIDManager.shadersSetToObjects[shader].Count.ToString() + " ";
+                        GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
+                        detialsButton.text = " " + MIDManager.shadersSetToTrisCount[shader].ToString() + " ";
                         GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
                         GUILayout.EndHorizontal();
                     }
@@ -108,6 +110,8 @@ public class MIDControllerEditor : Editor {
                         }
                         detialsButton.text = " " + MIDManager.variantsSetToObjects[fullVariantsName].Count.ToString() + " ";
                         GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
+                        detialsButton.text = " " + MIDManager.variantsSetToTrisCount[fullVariantsName].ToString() + " ";
+                        GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
                         GUILayout.EndHorizontal();
                     }
                 }
@@ -118,11 +122,6 @@ public class MIDControllerEditor : Editor {
     }
 
     void SetMIDMode(MIDFeature.MIDMode mode) {
-        /* too much work
-        if (mIDFeature.midMode == mode) {
-            MIDManager.SwapColor(mode);
-        }
-        */
         mIDFeature.midMode = mode;
         SetButtonState((int)mode);
     }

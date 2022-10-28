@@ -9,8 +9,10 @@ public class MIDManager {
     public static Dictionary<Material, int> materialsSetToTrisCount;
     public static Dictionary<Shader, Color> shadersSet;
     public static Dictionary<Shader, List<GameObject>> shadersSetToObjects;
+    public static Dictionary<Shader, int> shadersSetToTrisCount;
     public static Dictionary<string, Color> variantsSet;
     public static Dictionary<string, List<GameObject>> variantsSetToObjects;
+    public static Dictionary<string, int> variantsSetToTrisCount;
     public static Color GetColor(Material material, GameObject gameObject) {
         RegisterMaterial(material, gameObject);
         return materialsSet[material];
@@ -60,15 +62,18 @@ public class MIDManager {
         if (variantsSet == null) {
             variantsSet = new Dictionary<string, Color>();
             variantsSetToObjects = new Dictionary<string, List<GameObject>>();
+            variantsSetToTrisCount = new Dictionary<string, int>();
         }
         if (!variantsSet.ContainsKey(shaderVariants)) {
             Color newColor = GetNewColor();
             variantsSet.Add(shaderVariants, newColor);
             variantsSetToObjects[shaderVariants] = new List<GameObject>();
             variantsSetToObjects[shaderVariants].Add(gameObject);
+            variantsSetToTrisCount[shaderVariants] = GetTrisCount(gameObject);
         } else {
             if (!variantsSetToObjects[shaderVariants].Contains(gameObject)) {
                 variantsSetToObjects[shaderVariants].Add(gameObject);
+                variantsSetToTrisCount[shaderVariants] += GetTrisCount(gameObject);
             }
         }
     }
@@ -76,15 +81,18 @@ public class MIDManager {
         if (materialsSet == null) {
             materialsSet = new Dictionary<Material, Color>();
             materialsSetToObjects = new Dictionary<Material, List<GameObject>>();
+            materialsSetToTrisCount = new Dictionary<Material, int>();
         }
         if (!materialsSet.ContainsKey(material)) {
             Color newColor = GetNewColor();
             materialsSet.Add(material, newColor);
             materialsSetToObjects[material] = new List<GameObject>();
             materialsSetToObjects[material].Add(gameObject);
+            materialsSetToTrisCount[material] = GetTrisCount(gameObject);
         } else {
             if (!materialsSetToObjects[material].Contains(gameObject)) {
                 materialsSetToObjects[material].Add(gameObject);
+                materialsSetToTrisCount[material] += GetTrisCount(gameObject);
             }
         }
     }
@@ -92,30 +100,48 @@ public class MIDManager {
         if (shadersSet == null) {
             shadersSet = new Dictionary<Shader, Color>();
             shadersSetToObjects = new Dictionary<Shader, List<GameObject>>();
+            shadersSetToTrisCount = new Dictionary<Shader, int>();
         }
         if (!shadersSet.ContainsKey(shader)) {
             Color newColor = GetNewColor();
             shadersSet.Add(shader, newColor);
             shadersSetToObjects[shader] = new List<GameObject>();
             shadersSetToObjects[shader].Add(gameObject);
+            shadersSetToTrisCount[shader] = GetTrisCount(gameObject);
         } else {
             if (!shadersSetToObjects[shader].Contains(gameObject)) {
                 shadersSetToObjects[shader].Add(gameObject);
+                shadersSetToTrisCount[shader] += GetTrisCount(gameObject);
             }
         }
+    }
+
+    static int GetTrisCount(GameObject gameObject) {
+        MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+        if (meshFilter != null) {
+            return meshFilter.sharedMesh.triangles.Length / 3;
+        }
+        SkinnedMeshRenderer skinnedMeshRenderer = gameObject.GetComponent<SkinnedMeshRenderer>();
+        if (skinnedMeshRenderer != null) {
+            return skinnedMeshRenderer.sharedMesh.triangles.Length / 3;
+        }
+        return 0;
     }
     public static void Clear() {
         if (materialsSet != null) {
             materialsSet.Clear();
             materialsSetToObjects.Clear();
+            materialsSetToTrisCount.Clear();
         }
         if (shadersSet != null) {
             shadersSet.Clear();
             shadersSetToObjects.Clear();
+            shadersSetToTrisCount.Clear();
         }
         if (variantsSet != null) {
             variantsSet.Clear();
             variantsSetToObjects.Clear();
+            variantsSetToTrisCount.Clear();
         }
     }
     static Color GetNewColor() {
