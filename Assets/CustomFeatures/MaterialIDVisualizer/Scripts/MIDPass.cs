@@ -10,10 +10,13 @@ class MIDPass : ScriptableRenderPass {
     public Renderer[] renderers;
     public ParticleSystem[] particleSystems;
     public MIDFeature.MIDMode mIDMode;
+    private Material errorMaterial;
     public MIDPass(Material material) {
         this.material = material;
         materialPropertyBlock = new MaterialPropertyBlock();
         mIDMode = MIDFeature.MIDMode.Off;
+        errorMaterial = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/InternalErrorShader"));
+        errorMaterial.name = "error material";
     }
     //public MIDFeature.MIDMode mIDMode;
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
@@ -40,13 +43,13 @@ class MIDPass : ScriptableRenderPass {
             if (renderer.sharedMaterials.Length > 1) {
                 for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
-                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterials[i], renderer.gameObject));
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterials[i] == null ? errorMaterial : renderer.sharedMaterials[i], renderer.gameObject));
                     renderer.SetPropertyBlock(materialPropertyBlock);
                     commandBuffer.DrawRenderer(renderer, material, i);
                 }
             } else {
                 renderer.GetPropertyBlock(materialPropertyBlock);
-                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterial, renderer.gameObject));
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterial == null ? errorMaterial : renderer.sharedMaterial, renderer.gameObject));
                 renderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(renderer, material);
             }
@@ -58,13 +61,13 @@ class MIDPass : ScriptableRenderPass {
             if (renderer.sharedMaterials.Length > 1) {
                 for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
-                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterials[i].shader, renderer.gameObject));
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterials[i] == null ? errorMaterial.shader : renderer.sharedMaterials[i].shader, renderer.gameObject));
                     renderer.SetPropertyBlock(materialPropertyBlock);
                     commandBuffer.DrawRenderer(renderer, material, i);
                 }
             } else {
                 renderer.GetPropertyBlock(materialPropertyBlock);
-                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterial.shader, renderer.gameObject));
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(renderer.sharedMaterial == null ? errorMaterial.shader : renderer.sharedMaterial.shader, renderer.gameObject));
                 renderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(renderer, material);
             }
@@ -76,14 +79,14 @@ class MIDPass : ScriptableRenderPass {
             if (renderer.sharedMaterials.Length > 1) {
                 for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
-                    string fullVariantName = MIDManager.GetFullVariantName(renderer.sharedMaterials[i]);
+                    string fullVariantName = MIDManager.GetFullVariantName(renderer.sharedMaterials[i] == null ? errorMaterial : renderer.sharedMaterials[i]);
                     materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(fullVariantName, renderer.gameObject));
                     renderer.SetPropertyBlock(materialPropertyBlock);
                     commandBuffer.DrawRenderer(renderer, material, i);
                 }
             } else {
                 renderer.GetPropertyBlock(materialPropertyBlock);
-                string fullVariantName = MIDManager.GetFullVariantName(renderer.sharedMaterial);
+                string fullVariantName = MIDManager.GetFullVariantName(renderer.sharedMaterial == null ? errorMaterial : renderer.sharedMaterial);
                 materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(fullVariantName, renderer.gameObject));
                 renderer.SetPropertyBlock(materialPropertyBlock);
                 commandBuffer.DrawRenderer(renderer, material);
