@@ -40,6 +40,9 @@ class MIDPass : ScriptableRenderPass {
 
     void DrawRenderersByMaterial(ref CommandBuffer commandBuffer) {
         foreach (Renderer renderer in renderers) {
+            if (renderer == null) {
+                return;
+            }
             if (renderer.sharedMaterials.Length > 1) {
                 for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
@@ -58,6 +61,9 @@ class MIDPass : ScriptableRenderPass {
 
     void DrawRenderersByShader(ref CommandBuffer commandBuffer) {
         foreach (Renderer renderer in renderers) {
+            if (renderer == null) {
+                return;
+            }
             if (renderer.sharedMaterials.Length > 1) {
                 for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
@@ -76,6 +82,9 @@ class MIDPass : ScriptableRenderPass {
 
     void DrawRenderersByShaderAndKeywords(ref CommandBuffer commandBuffer) {
         foreach (Renderer renderer in renderers) {
+            if (renderer == null) {
+                return;
+            }
             if (renderer.sharedMaterials.Length > 1) {
                 for (int i = 0; i < renderer.sharedMaterials.Length; i++) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
