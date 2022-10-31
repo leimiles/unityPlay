@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class MIDManager {
+    public static Dictionary<Mesh, Color> meshesSet;
+    public static Dictionary<Mesh, int> meshesSetToTrisCount;
     public static Dictionary<Material, Color> materialsSet;
     public static Dictionary<Material, List<GameObject>> materialsSetToObjects;
     public static Dictionary<Material, int> materialsSetToTrisCount;
@@ -25,6 +27,11 @@ public class MIDManager {
     public static Color GetColor(string shaderVariantsName, GameObject gameObject) {
         RigisterShaderVariant(shaderVariantsName, gameObject);
         return variantsSet[shaderVariantsName];
+    }
+
+    public static Color GetColor(Mesh mesh) {
+        RigisterMesh(mesh);
+        return meshesSet[mesh];
     }
 
     public static string GetFullVariantName(Material material) {
@@ -76,6 +83,19 @@ public class MIDManager {
                 variantsSetToTrisCount[shaderVariants] += GetTrisCount(gameObject);
             }
         }
+    }
+
+    static void RigisterMesh(Mesh mesh) {
+        if (meshesSet == null) {
+            meshesSet = new Dictionary<Mesh, Color>();
+            meshesSetToTrisCount = new Dictionary<Mesh, int>();
+        }
+        if (!meshesSet.ContainsKey(mesh)) {
+            Color newColor = GetNewColor();
+            meshesSet.Add(mesh, newColor);
+            meshesSetToTrisCount.Add(mesh, mesh.triangles.Length / 3);
+        }
+
     }
     static void RegisterMaterial(Material material, GameObject gameObject) {
         if (materialsSet == null) {
@@ -142,6 +162,10 @@ public class MIDManager {
             variantsSet.Clear();
             variantsSetToObjects.Clear();
             variantsSetToTrisCount.Clear();
+        }
+        if (meshesSet != null) {
+            meshesSet.Clear();
+            meshesSetToTrisCount.Clear();
         }
     }
     static Color GetNewColor() {

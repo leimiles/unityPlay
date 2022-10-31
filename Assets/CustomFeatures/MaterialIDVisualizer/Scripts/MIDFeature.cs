@@ -9,7 +9,8 @@ public class MIDFeature : ScriptableRendererFeature {
         Off,
         ByMaterial,     // renderer shows up with id color via different materials
         ByShader,        // renderer shows up with id color via different shaders
-        ByShaderAndKeywords // renderer shows up with id color via different shaders and different shader keywords
+        ByShaderAndKeywords, // renderer shows up with id color via different shaders and different shader keywords
+        ByMesh
     }
     public MIDMode midMode = MIDMode.Off;
     private RenderPassEvent renderPassEvent = RenderPassEvent.AfterRendering;

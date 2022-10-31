@@ -32,10 +32,47 @@ class MIDPass : ScriptableRenderPass {
                 case MIDFeature.MIDMode.ByShaderAndKeywords:
                     DrawRenderersByShaderAndKeywords(ref commandBuffer);
                     break;
+                case MIDFeature.MIDMode.ByMesh:
+                    DrawRenderersByMesh(ref commandBuffer);
+                    break;
             }
         }
         context.ExecuteCommandBuffer(commandBuffer);
         CommandBufferPool.Release(commandBuffer);
+    }
+
+    void DrawRenderersByMesh(ref CommandBuffer commandBuffer) {
+        foreach (Renderer renderer in renderers) {
+            if (renderer == null) {
+                return;
+            }
+            MeshFilter meshFilter = renderer.GetComponent<MeshFilter>();
+            if (meshFilter != null) {
+                Mesh mesh = meshFilter.sharedMesh;
+                if (mesh != null) {
+                    renderer.GetPropertyBlock(materialPropertyBlock);
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(mesh));
+                    renderer.SetPropertyBlock(materialPropertyBlock);
+                    commandBuffer.DrawRenderer(renderer, material);
+                } else {
+                    Debug.Log(renderer.gameObject.name + " has no mesh");
+                }
+                continue;
+            }
+            SkinnedMeshRenderer skinnedMeshRenderer = renderer as SkinnedMeshRenderer;
+            if (skinnedMeshRenderer != null) {
+                Mesh mesh = skinnedMeshRenderer.sharedMesh;
+                if (mesh != null) {
+                    renderer.GetPropertyBlock(materialPropertyBlock);
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(mesh));
+                    renderer.SetPropertyBlock(materialPropertyBlock);
+                    commandBuffer.DrawRenderer(renderer, material);
+                } else {
+                    Debug.Log(renderer.gameObject.name + "has no mesh");
+                }
+                continue;
+            }
+        }
     }
 
     void DrawRenderersByMaterial(ref CommandBuffer commandBuffer) {

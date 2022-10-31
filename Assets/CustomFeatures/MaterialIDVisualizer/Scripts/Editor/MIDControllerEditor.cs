@@ -6,7 +6,7 @@ using System;
 
 [CustomEditor(typeof(MIDController))]
 public class MIDControllerEditor : Editor {
-    bool[] buttonStates = new bool[] { true, false, false, false };
+    bool[] buttonStates = new bool[] { true, false, false, false, false };
     MIDFeature mIDFeature;
     Rect mainRect;
     Color details_GuiBackground;
@@ -18,7 +18,7 @@ public class MIDControllerEditor : Editor {
             try {
                 SetButtonState((int)mIDFeature.midMode);
                 ShowMainSection();
-                GUILayout.Space(110);
+                GUILayout.Space(130);
                 GUI.color = Color.black;
                 ShowDetails();
                 GUI.color = Color.white;
@@ -56,6 +56,10 @@ public class MIDControllerEditor : Editor {
         GUI.backgroundColor = buttonStates[3] ? Color.gray : Color.white;
         if (GUILayout.Button("By Shader And Keywords")) {
             SetMIDMode(MIDFeature.MIDMode.ByShaderAndKeywords);
+        }
+        GUI.backgroundColor = buttonStates[4] ? Color.gray : Color.white;
+        if (GUILayout.Button("By Mesh")) {
+            SetMIDMode(MIDFeature.MIDMode.ByMesh);
         }
         EditorGUILayout.EndVertical();
         GUILayout.EndArea();
@@ -115,6 +119,27 @@ public class MIDControllerEditor : Editor {
                         GUILayout.EndHorizontal();
                     }
                 }
+                break;
+            case MIDFeature.MIDMode.ByMesh:
+                GUILayout.Label("Meshes Count: " + (MIDManager.meshesSet == null ? 0 : MIDManager.meshesSet.Count).ToString());
+
+                if (MIDManager.meshesSet != null && MIDManager.meshesSet.Count > 0) {
+                    foreach (Mesh mesh in MIDManager.meshesSet.Keys) {
+                        GUILayout.BeginHorizontal();
+                        detialsButton.text = mesh.name;
+
+                        if (GUILayout.Button(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false))) {
+                            //Selection.objects = MIDManager.variantsSetToObjects[fullVariantsName].ToArray();
+                        }
+
+                        //detialsButton.text = " " + MIDManager.variantsSetToObjects[fullVariantsName].Count.ToString() + " ";
+                        //GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
+                        detialsButton.text = " " + MIDManager.meshesSetToTrisCount[mesh].ToString() + " ";
+                        GUILayout.Label(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false));
+                        GUILayout.EndHorizontal();
+                    }
+                }
+
                 break;
         }
         GUI.backgroundColor = Color.gray;
