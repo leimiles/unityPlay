@@ -129,7 +129,7 @@ public class MIDControllerEditor : Editor {
                         detialsButton.text = mesh.name;
 
                         if (GUILayout.Button(detialsButton, detailsButtonStyles, GUILayout.ExpandWidth(false))) {
-                            //Selection.objects = MIDManager.variantsSetToObjects[fullVariantsName].ToArray();
+                            Selection.objects = MIDManager.meshesSetToObjects[mesh].ToArray();
                         }
 
                         //detialsButton.text = " " + MIDManager.variantsSetToObjects[fullVariantsName].Count.ToString() + " ";

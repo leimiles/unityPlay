@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class MIDManager {
     public static Dictionary<Mesh, Color> meshesSet;
     public static Dictionary<Mesh, int> meshesSetToTrisCount;
+    public static Dictionary<Mesh, List<GameObject>> meshesSetToObjects;
     public static Dictionary<Material, Color> materialsSet;
     public static Dictionary<Material, List<GameObject>> materialsSetToObjects;
     public static Dictionary<Material, int> materialsSetToTrisCount;
@@ -29,8 +30,8 @@ public class MIDManager {
         return variantsSet[shaderVariantsName];
     }
 
-    public static Color GetColor(Mesh mesh) {
-        RigisterMesh(mesh);
+    public static Color GetColor(Mesh mesh, GameObject gameObject) {
+        RigisterMesh(mesh, gameObject);
         return meshesSet[mesh];
     }
 
@@ -85,15 +86,22 @@ public class MIDManager {
         }
     }
 
-    static void RigisterMesh(Mesh mesh) {
+    static void RigisterMesh(Mesh mesh, GameObject gameObject) {
         if (meshesSet == null) {
             meshesSet = new Dictionary<Mesh, Color>();
             meshesSetToTrisCount = new Dictionary<Mesh, int>();
+            meshesSetToObjects = new Dictionary<Mesh, List<GameObject>>();
         }
         if (!meshesSet.ContainsKey(mesh)) {
             Color newColor = GetNewColor();
             meshesSet.Add(mesh, newColor);
             meshesSetToTrisCount.Add(mesh, mesh.triangles.Length / 3);
+            meshesSetToObjects[mesh] = new List<GameObject>();
+            meshesSetToObjects[mesh].Add(gameObject);
+        } else {
+            if (!meshesSetToObjects[mesh].Contains(gameObject)) {
+                meshesSetToObjects[mesh].Add(gameObject);
+            }
         }
 
     }
@@ -166,6 +174,7 @@ public class MIDManager {
         if (meshesSet != null) {
             meshesSet.Clear();
             meshesSetToTrisCount.Clear();
+            meshesSetToObjects.Clear();
         }
     }
     static Color GetNewColor() {

@@ -51,7 +51,7 @@ class MIDPass : ScriptableRenderPass {
                 Mesh mesh = meshFilter.sharedMesh;
                 if (mesh != null) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
-                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(mesh));
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(mesh, renderer.gameObject));
                     renderer.SetPropertyBlock(materialPropertyBlock);
                     commandBuffer.DrawRenderer(renderer, material);
                 } else {
@@ -64,7 +64,7 @@ class MIDPass : ScriptableRenderPass {
                 Mesh mesh = skinnedMeshRenderer.sharedMesh;
                 if (mesh != null) {
                     renderer.GetPropertyBlock(materialPropertyBlock);
-                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(mesh));
+                    materialPropertyBlock.SetColor(Shader.PropertyToID("_Color"), MIDManager.GetColor(mesh, renderer.gameObject));
                     renderer.SetPropertyBlock(materialPropertyBlock);
                     commandBuffer.DrawRenderer(renderer, material);
                 } else {
