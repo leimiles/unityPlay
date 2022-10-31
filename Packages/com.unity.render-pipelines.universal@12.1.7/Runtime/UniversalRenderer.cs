@@ -355,6 +355,7 @@ namespace UnityEngine.Rendering.Universal {
             }
         }
 
+        // miles renderer passes setup
         /// <inheritdoc />
         public override void Setup(ScriptableRenderContext context, ref RenderingData renderingData) {
             m_ForwardLights.ProcessLights(ref renderingData);
@@ -490,8 +491,7 @@ namespace UnityEngine.Rendering.Universal {
             createDepthTexture |= m_DepthPrimingMode == DepthPrimingMode.Forced;
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-            if (cameraData.xr.enabled)
-            {
+            if (cameraData.xr.enabled) {
                 // URP can't handle msaa/size mismatch between depth RT and color RT(for now we create intermediate textures to ensure they match)
                 createDepthTexture |= createColorTexture;
                 createColorTexture = createDepthTexture;
@@ -499,8 +499,7 @@ namespace UnityEngine.Rendering.Universal {
 #endif
 
 #if UNITY_ANDROID || UNITY_WEBGL
-            if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Vulkan)
-            {
+            if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Vulkan) {
                 // GLES can not use render texture's depth buffer with the color buffer of the backbuffer
                 // in such case we create a color texture for it too.
                 createColorTexture |= createDepthTexture;
@@ -577,8 +576,7 @@ namespace UnityEngine.Rendering.Universal {
                 var activeDepthRenderTargetId = m_ActiveCameraDepthAttachment.Identifier();
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-                if (cameraData.xr.enabled)
-                {
+                if (cameraData.xr.enabled) {
                     activeColorRenderTargetId = new RenderTargetIdentifier(activeColorRenderTargetId, 0, CubemapFace.Unknown, -1);
                     activeDepthRenderTargetId = new RenderTargetIdentifier(activeDepthRenderTargetId, 0, CubemapFace.Unknown, -1);
                 }
@@ -663,30 +661,32 @@ namespace UnityEngine.Rendering.Universal {
                 // make sure we store the depth only if following passes need it.
                 RenderBufferStoreAction opaquePassDepthStoreAction = (copyColorPass || requiresDepthCopyPass) ? RenderBufferStoreAction.Store : RenderBufferStoreAction.DontCare;
 #if ENABLE_VR && ENABLE_XR_MODULE
-                if (cameraData.xr.enabled && cameraData.xr.copyDepth)
-                {
+                if (cameraData.xr.enabled && cameraData.xr.copyDepth) {
                     opaquePassDepthStoreAction = RenderBufferStoreAction.Store;
                 }
 #endif
 
                 m_RenderOpaqueForwardPass.ConfigureColorStoreAction(opaquePassColorStoreAction);
                 m_RenderOpaqueForwardPass.ConfigureDepthStoreAction(opaquePassDepthStoreAction);
-
+                // miles enqueue opaque pass
                 EnqueuePass(m_RenderOpaqueForwardPass);
             }
 
             if (camera.clearFlags == CameraClearFlags.Skybox && cameraData.renderType != CameraRenderType.Overlay) {
-                if (RenderSettings.skybox != null || (camera.TryGetComponent(out Skybox cameraSkybox) && cameraSkybox.material != null))
+                if (RenderSettings.skybox != null || (camera.TryGetComponent(out Skybox cameraSkybox) && cameraSkybox.material != null)) {
+                    // miles enqueue skybox pass
                     EnqueuePass(m_DrawSkyboxPass);
+                }
             }
 
             // If a depth texture was created we necessarily need to copy it, otherwise we could have render it to a renderbuffer.
             if (requiresDepthCopyPass) {
                 m_CopyDepthPass.Setup(m_ActiveCameraDepthAttachment, m_DepthTexture);
 
-                if (this.actualRenderingMode == RenderingMode.Deferred && !useRenderPassEnabled)
+                if (this.actualRenderingMode == RenderingMode.Deferred && !useRenderPassEnabled) {
                     m_CopyDepthPass.AllocateRT = false; // m_DepthTexture is already allocated by m_GBufferCopyDepthPass but it's not called when using RenderPass API.
-
+                }
+                // miles enqueue copy depth pass
                 EnqueuePass(m_CopyDepthPass);
             }
 
@@ -700,6 +700,7 @@ namespace UnityEngine.Rendering.Universal {
                 // We need to migrate this data to renderer. For now, we query the method in the active asset.
                 Downsampling downsamplingMethod = UniversalRenderPipeline.asset.opaqueDownsampling;
                 m_CopyColorPass.Setup(m_ActiveCameraColorAttachment.Identifier(), m_OpaqueColor, downsamplingMethod);
+                // miles enqueue copy color pass
                 EnqueuePass(m_CopyColorPass);
             }
 
@@ -708,6 +709,7 @@ namespace UnityEngine.Rendering.Universal {
 
                 var data = MotionVectorRendering.instance.GetMotionDataForCamera(camera, cameraData);
                 m_MotionVectorPass.Setup(data);
+                // miles enqueue motion vector pass
                 EnqueuePass(m_MotionVectorPass);
             }
 
@@ -731,8 +733,10 @@ namespace UnityEngine.Rendering.Universal {
 
                 m_RenderTransparentForwardPass.ConfigureColorStoreAction(transparentPassColorStoreAction);
                 m_RenderTransparentForwardPass.ConfigureDepthStoreAction(transparentPassDepthStoreAction);
+                // miles transparent pass
                 EnqueuePass(m_RenderTransparentForwardPass);
             }
+            // miles render object call back pass
             EnqueuePass(m_OnRenderObjectCallbackPass);
 
             bool hasCaptureActions = renderingData.cameraData.captureActions != null && lastCameraInTheStack;
@@ -750,6 +754,7 @@ namespace UnityEngine.Rendering.Universal {
             // However when there are render passes executing after post we avoid resolving to screen so rendering continues (before sRGBConvertion etc)
             bool resolvePostProcessingToCameraTarget = !hasCaptureActions && !hasPassesAfterPostProcessing && !applyFinalPostProcessing;
 
+            // miles last camera
             if (lastCameraInTheStack) {
                 SetupFinalPassDebug(ref cameraData);
 
@@ -787,18 +792,18 @@ namespace UnityEngine.Rendering.Universal {
                 // We need final blit to resolve to screen
                 if (!cameraTargetResolved) {
                     m_FinalBlitPass.Setup(cameraTargetDescriptor, sourceForFinalPass);
+
+                    // miles final blit pass
                     EnqueuePass(m_FinalBlitPass);
                 }
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-                if (cameraData.xr.enabled)
-                {
+                if (cameraData.xr.enabled) {
                     bool depthTargetResolved =
                         // active depth is depth target, we don't need a blit pass to resolve
                         m_ActiveCameraDepthAttachment == RenderTargetHandle.GetCameraTarget(cameraData.xr);
 
-                    if (!depthTargetResolved && cameraData.xr.copyDepth)
-                    {
+                    if (!depthTargetResolved && cameraData.xr.copyDepth) {
                         m_XRCopyDepthPass.Setup(m_ActiveCameraDepthAttachment, RenderTargetHandle.GetCameraTarget(cameraData.xr));
                         EnqueuePass(m_XRCopyDepthPass);
                     }
@@ -812,8 +817,7 @@ namespace UnityEngine.Rendering.Universal {
             }
 
 #if UNITY_EDITOR
-            if (isSceneViewCamera || (isGizmosEnabled && lastCameraInTheStack))
-            {
+            if (isSceneViewCamera || (isGizmosEnabled && lastCameraInTheStack)) {
                 // Scene view camera should always resolve target (not stacked)
                 m_FinalDepthCopyPass.Setup(m_DepthTexture, RenderTargetHandle.CameraTarget);
                 m_FinalDepthCopyPass.MssaSamples = 0;
@@ -1060,8 +1064,7 @@ namespace UnityEngine.Rendering.Universal {
             bool isCapturing = cameraData.captureActions != null;
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-            if (cameraData.xr.enabled)
-            {
+            if (cameraData.xr.enabled) {
                 isScaledRender = false;
                 isCompatibleBackbufferTextureDimension = cameraData.xr.renderTargetDesc.dimension == cameraTargetDescriptor.dimension;
             }

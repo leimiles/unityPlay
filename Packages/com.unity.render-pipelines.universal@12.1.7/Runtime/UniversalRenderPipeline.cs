@@ -362,6 +362,7 @@ namespace UnityEngine.Rendering.Universal {
 #endif
 
                 var cullResults = context.Cull(ref cullingParameters);
+                // miles set rendering settings
                 InitializeRenderingData(asset, ref cameraData, ref cullResults, anyPostProcessingEnabled, out var renderingData);
 
 #if ADAPTIVE_PERFORMANCE_2_0_0_OR_NEWER
@@ -370,7 +371,6 @@ namespace UnityEngine.Rendering.Universal {
 #endif
 
                 using (new ProfilingScope(null, Profiling.Pipeline.Renderer.setup)) {
-                    // miles set renderer pass
                     renderer.Setup(context, ref renderingData);
                 }
 
