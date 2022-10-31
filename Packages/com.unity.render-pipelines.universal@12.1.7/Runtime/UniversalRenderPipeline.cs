@@ -38,8 +38,8 @@ namespace UnityEngine.Rendering.Universal {
             public static class Pipeline {
                 // TODO: Would be better to add Profiling name hooks into RenderPipeline.cs, requires changes outside of Universal.
 #if UNITY_2021_1_OR_NEWER
-                public static readonly ProfilingSampler beginContextRendering  = new ProfilingSampler($"{nameof(RenderPipeline)}.{nameof(BeginContextRendering)}");
-                public static readonly ProfilingSampler endContextRendering    = new ProfilingSampler($"{nameof(RenderPipeline)}.{nameof(EndContextRendering)}");
+                public static readonly ProfilingSampler beginContextRendering = new ProfilingSampler($"{nameof(RenderPipeline)}.{nameof(BeginContextRendering)}");
+                public static readonly ProfilingSampler endContextRendering = new ProfilingSampler($"{nameof(RenderPipeline)}.{nameof(EndContextRendering)}");
 #else
                 public static readonly ProfilingSampler beginFrameRendering = new ProfilingSampler($"{nameof(RenderPipeline)}.{nameof(BeginFrameRendering)}");
                 public static readonly ProfilingSampler endFrameRendering = new ProfilingSampler($"{nameof(RenderPipeline)}.{nameof(EndFrameRendering)}");
@@ -185,8 +185,7 @@ namespace UnityEngine.Rendering.Universal {
         }
 
 #if UNITY_2021_1_OR_NEWER
-        protected override void Render(ScriptableRenderContext renderContext, Camera[] cameras)
-        {
+        protected override void Render(ScriptableRenderContext renderContext, Camera[] cameras) {
             Render(renderContext, new List<Camera>(cameras));
         }
 
@@ -203,8 +202,7 @@ namespace UnityEngine.Rendering.Universal {
             using var profScope = new ProfilingScope(null, ProfilingSampler.Get(URPProfileId.UniversalRenderTotal));
 
 #if UNITY_2021_1_OR_NEWER
-            using (new ProfilingScope(null, Profiling.Pipeline.beginContextRendering))
-            {
+            using (new ProfilingScope(null, Profiling.Pipeline.beginContextRendering)) {
                 BeginContextRendering(renderContext, cameras);
             }
 #else
@@ -226,10 +224,9 @@ namespace UnityEngine.Rendering.Universal {
 #if UNITY_EDITOR
             // We do not want to start rendering if URP global settings are not ready (m_globalSettings is null)
             // or been deleted/moved (m_globalSettings is not necessarily null)
-            if (m_GlobalSettings == null || UniversalRenderPipelineGlobalSettings.instance == null)
-            {
+            if (m_GlobalSettings == null || UniversalRenderPipelineGlobalSettings.instance == null) {
                 m_GlobalSettings = UniversalRenderPipelineGlobalSettings.Ensure();
-                if(m_GlobalSettings == null) return;
+                if (m_GlobalSettings == null) return;
             }
 #endif
 
@@ -261,8 +258,7 @@ namespace UnityEngine.Rendering.Universal {
                 }
             }
 #if UNITY_2021_1_OR_NEWER
-            using (new ProfilingScope(null, Profiling.Pipeline.endContextRendering))
-            {
+            using (new ProfilingScope(null, Profiling.Pipeline.endContextRendering)) {
                 EndContextRendering(renderContext, cameras);
             }
 #else
@@ -299,8 +295,7 @@ namespace UnityEngine.Rendering.Universal {
 
         static bool TryGetCullingParameters(CameraData cameraData, out ScriptableCullingParameters cullingParams) {
 #if ENABLE_VR && ENABLE_XR_MODULE
-            if (cameraData.xr.enabled)
-            {
+            if (cameraData.xr.enabled) {
                 cullingParams = cameraData.xr.cullingParams;
 
                 // Sync the FOV on the camera to match the projection from the XR device
@@ -361,8 +356,7 @@ namespace UnityEngine.Rendering.Universal {
 
 #if UNITY_EDITOR
                 // Emit scene view UI
-                if (isSceneViewCamera)
-                {
+                if (isSceneViewCamera) {
                     ScriptableRenderContext.EmitWorldGeometryForSceneView(camera);
                 }
 #endif
@@ -376,6 +370,7 @@ namespace UnityEngine.Rendering.Universal {
 #endif
 
                 using (new ProfilingScope(null, Profiling.Pipeline.Renderer.setup)) {
+                    // miles set renderer pass
                     renderer.Setup(context, ref renderingData);
                 }
 
@@ -483,38 +478,35 @@ namespace UnityEngine.Rendering.Universal {
             if (baseCameraAdditionalData != null)
                 xrRendering = baseCameraAdditionalData.allowXRRendering;
             var xrPasses = m_XRSystem.SetupFrame(baseCamera, xrRendering);
-            foreach (XRPass xrPass in xrPasses)
-            {
-                if (xrPass.enabled)
-                {
+            foreach (XRPass xrPass in xrPasses) {
+                if (xrPass.enabled) {
                     xrActive = true;
                     UpdateCameraStereoMatrices(baseCamera, xrPass);
                 }
 #endif
 
-            using (new ProfilingScope(null, Profiling.Pipeline.beginCameraRendering)) {
-                BeginCameraRendering(context, baseCamera);
-            }
-            // Update volumeframework before initializing additional camera data
-            UpdateVolumeFramework(baseCamera, baseCameraAdditionalData);
-            InitializeCameraData(baseCamera, baseCameraAdditionalData, !isStackedRendering, out var baseCameraData);
-            RenderTextureDescriptor originalTargetDesc = baseCameraData.cameraTargetDescriptor;
+                using (new ProfilingScope(null, Profiling.Pipeline.beginCameraRendering)) {
+                    BeginCameraRendering(context, baseCamera);
+                }
+                // Update volumeframework before initializing additional camera data
+                UpdateVolumeFramework(baseCamera, baseCameraAdditionalData);
+                InitializeCameraData(baseCamera, baseCameraAdditionalData, !isStackedRendering, out var baseCameraData);
+                RenderTextureDescriptor originalTargetDesc = baseCameraData.cameraTargetDescriptor;
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-            if (xrPass.enabled)
-            {
-                baseCameraData.xr = xrPass;
-                // XRTODO: remove isStereoEnabled in 2021.x
+                if (xrPass.enabled) {
+                    baseCameraData.xr = xrPass;
+                    // XRTODO: remove isStereoEnabled in 2021.x
 #pragma warning disable 0618
-                baseCameraData.isStereoEnabled = xrPass.enabled;
+                    baseCameraData.isStereoEnabled = xrPass.enabled;
 #pragma warning restore 0618
 
-                // Helper function for updating cameraData with xrPass Data
-                m_XRSystem.UpdateCameraData(ref baseCameraData, baseCameraData.xr);
-                // Need to update XRSystem using baseCameraData to handle the case where camera position is modified in BeginCameraRendering
-                m_XRSystem.UpdateFromCamera(ref baseCameraData.xr, baseCameraData);
-                m_XRSystem.BeginLateLatching(baseCamera, xrPass);
-            }
+                    // Helper function for updating cameraData with xrPass Data
+                    m_XRSystem.UpdateCameraData(ref baseCameraData, baseCameraData.xr);
+                    // Need to update XRSystem using baseCameraData to handle the case where camera position is modified in BeginCameraRendering
+                    m_XRSystem.UpdateFromCamera(ref baseCameraData.xr, baseCameraData);
+                    m_XRSystem.BeginLateLatching(baseCamera, xrPass);
+                }
 #endif
 
 #if VISUAL_EFFECT_GRAPH_0_0_1_OR_NEWER
@@ -525,73 +517,71 @@ namespace UnityEngine.Rendering.Universal {
             if (asset.useAdaptivePerformance)
                 ApplyAdaptivePerformance(ref baseCameraData);
 #endif
-            RenderSingleCamera(context, baseCameraData, anyPostProcessingEnabled);
-            using (new ProfilingScope(null, Profiling.Pipeline.endCameraRendering)) {
-                EndCameraRendering(context, baseCamera);
-            }
+                RenderSingleCamera(context, baseCameraData, anyPostProcessingEnabled);
+                using (new ProfilingScope(null, Profiling.Pipeline.endCameraRendering)) {
+                    EndCameraRendering(context, baseCamera);
+                }
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-            m_XRSystem.EndLateLatching(baseCamera, xrPass);
+                m_XRSystem.EndLateLatching(baseCamera, xrPass);
 #endif
 
-            if (isStackedRendering) {
-                for (int i = 0; i < cameraStack.Count; ++i) {
-                    var currCamera = cameraStack[i];
-                    if (!currCamera.isActiveAndEnabled)
-                        continue;
+                if (isStackedRendering) {
+                    for (int i = 0; i < cameraStack.Count; ++i) {
+                        var currCamera = cameraStack[i];
+                        if (!currCamera.isActiveAndEnabled)
+                            continue;
 
-                    currCamera.TryGetComponent<UniversalAdditionalCameraData>(out var currCameraData);
-                    // Camera is overlay and enabled
-                    if (currCameraData != null) {
-                        // Copy base settings from base camera data and initialize initialize remaining specific settings for this camera type.
-                        CameraData overlayCameraData = baseCameraData;
-                        bool lastCamera = i == lastActiveOverlayCameraIndex;
+                        currCamera.TryGetComponent<UniversalAdditionalCameraData>(out var currCameraData);
+                        // Camera is overlay and enabled
+                        if (currCameraData != null) {
+                            // Copy base settings from base camera data and initialize initialize remaining specific settings for this camera type.
+                            CameraData overlayCameraData = baseCameraData;
+                            bool lastCamera = i == lastActiveOverlayCameraIndex;
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-                        UpdateCameraStereoMatrices(currCameraData.camera, xrPass);
+                            UpdateCameraStereoMatrices(currCameraData.camera, xrPass);
 #endif
 
-                        using (new ProfilingScope(null, Profiling.Pipeline.beginCameraRendering)) {
-                            BeginCameraRendering(context, currCamera);
-                        }
+                            using (new ProfilingScope(null, Profiling.Pipeline.beginCameraRendering)) {
+                                BeginCameraRendering(context, currCamera);
+                            }
 #if VISUAL_EFFECT_GRAPH_0_0_1_OR_NEWER
                         //It should be called before culling to prepare material. When there isn't any VisualEffect component, this method has no effect.
                         VFX.VFXManager.PrepareCamera(currCamera);
 #endif
-                        UpdateVolumeFramework(currCamera, currCameraData);
-                        InitializeAdditionalCameraData(currCamera, currCameraData, lastCamera, ref overlayCameraData);
+                            UpdateVolumeFramework(currCamera, currCameraData);
+                            InitializeAdditionalCameraData(currCamera, currCameraData, lastCamera, ref overlayCameraData);
 #if ENABLE_VR && ENABLE_XR_MODULE
-                        if (baseCameraData.xr.enabled)
-                            m_XRSystem.UpdateFromCamera(ref overlayCameraData.xr, overlayCameraData);
+                            if (baseCameraData.xr.enabled)
+                                m_XRSystem.UpdateFromCamera(ref overlayCameraData.xr, overlayCameraData);
 #endif
-                        RenderSingleCamera(context, overlayCameraData, anyPostProcessingEnabled);
+                            RenderSingleCamera(context, overlayCameraData, anyPostProcessingEnabled);
 
-                        using (new ProfilingScope(null, Profiling.Pipeline.endCameraRendering)) {
-                            EndCameraRendering(context, currCamera);
+                            using (new ProfilingScope(null, Profiling.Pipeline.endCameraRendering)) {
+                                EndCameraRendering(context, currCamera);
+                            }
                         }
                     }
                 }
-            }
 
 #if ENABLE_VR && ENABLE_XR_MODULE
-            if (baseCameraData.xr.enabled)
-                baseCameraData.cameraTargetDescriptor = originalTargetDesc;
-        }
-
-        if (xrActive)
-        {
-            CommandBuffer cmd = CommandBufferPool.Get();
-            using (new ProfilingScope(cmd, Profiling.Pipeline.XR.mirrorView))
-            {
-                m_XRSystem.RenderMirrorView(cmd, baseCamera);
+                if (baseCameraData.xr.enabled)
+                    baseCameraData.cameraTargetDescriptor = originalTargetDesc;
             }
 
-            context.ExecuteCommandBuffer(cmd);
-            context.Submit();
-            CommandBufferPool.Release(cmd);
-        }
+            if (xrActive) {
+                CommandBuffer cmd = CommandBufferPool.Get();
+                using (new ProfilingScope(cmd, Profiling.Pipeline.XR.mirrorView)) {
+                    m_XRSystem.RenderMirrorView(cmd, baseCamera);
+                }
 
-        m_XRSystem.ReleaseFrame();
+                context.ExecuteCommandBuffer(cmd);
+                context.Submit();
+                CommandBufferPool.Release(cmd);
+            }
+
+            m_XRSystem.ReleaseFrame();
 #endif
         }
 
@@ -655,8 +645,7 @@ namespace UnityEngine.Rendering.Universal {
 
         static void SetSupportedRenderingFeatures() {
 #if UNITY_EDITOR
-            SupportedRenderingFeatures.active = new SupportedRenderingFeatures()
-            {
+            SupportedRenderingFeatures.active = new SupportedRenderingFeatures() {
                 reflectionProbeModes = SupportedRenderingFeatures.ReflectionProbeModes.None,
                 defaultMixedLightingModes = SupportedRenderingFeatures.LightmapMixedBakeModes.Subtractive,
                 mixedLightingModes = SupportedRenderingFeatures.LightmapMixedBakeModes.Subtractive | SupportedRenderingFeatures.LightmapMixedBakeModes.IndirectOnly | SupportedRenderingFeatures.LightmapMixedBakeModes.Shadowmask,
@@ -823,8 +812,7 @@ namespace UnityEngine.Rendering.Universal {
 
             // Getting the background color from preferences to add to the preview camera
 #if UNITY_EDITOR
-            if (cameraData.camera.cameraType == CameraType.Preview)
-            {
+            if (cameraData.camera.cameraType == CameraType.Preview) {
                 camera.backgroundColor = CoreRenderPipelinePreferences.previewBackgroundColor;
             }
 #endif
@@ -1050,18 +1038,13 @@ namespace UnityEngine.Rendering.Universal {
 
         static void UpdateCameraStereoMatrices(Camera camera, XRPass xr) {
 #if ENABLE_VR && ENABLE_XR_MODULE
-            if (xr.enabled)
-            {
-                if (xr.singlePassEnabled)
-                {
-                    for (int i = 0; i < Mathf.Min(2, xr.viewCount); i++)
-                    {
+            if (xr.enabled) {
+                if (xr.singlePassEnabled) {
+                    for (int i = 0; i < Mathf.Min(2, xr.viewCount); i++) {
                         camera.SetStereoProjectionMatrix((Camera.StereoscopicEye)i, xr.GetProjMatrix(i));
                         camera.SetStereoViewMatrix((Camera.StereoscopicEye)i, xr.GetViewMatrix(i));
                     }
-                }
-                else
-                {
+                } else {
                     camera.SetStereoProjectionMatrix((Camera.StereoscopicEye)xr.multipassId, xr.GetProjMatrix(0));
                     camera.SetStereoViewMatrix((Camera.StereoscopicEye)xr.multipassId, xr.GetViewMatrix(0));
                 }
