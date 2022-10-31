@@ -11,8 +11,7 @@ Shader "cf/utils/mid"
 
         Pass
         {
-            Blend One OneMinusSrcAlpha
-            Name "Attacked"
+            Name "MID"
             Tags { "LightMode" = "UniversalForward" }
 
             HLSLPROGRAM
