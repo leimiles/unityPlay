@@ -733,7 +733,7 @@ namespace UnityEngine.Rendering.Universal {
 
                 m_RenderTransparentForwardPass.ConfigureColorStoreAction(transparentPassColorStoreAction);
                 m_RenderTransparentForwardPass.ConfigureDepthStoreAction(transparentPassDepthStoreAction);
-                // miles transparent pass
+                // miles enqueue transparent pass
                 EnqueuePass(m_RenderTransparentForwardPass);
             }
             // miles render object call back pass

@@ -57,7 +57,7 @@ Shader "cf/utils/mid"
 
             half4 frag(varyings i) : SV_Target
             {
-                //_Color.rgb *= (i.normalWS * 0.5 + 0.5);
+                _Color.rgb *= (i.normalWS.y * 0.2 + 0.5);
                 return _Color;
             }
             ENDHLSL
