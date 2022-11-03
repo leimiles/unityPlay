@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 *.dwlt
 .vscode/settings.json
+Build_BurstDebugInformation_DoNotShip
+Packages/.DS_Store
+.DS_Store
