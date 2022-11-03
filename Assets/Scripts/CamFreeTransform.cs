@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using UnityEngine.Rendering;
 
+[DisallowMultipleComponent]
+[RequireComponent(typeof(Camera))]
 public class CamFreeTransform : MonoBehaviour {
     public float speed = 25f;
     public float rotationSpeed = 2000f;
@@ -13,12 +15,15 @@ public class CamFreeTransform : MonoBehaviour {
     private Vector2 mousePosMove;
     private bool _isFirstMoveMove;
 
-    private void OnGUI() {
-        GUILayout.Label("Go");
-    }
+    private Camera cam;
+
     private void Start() {
         mousePos = new Vector2(Screen.width - 400f, 400f);
         _isFirstMove = true;
+        cam = GetComponent<Camera>();
+
+        Application.targetFrameRate = 60;
+        OnDemandRendering.renderFrameInterval = 1;
     }
 
     void Update() {
@@ -77,7 +82,9 @@ public class CamFreeTransform : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(400f, 400f, Camera.main.nearClipPlane + 0.03f)), 0.03f);
-        Gizmos.DrawSphere(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - 400f, 400f, Camera.main.nearClipPlane + 0.03f)), 0.03f);
+        if (cam != null) {
+            Gizmos.DrawSphere(cam.ScreenToWorldPoint(new Vector3(400f, 400f, cam.nearClipPlane + 0.03f)), 0.03f);
+            Gizmos.DrawSphere(cam.ScreenToWorldPoint(new Vector3(Screen.width - 400f, 400f, cam.nearClipPlane + 0.03f)), 0.03f);
+        }
     }
 }
