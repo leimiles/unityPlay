@@ -7,15 +7,20 @@ public class TestOnOff : MonoBehaviour {
 
     Rect[] rects;
     public GameObject[] gameObjects;
-    int buttonMargin = 40;
+    float buttonMargin = 40;
     int buttonWidth = 120;
     int buttonHeight = 30;
+    float buttonScale = 1.0f;
     void Start() {
+        buttonScale = Screen.width / 720;
+        buttonMargin *= buttonScale;
         if (gameObjects.Length > 0) {
             rects = new Rect[gameObjects.Length];
 
             for (int i = 0; i < gameObjects.Length; i++) {
                 rects[i] = new Rect(10, buttonMargin * i + buttonHeight, buttonWidth, buttonHeight);
+                rects[i].width *= buttonScale;
+                rects[i].height *= buttonScale;
             }
         }
     }
