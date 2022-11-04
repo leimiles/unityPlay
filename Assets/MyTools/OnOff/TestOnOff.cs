@@ -11,12 +11,12 @@ public class TestOnOff : MonoBehaviour {
     int buttonWidth = 120;
     int buttonHeight = 30;
     float buttonScale = 1.0f;
+    GUIStyle buttonStyle;
     void Start() {
-        buttonScale = Screen.width / 720;
+        buttonScale = Screen.height / 1200;
         buttonMargin *= buttonScale;
         if (gameObjects.Length > 0) {
             rects = new Rect[gameObjects.Length];
-
             for (int i = 0; i < gameObjects.Length; i++) {
                 rects[i] = new Rect(10, buttonMargin * i + buttonHeight, buttonWidth, buttonHeight);
                 rects[i].width *= buttonScale;
@@ -30,12 +30,14 @@ public class TestOnOff : MonoBehaviour {
     }
 
     void OnGUI() {
+        buttonStyle = new GUIStyle(GUI.skin.button);
+        buttonStyle.fontSize += (int)(buttonScale * 13);
         DrawOnOffButtons();
     }
 
     void DrawOnOffButtons() {
         for (int i = 0; i < gameObjects.Length; i++) {
-            if (GUI.Button(rects[i], gameObjects[i].name)) {
+            if (GUI.Button(rects[i], gameObjects[i].name, buttonStyle)) {
                 if (gameObjects[i].activeSelf == true) {
                     gameObjects[i].SetActive(false);
                 } else {
