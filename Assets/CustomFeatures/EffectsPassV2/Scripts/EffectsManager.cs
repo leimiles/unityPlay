@@ -20,11 +20,16 @@ public class EffectsManager {
         state = true;
     }
     public static void AddTrigger(EffectsTrigger effectsTrigger) {
-        effectsTriggers.Add(effectsTrigger);
+        if (!effectsTriggers.Contains(effectsTrigger)) {
+            effectsTriggers.Add(effectsTrigger);
+        }
+
     }
 
     public static void RemoveTrigger(EffectsTrigger effectsTrigger) {
-        effectsTriggers.Remove(effectsTrigger);
+        if (effectsTriggers.Contains(effectsTrigger)) {
+            effectsTriggers.Remove(effectsTrigger);
+        }
     }
 
     public static int Count() {

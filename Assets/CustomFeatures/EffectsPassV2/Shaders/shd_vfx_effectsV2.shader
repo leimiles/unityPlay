@@ -71,7 +71,7 @@ Shader "funnyland/vfx/effectsV2"
         Pass
         {
             Blend One Zero
-            Name "Occluder"
+            Name "Occludee"
 
             Stencil
             {
