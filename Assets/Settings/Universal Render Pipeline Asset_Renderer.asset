@@ -97,4 +97,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   renderPassEvent: 500
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: c93fb19822969e545a03ac28a3473b40, type: 2}

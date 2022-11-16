@@ -18,7 +18,7 @@ public class EffectsFeature : ScriptableRendererFeature {
                         if (effectsTrigger.EffectsMaterial == null) {
                             effectsTrigger.EffectsMaterial = new Material(this.sourceMaterial);
                         }
-                        effectsTrigger.EffectsMaterial.SetFloat(Shader.PropertyToID("_Intensity"), effectsTrigger.intensity);
+                        effectsTrigger.EffectsMaterial.SetFloat(Shader.PropertyToID("_attackedColor_Intensity"), effectsTrigger.intensity);
                         commandBuffer.DrawRenderer(effectsTrigger.GetRenderers()[0], effectsTrigger.EffectsMaterial);
                     }
                 }

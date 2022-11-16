@@ -3,7 +3,7 @@ Shader "funnyland/vfx/effects"
     Properties
     {
         [HDR]_Color ("Color", Color) = (1, 0, 0, 0)
-        _Intensity ("Intensity", Range(0.0, 1.0)) = 1.0
+        _attackedColor_Intensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
     }
 
     SubShader
@@ -34,7 +34,7 @@ Shader "funnyland/vfx/effects"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
-                half _Intensity;
+                half _attackedColor_Intensity;
             CBUFFER_END
 
             struct varyings
@@ -62,8 +62,8 @@ Shader "funnyland/vfx/effects"
 
             half4 frag(varyings i) : SV_Target
             {
-                _Color = _Color * _Intensity;
-                return half4(_Color.rgb, _Intensity);
+                _Color = _Color * _attackedColor_Intensity;
+                return half4(_Color.rgb, _attackedColor_Intensity);
             }
             ENDHLSL
         }
