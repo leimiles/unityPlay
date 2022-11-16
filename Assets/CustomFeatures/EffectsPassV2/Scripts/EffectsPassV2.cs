@@ -8,7 +8,6 @@ public class EffectsPassV2 : ScriptableRenderPass {
     Material material;
     MaterialPropertyBlock materialPropertyBlock;
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
-        Debug.Log("yoyo");
         //Debug.Log("wazzup");
         CommandBuffer cmd = CommandBufferPool.Get(name: "Effect Pass V2");
         //context.ExecuteCommandBuffer(cmd);
@@ -26,7 +25,6 @@ public class EffectsPassV2 : ScriptableRenderPass {
     }
 
     void DrawRenderersByEffectsManager(ref CommandBuffer cmd) {
-        Debug.Log(EffectsManager.Count());
         foreach (EffectsTrigger effectsTrigger in EffectsManager.EffectsTriggers) {
             foreach (Renderer renderer in effectsTrigger.GetRenderers()) {
                 renderer.GetPropertyBlock(materialPropertyBlock);

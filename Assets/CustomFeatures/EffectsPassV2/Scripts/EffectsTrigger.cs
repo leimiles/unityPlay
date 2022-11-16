@@ -7,14 +7,6 @@ using UnityEngine.Rendering.Universal;
 public class EffectsTrigger : MonoBehaviour {
     Renderer[] renderers;
     private Material material;
-    public Material EffectsMaterial {
-        get {
-            return material;
-        }
-        set {
-            material = value;
-        }
-    }
     [SerializeField]
     [Range(0.0f, 1.0f)]
     public float intensity;
