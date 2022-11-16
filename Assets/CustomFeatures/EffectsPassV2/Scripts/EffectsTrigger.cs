@@ -6,10 +6,10 @@ using UnityEngine.Rendering.Universal;
 
 public class EffectsTrigger : MonoBehaviour {
     Renderer[] renderers;
-    private Material material;
+
     [SerializeField]
     [Range(0.0f, 1.0f)]
-    public float intensity;
+    public float _AttackedColorIntensity;
     void Start() {
         renderers = gameObject.GetComponentsInChildren<Renderer>();
     }

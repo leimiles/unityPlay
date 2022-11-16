@@ -3,7 +3,7 @@ Shader "funnyland/vfx/effectsV2"
     Properties
     {
         [HDR]_Color ("Color", Color) = (1, 0, 0, 0)
-        [HideInInspector][PerRendererData]_attackedColor_Intensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
+        [HideInInspector][PerRendererData]_AttackedColorIntensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
     }
 
     SubShader
@@ -14,7 +14,6 @@ Shader "funnyland/vfx/effectsV2"
         {
             Blend One OneMinusSrcAlpha
             Name "Attacked"
-            Tags { "LightMode" = "UniversalForward" }
 
             HLSLPROGRAM
             #pragma exclude_renderers gles gles3 glcore
@@ -34,7 +33,7 @@ Shader "funnyland/vfx/effectsV2"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
-                half _attackedColor_Intensity;
+                half _AttackedColorIntensity;
             CBUFFER_END
 
             struct varyings
@@ -62,8 +61,8 @@ Shader "funnyland/vfx/effectsV2"
 
             half4 frag(varyings i) : SV_Target
             {
-                _Color = _Color * _attackedColor_Intensity;
-                return half4(_Color.rgb, _attackedColor_Intensity);
+                _Color = _Color * _AttackedColorIntensity;
+                return half4(_Color.rgb, _AttackedColorIntensity);
             }
             ENDHLSL
         }
