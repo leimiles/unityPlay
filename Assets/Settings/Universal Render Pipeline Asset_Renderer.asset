@@ -30,9 +30,8 @@ MonoBehaviour:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
   - {fileID: -5589910370683597300}
-  - {fileID: 5595463395909411190}
-  - {fileID: 2588642680988741652}
-  m_RendererFeatureMap: 0cce216d22a66cb276a1e1025014a74d14b0bf9acdb4ec23
+  - {fileID: 3475421396317802618}
+  m_RendererFeatureMap: 0cce216d22a66cb27a9050ac582d3b30
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -69,7 +68,7 @@ MonoBehaviour:
   m_ClusteredRendering: 0
   m_TileSize: 32
   m_IntermediateTextureMode: 1
---- !u!114 &2588642680988741652
+--- !u!114 &3475421396317802618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,23 +77,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3f337d20420e74b97124c60e93ad64, type: 3}
-  m_Name: OutlineRendererFeature
+  m_Script: {fileID: 11500000, guid: 9e57060559ced1245afc674279016e42, type: 3}
+  m_Name: EffectsFeatureV2
   m_EditorClassIdentifier: 
   m_Active: 1
-  featureSettings: {fileID: 11400000, guid: 00458319ce1f4b647bdb3b45800414a2, type: 2}
---- !u!114 &5595463395909411190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee1f1bd85bd6a745bf7d1a547d06834, type: 3}
-  m_Name: EffectsFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  renderPassEvent: 500
-  material: {fileID: 2100000, guid: c93fb19822969e545a03ac28a3473b40, type: 2}
+  effect_Material: {fileID: 2100000, guid: 37a9d4f945cbab843b725a1711767e78, type: 2}
