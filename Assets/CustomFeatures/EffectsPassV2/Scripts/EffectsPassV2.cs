@@ -11,7 +11,8 @@ public class EffectsPassV2 : ScriptableRenderPass {
         //Debug.Log("wazzup");
         CommandBuffer cmd = CommandBufferPool.Get(name: "Effect Pass");
         //context.ExecuteCommandBuffer(cmd);
-        DrawRenderersByEffectsManager(ref cmd);
+        //DrawRenderersByAttacked(ref cmd, 0);
+        DrawRenderersByOccluder(ref cmd, 1);
         context.ExecuteCommandBuffer(cmd);
         CommandBufferPool.Release(cmd);
     }
@@ -24,13 +25,23 @@ public class EffectsPassV2 : ScriptableRenderPass {
         this.material = material;
     }
 
-    void DrawRenderersByEffectsManager(ref CommandBuffer cmd) {
+    void DrawRenderersByAttacked(ref CommandBuffer cmd, int passIndex = 0) {
         foreach (EffectsTrigger effectsTrigger in EffectsManager.EffectsTriggers) {
             foreach (Renderer renderer in effectsTrigger.GetRenderers()) {
                 renderer.GetPropertyBlock(materialPropertyBlock);
                 materialPropertyBlock.SetFloat(Shader.PropertyToID("_AttackedColorIntensity"), effectsTrigger._AttackedColorIntensity);
                 renderer.SetPropertyBlock(materialPropertyBlock);
-                cmd.DrawRenderer(renderer, material, 0, 0);
+                cmd.DrawRenderer(renderer, material, 0, passIndex);
+            }
+        }
+    }
+    void DrawRenderersByOccluder(ref CommandBuffer cmd, int passIndex = 1) {
+        foreach (EffectsTrigger effectsTrigger in EffectsManager.EffectsTriggers) {
+            foreach (Renderer renderer in effectsTrigger.GetRenderers()) {
+                renderer.GetPropertyBlock(materialPropertyBlock);
+                materialPropertyBlock.SetFloat(Shader.PropertyToID("_OccluderColorIntensity"), effectsTrigger._OccluderColorIntensity);
+                renderer.SetPropertyBlock(materialPropertyBlock);
+                cmd.DrawRenderer(renderer, material, 0, passIndex);
             }
         }
     }

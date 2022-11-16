@@ -13022,6 +13022,10 @@ PrefabInstance:
       propertyPath: _AttackedColorIntensity
       value: 0.227
       objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccluderColorIntensity
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 12935494023928820, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -15052,6 +15056,10 @@ PrefabInstance:
     - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
       propertyPath: _AttackedColorIntensity
       value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccluderColorIntensity
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 12935494023928820, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
       propertyPath: m_RootOrder

@@ -9,7 +9,11 @@ public class EffectsTrigger : MonoBehaviour {
 
     [SerializeField]
     [Range(0.0f, 1.0f)]
-    public float _AttackedColorIntensity;
+    public float _AttackedColorIntensity = 0.0f;
+
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    public float _OccluderColorIntensity = 0.5f;
     void Start() {
         renderers = gameObject.GetComponentsInChildren<Renderer>();
     }
