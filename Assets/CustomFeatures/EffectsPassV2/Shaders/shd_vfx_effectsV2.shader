@@ -4,7 +4,7 @@ Shader "funnyland/vfx/effectsV2"
     {
         [HDR]_Color ("Color", Color) = (1, 0, 0, 0)
         [HideInInspector][PerRendererData]_AttackedColorIntensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
-        [HideInInspector][PerRendererData]_OccluderColorIntensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
+        [HideInInspector][PerRendererData]_OccludeeColorIntensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
     }
 
     SubShader
@@ -35,7 +35,7 @@ Shader "funnyland/vfx/effectsV2"
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
                 half _AttackedColorIntensity;
-                half _OccluderColorIntensity;
+                half _OccludeeColorIntensity;
             CBUFFER_END
 
             struct varyings
@@ -100,7 +100,7 @@ Shader "funnyland/vfx/effectsV2"
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
                 half _AttackedColorIntensity;
-                half _OccluderColorIntensity;
+                half _OccludeeColorIntensity;
             CBUFFER_END
 
             struct varyings
@@ -123,8 +123,8 @@ Shader "funnyland/vfx/effectsV2"
 
             half4 frag(varyings i) : SV_Target
             {
-                _Color = _Color * _OccluderColorIntensity;
-                return half4(_Color.rgb, _OccluderColorIntensity);
+                _Color = _Color * _OccludeeColorIntensity;
+                return half4(_Color.rgb, _OccludeeColorIntensity);
             }
             ENDHLSL
         }
