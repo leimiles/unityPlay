@@ -1,4 +1,4 @@
-Shader "funnyland/vfx/attacked"
+Shader "funnyland/vfx/effects"
 {
     Properties
     {
