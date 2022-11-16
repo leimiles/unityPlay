@@ -11,14 +11,14 @@ public class OutlineRendererFeature : ScriptableRendererFeature {
 
     private bool IsShaderReady() {
         bool status = false;
-        if(featureSettings.OutlineShader != null) {
+        if (featureSettings.OutlineShader != null) {
             status = true;
         }
         return status;
-    }  
+    }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData) {
-        if(IsShaderReady()) {
+        if (IsShaderReady()) {
             outlineRendererPass.Setup(renderer);
             renderer.EnqueuePass(outlineRendererPass);
         } else {
@@ -29,10 +29,10 @@ public class OutlineRendererFeature : ScriptableRendererFeature {
 
 
     public override void Create() {
-        if(featureSettings == null) {
+        if (featureSettings == null) {
             return;
         } else {
-            outlineRendererPass = new OutlineRendererPass(this,  featureSettings.renderPassEvent);
+            outlineRendererPass = new OutlineRendererPass(this, featureSettings.renderPassEvent);
         }
     }
 }
