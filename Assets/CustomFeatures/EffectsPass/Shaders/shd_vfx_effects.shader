@@ -34,8 +34,6 @@ Shader "funnyland/vfx/effects"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
-                //half _Edge;
-                //half _Blend;
                 half _Intensity;
             CBUFFER_END
 
@@ -64,8 +62,6 @@ Shader "funnyland/vfx/effects"
 
             half4 frag(varyings i) : SV_Target
             {
-                //half fresnel;
-                //fresnelEffect(SafeNormalize(i.normalWS), SafeNormalize(i.viewDirWS), _Edge, fresnel);
                 _Color = _Color * _Intensity;
                 return half4(_Color.rgb, _Intensity);
             }
