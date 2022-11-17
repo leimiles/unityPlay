@@ -12,8 +12,8 @@ public class EffectsPassV2 : ScriptableRenderPass {
         CommandBuffer cmd = CommandBufferPool.Get(name: "Effect Pass");
         //context.ExecuteCommandBuffer(cmd);
         //DrawRenderersByAttacked(ref cmd, 0);
-        DrawRenderersByOccludee(ref cmd, 1);
         DrawRenderersByOutline(ref cmd, 2);
+        DrawRenderersByOccludee(ref cmd, 1);
         context.ExecuteCommandBuffer(cmd);
         CommandBufferPool.Release(cmd);
     }
@@ -41,6 +41,7 @@ public class EffectsPassV2 : ScriptableRenderPass {
             foreach (Renderer renderer in effectsTrigger.GetRenderers()) {
                 renderer.GetPropertyBlock(materialPropertyBlock);
                 materialPropertyBlock.SetFloat(Shader.PropertyToID("_OccludeeColorIntensity"), effectsTrigger._OccludeeColorIntensity);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_OccludeeColor"), effectsTrigger._OccludeeColor);
                 renderer.SetPropertyBlock(materialPropertyBlock);
                 cmd.DrawRenderer(renderer, material, 0, passIndex);
             }
@@ -50,7 +51,8 @@ public class EffectsPassV2 : ScriptableRenderPass {
         foreach (EffectsTrigger effectsTrigger in EffectsManager.EffectsTriggers) {
             foreach (Renderer renderer in effectsTrigger.GetRenderers()) {
                 renderer.GetPropertyBlock(materialPropertyBlock);
-                //materialPropertyBlock.SetFloat(Shader.PropertyToID("_OccludeeColorIntensity"), effectsTrigger._OccludeeColorIntensity);
+                materialPropertyBlock.SetFloat(Shader.PropertyToID("_OutlineWidth"), effectsTrigger._OutlineWidth);
+                materialPropertyBlock.SetColor(Shader.PropertyToID("_OutlineColor"), effectsTrigger._OutlineColor);
                 renderer.SetPropertyBlock(materialPropertyBlock);
                 cmd.DrawRenderer(renderer, material, 0, passIndex);
             }

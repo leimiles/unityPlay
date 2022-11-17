@@ -13,7 +13,7 @@ public class EffectsManager {
     }
     public static bool state = false;
 
-    public static void Init(ScriptableRendererFeature feature) {
+    public static void Init() {
         if (effectsTriggers == null) {
             effectsTriggers = new List<EffectsTrigger>();
         }

@@ -17,6 +17,6 @@ public class EffectsFeatureV2 : ScriptableRendererFeature {
     public override void Create() {
         effectsPassV2 = new EffectsPassV2();
         effectsPassV2.renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
-        EffectsManager.Init(this);
+        EffectsManager.Init();
     }
 }

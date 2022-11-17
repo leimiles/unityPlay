@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1024319088}
-  m_IndirectSpecularColor: {r: 0.24324748, g: 0.15668938, b: 0.1994569, a: 1}
+  m_IndirectSpecularColor: {r: 0.2233139, g: 0.13945326, b: 0.18480435, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13019,6 +13019,18 @@ PrefabInstance:
       value: 0.845
       objectReference: {fileID: 0}
     - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OutlineColor.g
+      value: 0.8238507
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccludeeColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccludeeColor.r
+      value: 0.030037642
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
       propertyPath: _AttackedColorIntensity
       value: 0.227
       objectReference: {fileID: 0}
@@ -15052,6 +15064,30 @@ PrefabInstance:
     - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
       propertyPath: intensity
       value: 0.238
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OutlineColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OutlineColor.g
+      value: 0.008504391
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OutlineColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccludeeColor.b
+      value: 0.85642624
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccludeeColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
+      propertyPath: _OccludeeColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 928656398, guid: b05e2bb259d8003429968ff8a1278b86, type: 3}
       propertyPath: _AttackedColorIntensity

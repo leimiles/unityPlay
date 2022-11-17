@@ -4,8 +4,29 @@ Shader "funnyland/vfx/effectsV2"
     {
         [HDR]_Color ("Color", Color) = (1, 0, 0, 0)
         [HideInInspector][PerRendererData]_AttackedColorIntensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
-        [HideInInspector][PerRendererData]_OccludeeColorIntensity ("Attacked Color Intensity", Range(0.0, 1.0)) = 1.0
+        [HideInInspector][PerRendererData]_OccludeeColorIntensity ("Occludee Color Intensity", Range(0.0, 1.0)) = 1.0
+        [HideInInspector][HDR][PerRendererData]_OccludeeColor ("Occludee Color", Color) = (1, 0, 0, 1)
+        [HideInInspector][PerRendererData]_OutlineWidth ("Outline Width", Range(0.0, 0.1)) = 0.008
+        [HideInInspector][HDR][PerRendererData]_OutlineColor ("Outline Color", Color) = (1, 0, 0, 1)
     }
+
+    // used for all passes
+    HLSLINCLUDE
+
+    #pragma exclude_renderers gles gles3 glcore
+    #pragma target 4.5
+    #pragma multi_compile _ DOTS_INSTANCING_ON
+    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+    CBUFFER_START(UnityPerMaterial)
+        half4 _Color;
+        half _AttackedColorIntensity;
+        half _OccludeeColorIntensity;
+        half4 _OccludeeColor;
+        half _OutlineWidth;
+        half4 _OutlineColor;
+    CBUFFER_END
+
+    ENDHLSL
 
     SubShader
     {
@@ -17,14 +38,10 @@ Shader "funnyland/vfx/effectsV2"
             Name "Attacked"
 
             HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
-            #pragma multi_compile _ DOTS_INSTANCING_ON
 
             #pragma vertex vert
             #pragma fragment frag
 
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             struct attributes
             {
@@ -32,11 +49,6 @@ Shader "funnyland/vfx/effectsV2"
                 half3 normalOS : NORMAL;
             };
 
-            CBUFFER_START(UnityPerMaterial)
-                half4 _Color;
-                half _AttackedColorIntensity;
-                half _OccludeeColorIntensity;
-            CBUFFER_END
 
             struct varyings
             {
@@ -82,14 +94,10 @@ Shader "funnyland/vfx/effectsV2"
             ZTest Greater
 
             HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
-            #pragma multi_compile _ DOTS_INSTANCING_ON
 
             #pragma vertex vert
             #pragma fragment frag
 
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             struct attributes
             {
@@ -97,11 +105,7 @@ Shader "funnyland/vfx/effectsV2"
                 half3 normalOS : NORMAL;
             };
 
-            CBUFFER_START(UnityPerMaterial)
-                half4 _Color;
-                half _AttackedColorIntensity;
-                half _OccludeeColorIntensity;
-            CBUFFER_END
+
 
             struct varyings
             {
@@ -123,8 +127,8 @@ Shader "funnyland/vfx/effectsV2"
 
             half4 frag(varyings i) : SV_Target
             {
-                _Color = _Color * _OccludeeColorIntensity;
-                return half4(_Color.rgb, _OccludeeColorIntensity);
+                _OccludeeColor = _OccludeeColor * _OccludeeColorIntensity;
+                return half4(_OccludeeColor.rgb, _OccludeeColorIntensity);
             }
             ENDHLSL
         }
@@ -140,19 +144,15 @@ Shader "funnyland/vfx/effectsV2"
                 Comp NotEqual
             }
 
-            //ZTest Greater
+            //ZTest LEqual
 
 
             Cull Front
             HLSLPROGRAM
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
-            #pragma multi_compile _ DOTS_INSTANCING_ON
 
             #pragma vertex vert
             #pragma fragment frag
 
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             struct attributes
             {
@@ -160,11 +160,6 @@ Shader "funnyland/vfx/effectsV2"
                 half3 normalOS : NORMAL;
             };
 
-            CBUFFER_START(UnityPerMaterial)
-                half4 _Color;
-                half _AttackedColorIntensity;
-                half _OccludeeColorIntensity;
-            CBUFFER_END
 
             struct varyings
             {
@@ -177,7 +172,7 @@ Shader "funnyland/vfx/effectsV2"
             varyings vert(attributes input)
             {
                 varyings o = (varyings)0;
-                input.positionOS += input.normalOS * 0.008;
+                input.positionOS += input.normalOS * _OutlineWidth;
                 VertexPositionInputs vpi = GetVertexPositionInputs(input.positionOS);
                 o.positionCS = vpi.positionCS;
                 VertexNormalInputs vni = GetVertexNormalInputs(input.normalOS);
@@ -188,8 +183,9 @@ Shader "funnyland/vfx/effectsV2"
 
             half4 frag(varyings i) : SV_Target
             {
-                _Color = _Color * _OccludeeColorIntensity;
-                return half4(_Color.rgb, _OccludeeColorIntensity);
+                //_OutlineColor = _OutlineColor * _OccludeeColorIntensity;
+                //return half4(_OutlineColor.rgb, _OccludeeColorIntensity);
+                return _OutlineColor;
             }
             ENDHLSL
         }
