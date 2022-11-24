@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestOnOff : MonoBehaviour {
     // Start is called before the first frame update
-
+    public Text fpsText;
+    public float deltaTime;
+    float fps;
     Rect[] rects;
     public GameObject[] gameObjects;
     float buttonMargin = 40;
@@ -27,6 +30,7 @@ public class TestOnOff : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Framerate();
     }
 
     void OnGUI() {
@@ -34,7 +38,6 @@ public class TestOnOff : MonoBehaviour {
         buttonStyle.fontSize += (int)(buttonScale * 13);
         DrawOnOffButtons();
     }
-
     void DrawOnOffButtons() {
         for (int i = 0; i < gameObjects.Length; i++) {
             if (GUI.Button(rects[i], gameObjects[i].name, buttonStyle)) {
@@ -45,5 +48,11 @@ public class TestOnOff : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void Framerate() {
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        fps = 1.0f / deltaTime;
+        fpsText.text = Mathf.Ceil(fps).ToString();
     }
 }
