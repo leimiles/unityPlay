@@ -1122,7 +1122,7 @@ namespace UnityEngine.Rendering.Universal.Internal
         #endregion
 
         #region Bloom
-
+        // miles setup bloom pass
         void SetupBloom(CommandBuffer cmd, RenderTargetIdentifier source, Material uberMaterial)
         {
             // Start at half-res
@@ -1144,13 +1144,13 @@ namespace UnityEngine.Rendering.Universal.Internal
             float scatter = Mathf.Lerp(0.05f, 0.95f, m_Bloom.scatter.value);
             var bloomMaterial = m_Materials.bloom;
             bloomMaterial.SetVector(ShaderConstants._Params, new Vector4(scatter, clamp, threshold, thresholdKnee));
-            CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.BloomHQ, m_Bloom.highQualityFiltering.value);
+            CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.BloomLQ, m_Bloom.highQualityFiltering.value);
             CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.UseRGBM, m_UseRGBM);
 
             // Prefilter
             var desc = GetCompatibleDescriptor(tw, th, m_DefaultHDRFormat);
-            cmd.GetTemporaryRT(ShaderConstants._BloomMipDown[0], desc, FilterMode.Bilinear);
-            cmd.GetTemporaryRT(ShaderConstants._BloomMipUp[0], desc, FilterMode.Bilinear);
+            cmd.GetTemporaryRT(ShaderConstants._BloomMipDown[0], desc, FilterMode.Point);
+            cmd.GetTemporaryRT(ShaderConstants._BloomMipUp[0], desc, FilterMode.Point);
             Blit(cmd, source, ShaderConstants._BloomMipDown[0], bloomMaterial, 0);
 
             // Downsample - gaussian pyramid
@@ -1165,8 +1165,8 @@ namespace UnityEngine.Rendering.Universal.Internal
                 desc.width = tw;
                 desc.height = th;
 
-                cmd.GetTemporaryRT(mipDown, desc, FilterMode.Bilinear);
-                cmd.GetTemporaryRT(mipUp, desc, FilterMode.Bilinear);
+                cmd.GetTemporaryRT(mipDown, desc, FilterMode.Point);
+                cmd.GetTemporaryRT(mipUp, desc, FilterMode.Point);
 
                 // Classic two pass gaussian blur - use mipUp as a temporary target
                 //   First pass does 2x downsampling + 9-tap gaussian
