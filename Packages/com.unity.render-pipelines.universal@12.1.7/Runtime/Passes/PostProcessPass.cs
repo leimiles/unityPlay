@@ -1126,8 +1126,8 @@ namespace UnityEngine.Rendering.Universal.Internal
         void SetupBloom(CommandBuffer cmd, RenderTargetIdentifier source, Material uberMaterial)
         {
             // Start at half-res
-            int tw = m_Descriptor.width >> 1;
-            int th = m_Descriptor.height >> 1;
+            int tw = m_Descriptor.width >> 2;
+            int th = m_Descriptor.height >> 2;
 
             // Determine the iteration count
             int maxSize = Mathf.Max(tw, th);
