@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TestOnOff : MonoBehaviour {
     // Start is called before the first frame update
-    public Text fpsText;
+    public TMP_Text fpsText;
     public float deltaTime;
     float fps;
     Rect[] rects;
@@ -52,7 +52,10 @@ public class TestOnOff : MonoBehaviour {
 
     void Framerate() {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        fps = 1.0f / deltaTime;
-        fpsText.text = Mathf.Ceil(fps).ToString();
+        //fps = 1.0f / deltaTime;
+        fps = Mathf.Ceil(1.0f / deltaTime);
+        //Debug.Log(fps);
+        //fpsText.text = Mathf.Ceil(fps).ToString();
+        fpsText.text = fps.ToString();
     }
 }
