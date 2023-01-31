@@ -18,25 +18,25 @@ public class OutlineTest : MonoBehaviour {
     }
 
     public void SetOutlineSettingBlur() {
-        if(outlineSetting != null) {
+        if (outlineSetting != null) {
             outlineSetting.outlineEffect = OutlineEffect.Blur;
         }
     }
 
     public void SetOutlineSettingSolid() {
-        if(outlineSetting != null) {
+        if (outlineSetting != null) {
             outlineSetting.outlineEffect = OutlineEffect.Solid;
         }
     }
 
     public void SetOutlineSettingSolidAA() {
-        if(outlineSetting != null) {
+        if (outlineSetting != null) {
             outlineSetting.outlineEffect = OutlineEffect.SolidAA;
         }
     }
 
     public void SetOutlineSettingWidth() {
-        if(outlineSetting != null && mySlider != null) {
+        if (outlineSetting != null && mySlider != null) {
             //Debug.Log((int)mySlider.value);
             outlineSetting.OutlineWidth = (int)mySlider.value;
         }

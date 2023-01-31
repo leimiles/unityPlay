@@ -1,14 +1,18 @@
-Shader "Framework/shd_Character_v7" {
-    Properties {
-        _BaseMap ("Texture", 2D) = "white" {}
-        _Cutoff("Cut Out", Range(0, 1)) = 0.5
-        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 4.0
+Shader "Framework/shd_Character_v7"
+{
+    Properties
+    {
+        _BaseMap ("Texture", 2D) = "white" { }
+        _Cutoff ("Cut Out", Range(0, 1)) = 0.5
+        [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest ("ZTest", Float) = 4.0
     }
-    SubShader {
-        Tags { "RenderType"="Opaque" "Queue" = "Geometry+2"}
+    SubShader
+    {
+        Tags { "RenderType" = "Opaque" "Queue" = "Geometry+2" }
         LOD 100
-        
-        Pass {
+
+        Pass
+        {
 
             Name "Outline"
             Tags { "LightMode" = "Outline" }
@@ -23,16 +27,19 @@ Shader "Framework/shd_Character_v7" {
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
 
-            struct a2v {
+            struct a2v
+            {
                 float4 positionOS : POSITION;
                 float2 texcoord : TEXCOORD0;
             };
-            struct v2f {
+            struct v2f
+            {
                 float4 positionCS : SV_POSITION;
                 float2 texcoord : TEXCOORD0;
             };
 
-            v2f vert(a2v v) {
+            v2f vert(a2v v)
+            {
                 v2f o;
                 VertexPositionInputs vertexInput = GetVertexPositionInputs(v.positionOS.xyz);
                 o.positionCS = vertexInput.positionCS;
@@ -40,7 +47,8 @@ Shader "Framework/shd_Character_v7" {
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target
+            {
                 half4 col = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.texcoord);
                 clip(col.a - _Cutoff);
                 return 1;
@@ -48,8 +56,9 @@ Shader "Framework/shd_Character_v7" {
 
             ENDHLSL
         }
-        
-        Pass {
+
+        Pass
+        {
             Name "Character"
             Tags { "LightMode" = "UniversalForward" }
             HLSLPROGRAM
@@ -61,16 +70,19 @@ Shader "Framework/shd_Character_v7" {
             #pragma fragment frag
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
 
-            struct a2v {
+            struct a2v
+            {
                 float4 positionOS : POSITION;
                 float2 texcoord : TEXCOORD0;
             };
-            struct v2f {
+            struct v2f
+            {
                 float4 positionCS : SV_POSITION;
                 float2 texcoord : TEXCOORD0;
             };
-            
-            v2f vert (a2v v) {
+
+            v2f vert(a2v v)
+            {
                 v2f o;
                 VertexPositionInputs vertexInput = GetVertexPositionInputs(v.positionOS.xyz);
                 o.positionCS = vertexInput.positionCS;
@@ -78,7 +90,8 @@ Shader "Framework/shd_Character_v7" {
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target
+            {
                 half4 col = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, i.texcoord);
                 clip(col.a - _Cutoff);
                 return col;

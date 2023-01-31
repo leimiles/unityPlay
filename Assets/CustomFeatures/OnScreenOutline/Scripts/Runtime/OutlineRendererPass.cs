@@ -27,13 +27,13 @@ public class OutlineRendererPass : ScriptableRenderPass {
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
         var camData = renderingData.cameraData;
-        if(this.outlineRendererFeature.featureSettings.layerMask != 0) {
+        if (this.outlineRendererFeature.featureSettings.layerMask != 0) {
             var cmd = CommandBufferPool.Get("Outline Pass Screen");
             var filteringSettings = new FilteringSettings(RenderQueueRange.all, this.outlineRendererFeature.featureSettings.layerMask);
             var drawingSettings = CreateDrawingSettings(shaderTagIds, ref renderingData, camData.defaultOpaqueSortFlags);
             var renderStateBlock = new RenderStateBlock(RenderStateMask.Nothing);
-            using(new ProfilingScope(cmd, this.profilingSampler)) {
-                using(var outlineRenderer = new OutlineRenderer(cmd, this.outlineRendererFeature.featureSettings, this.scriptableRenderer.cameraColorTarget, this.scriptableRenderer.cameraDepthTarget, camData.cameraTargetDescriptor)) {
+            using (new ProfilingScope(cmd, this.profilingSampler)) {
+                using (var outlineRenderer = new OutlineRenderer(cmd, this.outlineRendererFeature.featureSettings, this.scriptableRenderer.cameraColorTargetHandle, this.scriptableRenderer.cameraDepthTargetHandle, camData.cameraTargetDescriptor)) {
                     // set render target to mask texture and clear
                     outlineRenderer.ClearAndSetTarget();
                     context.ExecuteCommandBuffer(cmd);
@@ -66,14 +66,14 @@ public class OutlineRenderer : System.IDisposable {
         BlitMask(outlineSetting.maskTexture, 0, material, propertyBlock);
         cmd.SetRenderTarget(renderTarget, RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
 
-        if(outlineSetting.outlineEffect == OutlineEffect.SolidAA) {
+        if (outlineSetting.outlineEffect == OutlineEffect.SolidAA) {
             material.EnableKeyword("_OUTLINE_AA");
             material.DisableKeyword("_OUTLINE_BLUR");
-        } else if(outlineSetting.outlineEffect == OutlineEffect.Blur) {
+        } else if (outlineSetting.outlineEffect == OutlineEffect.Blur) {
             material.EnableKeyword("_OUTLINE_BLUR");
             material.DisableKeyword("_OUTLINE_AA");
 
-        } else if(outlineSetting.outlineEffect == OutlineEffect.Solid) {
+        } else if (outlineSetting.outlineEffect == OutlineEffect.Solid) {
             material.DisableKeyword("_OUTLINE_BLUR");
             material.DisableKeyword("_OUTLINE_AA");
         }
@@ -83,7 +83,7 @@ public class OutlineRenderer : System.IDisposable {
     }
     private void BlitMask(RenderTargetIdentifier source, int shaderPass, Material material, MaterialPropertyBlock propertyBlock) {
         cmd.SetGlobalTexture(Shader.PropertyToID("_MainTex"), source);
-        if(SystemInfo.graphicsShaderLevel >= 35 && SystemInfo.supportsInstancing) {
+        if (SystemInfo.graphicsShaderLevel >= 35 && SystemInfo.supportsInstancing) {
             cmd.DrawProcedural(Matrix4x4.identity, material, shaderPass, MeshTopology.Triangles, 3, 1, propertyBlock);
         } else {
             Debug.Log("something wrong here...");
@@ -92,7 +92,7 @@ public class OutlineRenderer : System.IDisposable {
 
     private void BlitOutline(RenderTargetIdentifier source, int shaderPass, Material material, MaterialPropertyBlock propertyBlock) {
         cmd.SetGlobalTexture(Shader.PropertyToID("_MainTex"), source);
-        if(SystemInfo.graphicsShaderLevel >= 35 && SystemInfo.supportsInstancing) {
+        if (SystemInfo.graphicsShaderLevel >= 35 && SystemInfo.supportsInstancing) {
             cmd.DrawProcedural(Matrix4x4.identity, material, shaderPass, MeshTopology.Triangles, 3, 1, propertyBlock);
         } else {
             Debug.Log("something wrong here...");
@@ -100,17 +100,17 @@ public class OutlineRenderer : System.IDisposable {
     }
 
     public OutlineRenderer(CommandBuffer cmd, OutlineSettingObject outlineSetting, RenderTargetIdentifier dstRT, RenderTargetIdentifier dstDepth, RenderTextureDescriptor descriptorRT) {
-        if(cmd is null) {
+        if (cmd is null) {
             throw new System.ArgumentNullException(nameof(cmd));
         }
-        if(descriptorRT.width <= 0) {
+        if (descriptorRT.width <= 0) {
             descriptorRT.width = -1;
         }
-        if(descriptorRT.height <= 0) {
+        if (descriptorRT.height <= 0) {
             descriptorRT.height = -1;
         }
 
-        if(descriptorRT.dimension == TextureDimension.None || descriptorRT.dimension == TextureDimension.Unknown) {
+        if (descriptorRT.dimension == TextureDimension.None || descriptorRT.dimension == TextureDimension.Unknown) {
             descriptorRT.dimension = TextureDimension.Tex2D;
         }
         descriptorRT.shadowSamplingMode = ShadowSamplingMode.None;
@@ -133,7 +133,7 @@ public class OutlineRenderer : System.IDisposable {
         cmd.ReleaseTemporaryRT(Shader.PropertyToID("_MaskTex"));
     }
     public void ClearAndSetTarget() {
-        if(dimentionRT == TextureDimension.Tex2DArray) {
+        if (dimentionRT == TextureDimension.Tex2DArray) {
             cmd.SetRenderTarget(outlineSetting.maskTexture, 0, CubemapFace.Unknown, -1);
         } else {
             // cmd.SetRenderTarget(outlineSetting.maskTexture, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store);      // this method can't use depth buffer
@@ -148,10 +148,10 @@ public class OutlineRenderer : System.IDisposable {
     public float[] GetGaussSamples(int width) {
         var index = Mathf.Clamp(width, 1, OutlineSettingObject.MaxSamples) - 1;
 
-        if(_gaussSamples is null) {
+        if (_gaussSamples is null) {
             _gaussSamples = new float[OutlineSettingObject.MaxSamples][];
         }
-        if(_gaussSamples[index] is null) {
+        if (_gaussSamples[index] is null) {
             _gaussSamples[index] = GetGaussSamples(width, null);
         }
         //DebugArray(_gaussSamples[index]);
@@ -159,7 +159,7 @@ public class OutlineRenderer : System.IDisposable {
     }
     private void DebugArray(float[] array) {
         string content = " | ";
-        foreach(var t in array) {
+        foreach (var t in array) {
             content += t.ToString();
             content += " | ";
         }
@@ -168,10 +168,10 @@ public class OutlineRenderer : System.IDisposable {
 
     public static float[] GetGaussSamples(int width, float[] samples) {
         var stdDev = width * 0.5f;
-        if(samples is null) {
+        if (samples is null) {
             samples = new float[OutlineSettingObject.MaxSamples];
         }
-        for(var i = 0; i < width; i++) {
+        for (var i = 0; i < width; i++) {
             samples[i] = Gauss(i, stdDev);
         }
         return samples;
