@@ -35,17 +35,18 @@ public class OutlineRendererPass : ScriptableRenderPass {
             using (new ProfilingScope(cmd, this.profilingSampler)) {
                 using (var outlineRenderer = new OutlineRenderer(cmd, this.outlineRendererFeature.featureSettings, this.scriptableRenderer.cameraColorTargetHandle, this.scriptableRenderer.cameraDepthTargetHandle, camData.cameraTargetDescriptor)) {
                     // set render target to mask texture and clear
-                    outlineRenderer.ClearAndSetTargetV2();
+                    outlineRenderer.ClearAndSetTarget();
                     context.ExecuteCommandBuffer(cmd);
-                    //context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref filteringSettings, ref renderStateBlock);
+                    context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref filteringSettings, ref renderStateBlock);
                     cmd.Clear();
-                    //outlineRenderer.RenderOutline();
+                    outlineRenderer.RenderOutline();
                 }
             }
             context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
         }
     }
+
 
 }
 
@@ -133,12 +134,15 @@ public class OutlineRenderer : System.IDisposable {
         cmd.ReleaseTemporaryRT(Shader.PropertyToID("_MaskTex"));
     }
     public void ClearAndSetTargetV2() {
+        /*
         if (dimentionRT == TextureDimension.Tex2DArray) {
             Debug.Log("array");
         } else {
 
         }
-        cmd.ClearRenderTarget(true, true, Color.clear);
+        */
+        //cmd.Clear();
+        cmd.ClearRenderTarget(RTClearFlags.ColorDepth, Color.clear, 1.0f, 0);
     }
     public void ClearAndSetTarget() {
         if (dimentionRT == TextureDimension.Tex2DArray) {
