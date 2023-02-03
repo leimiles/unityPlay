@@ -6,51 +6,79 @@ using UnityEngine.Rendering.Universal;
 
 public class NewTargetFeature : ScriptableRendererFeature {
     class NewTargetPass0 : ScriptableRenderPass {
-        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
-            //Debug.Log("NewTargetPass0 executing...");
-            CommandBuffer commandBuffer = CommandBufferPool.Get("Pass0_Pass");
-            using (new ProfilingScope(commandBuffer, profilingSampler)) {
-                commandBuffer.ClearRenderTarget(RTClearFlags.All, Color.black, 1.0f, 0xF0);
-                context.ExecuteCommandBuffer(commandBuffer);
-                commandBuffer.Clear();
+        RTHandle m_Handle;
+        RTHandle m_DestinationColor;
+        RTHandle m_DeininationDepth;
 
-            }
-            context.ExecuteCommandBuffer(commandBuffer);
-            CommandBufferPool.Release(commandBuffer);
+        Mesh mesh;
+        Material material;
+        public NewTargetPass0(Mesh mesh, Material material) {
+            m_Handle = RTHandles.Alloc("MyNewPassHandle", name: "MyNewPassHandle");
+            this.mesh = mesh;
+            this.material = material;
+
         }
-        public NewTargetPass0() {
-            profilingSampler = new ProfilingSampler("Pass0_Sampler");
+        public void Setup(RTHandle destinationColor, RTHandle destinationDepth) {
+            m_DestinationColor = destinationColor;
+            m_DeininationDepth = destinationDepth;
         }
-    }
-    class NewTargetPass1 : ScriptableRenderPass {
+        public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData) {
+            var descriptor = renderingData.cameraData.cameraTargetDescriptor;
+            descriptor.depthBufferBits = 0;
+            RenderingUtils.ReAllocateIfNeeded(ref m_Handle, descriptor, FilterMode.Point, TextureWrapMode.Clamp);
+        }
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
-            Debug.Log("NewTargetPass1 executing...");
+            if (mesh is null || material is null) {
+                Debug.Log("can't find mesh or material, quit rendering");
+                return;
+            }
+            CommandBuffer cmd = CommandBufferPool.Get("New Pass Test");
+
+            RTHandle tempColorHandle = renderingData.cameraData.renderer.cameraColorTargetHandle;
+
+            Blitter.BlitCameraTexture(cmd, tempColorHandle, m_Handle);
+
+            if (mesh is null) Debug.Log("dodod");
+            if (material is null) Debug.Log("momomo");
+            cmd.DrawMesh(mesh, Matrix4x4.identity, material, 0, 0);
+            Blitter.BlitCameraTexture(cmd, m_Handle, tempColorHandle);
+
+            context.ExecuteCommandBuffer(cmd);
+            cmd.Clear();
+            CommandBufferPool.Release(cmd);
         }
-    }
-    [System.Serializable]
-    public class NewTargetSettings {
-        public RenderPassEvent renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
+        public override void OnCameraCleanup(CommandBuffer cmd) {
+            m_DestinationColor = null;
+            m_DeininationDepth = null;
+        }
+        void Dispose() {
+            m_Handle?.Release();
+        }
+
+
     }
 
     NewTargetPass0 pass0;
-    public NewTargetSettings settings;
 
-    /*
-    called per frame per camera
-    */
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData) {
-        //Debug.Log("feature added");
+
         if (renderingData.cameraData.cameraType == CameraType.Game || renderingData.cameraData.cameraType == CameraType.SceneView) {
             renderer.EnqueuePass(pass0);
         }
     }
-    /*
-    called once when enbaled
-    */
+
+    public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData) {
+        pass0.renderPassEvent = RenderPassEvent.AfterRenderingOpaques;
+        pass0.Setup(renderer.cameraColorTargetHandle, renderer.cameraDepthTargetHandle);
+    }
+
+    [SerializeField]
+    Mesh mesh;
+    [SerializeField]
+    Material material;
+
     public override void Create() {
-        //Debug.Log("feature created");
-        pass0 = new NewTargetPass0();
-        pass0.renderPassEvent = settings.renderPassEvent;
+        pass0 = new NewTargetPass0(mesh, material);
     }
 
 }
