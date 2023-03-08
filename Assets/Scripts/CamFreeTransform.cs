@@ -19,6 +19,30 @@ public class CamFreeTransform : MonoBehaviour {
     private void Start() {
         mousePos = new Vector2(Screen.width - 400f, 400f);
         _isFirstMove = true;
+        ScreenSet();
+        /*
+        int height = ()Screen.height * 2.33f;
+        Screen.SetResolution(720, height)
+        */
+    }
+
+    void ScreenSet() {
+        Application.targetFrameRate = 60;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        float height;
+        float width;
+        if (Screen.height > Screen.width) {
+            height = Screen.height;
+            width = Screen.width;
+        } else {
+            height = Screen.width;
+            width = Screen.height;
+        }
+        float ratio = height / width;
+        int heightFixed = 720;
+        int widthFixed = (int)(720.0f * ratio);
+        Screen.SetResolution(widthFixed, heightFixed, FullScreenMode.FullScreenWindow);
+
     }
 
     void Update() {
