@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/RadiantGI/Demos/myScene01.unity
+    path: Assets/MyTools/RadiantGI/Demos/myScene01.unity
     guid: 125aeea7f4b384d469009fd8555dfbdd
   m_configObjects: {}

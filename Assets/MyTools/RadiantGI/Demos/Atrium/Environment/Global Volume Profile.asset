@@ -107,7 +107,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.25
   showInEditMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   showInSceneView:
     m_OverrideState: 0
@@ -140,14 +140,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   debugView:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   debugDepthMultiplier:
     m_OverrideState: 0
     m_Value: 10
   compareMode:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   compareSameSide:
     m_OverrideState: 1
     m_Value: 1

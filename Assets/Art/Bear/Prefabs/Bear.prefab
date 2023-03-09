@@ -38,7 +38,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: -146.903, z: 0}
 --- !u!95 &6254893054595400078
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -55,7 +55,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &928656398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd81db8f0b9cf94aa802378c5771183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 0.558
+  _AttackedColorIntensity: 0
+  _OccludeeColorIntensity: 0.5
+  _OccludeeColor: {r: 1, g: 0, b: 0, a: 1}
+  _OutlineWidth: 0.008
+  _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1902935986313954676
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7476921269604278869}
   - component: {fileID: 7868399466288612781}
+  - component: {fileID: 7994756532920020132}
   m_Layer: 0
   m_Name: Bear Mesh
   m_TagString: Untagged
@@ -154,6 +159,29 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.6114463, y: 0.17249456, z: 0.0000011920929}
     m_Extent: {x: 1.1077675, y: 0.70119977, z: 0.97730076}
   m_DirtyAABB: 0
+--- !u!136 &7994756532920020132
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902935986313954676}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.43
+  m_Height: 2.07
+  m_Direction: 0
+  m_Center: {x: -0.58, y: 0.11, z: 0.0000011924403}
 --- !u!1 &4646061076261890441
 GameObject:
   m_ObjectHideFlags: 0
