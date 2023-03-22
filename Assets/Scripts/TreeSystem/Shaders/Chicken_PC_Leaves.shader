@@ -5,7 +5,7 @@ Shader "Chicken/PC/Leaves"
         _BaseColor ("Main Color", Color) = (0, 1, 0, 1)
         _SecondColor ("Second Color", Color) = (0, 0, 0, 1)
         _Radius ("Spherical Radius", Range(0.001, 100)) = 15.0
-        [HDR]_EmissionColor ("Emission Color", Color) = (0, 0, 0, 0)
+        //[HDR]_EmissionColor ("Emission Color", Color) = (0, 0, 0, 0)
         _MainTexture ("Main Texture", 2D) = "white" { }
         //_Cutoff ("Alpha Clip", Range(0, 1)) = 0.35
         //_WindForce ("Wind Force", Range(0, 1)) = 0.2
@@ -222,11 +222,13 @@ Shader "Chicken/PC/Leaves"
             #pragma multi_compile_instancing
             #pragma multi_compile_fog
 
+            /*
             #pragma multi_compile_fragment LOD_FADE_CROSSFADE
 
             #if defined(LOD_FADE_CROSSFADE)
                 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
+            */
 
             //#define LOD_FADE_CROSSFADE 1
 
@@ -238,7 +240,7 @@ Shader "Chicken/PC/Leaves"
                 half4 _WindSpeed_WindWavesScale_WindForce_Cutoff;
                 half4 _BaseColor;
                 half4 _SecondColor;
-                half4 _EmissionColor;
+                //half4 _EmissionColor;
                 half _Radius;
                 half _TransNormal;
                 half _TransScattering;
@@ -359,6 +361,7 @@ Shader "Chicken/PC/Leaves"
                 half3 mainTranslucency = mainLightAtten * (mainVdotL * _TransDirect + inputData.bakedGI * _TransAmbient);
                 mainTranslucency = Albedo * mainTranslucency * _TransStrength;
                 brdfColor.rgb += mainTranslucency;
+                brdfColor.rgb = saturate(brdfColor.rgb);
                 brdfColor.rgb = MixFog(brdfColor.rgb, input.viewDirWSAndFogFactor.w);
 
                 return brdfColor;
@@ -382,12 +385,13 @@ Shader "Chicken/PC/Leaves"
             #pragma fragment frag
             #pragma multi_compile_instancing
             #pragma multi_compile_fog
-
+            /*
             #pragma multi_compile_fragment LOD_FADE_CROSSFADE
 
             #if defined(LOD_FADE_CROSSFADE)
                 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
+            */
 
             CBUFFER_START(UnityPerMaterial)
                 //half _WindSpeed;
@@ -397,7 +401,7 @@ Shader "Chicken/PC/Leaves"
                 half4 _WindSpeed_WindWavesScale_WindForce_Cutoff;
                 half4 _BaseColor;
                 half4 _SecondColor;
-                half4 _EmissionColor;
+                //half4 _EmissionColor;
                 half _Radius;
                 half _TransNormal;
                 half _TransScattering;
@@ -482,4 +486,6 @@ Shader "Chicken/PC/Leaves"
             ENDHLSL
         }
     }
+
+    CustomEditor "PCLeavesShaderGUI"
 }
