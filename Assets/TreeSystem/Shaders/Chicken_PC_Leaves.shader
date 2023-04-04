@@ -5,26 +5,14 @@ Shader "Chicken/PC/Leaves"
         _BaseColor ("Main Color", Color) = (0, 1, 0, 1)
         _SecondColor ("Second Color", Color) = (0, 0, 0, 1)
         _Radius ("Spherical Radius", Range(0.001, 100)) = 15.0
-        //[HDR]_EmissionColor ("Emission Color", Color) = (0, 0, 0, 0)
-        _MainTexture ("Main Texture", 2D) = "white" { }
-        //_Cutoff ("Alpha Clip", Range(0, 1)) = 0.35
-        //_WindForce ("Wind Force", Range(0, 1)) = 0.2
-        //_WindWavesScale ("Wind Waves Scale", Range(0, 1)) = 0.2
-        //_WindSpeed ("Wind Speed", Range(0, 1)) = 0.5
+        [NoScaleOffset]_MainTexture ("Main Texture", 2D) = "white" { }
         _WindSpeed_WindWavesScale_WindForce_Cutoff ("WindSpeed, WindScale, WindForce, Cutoff ( < 1.0 )", Vector) = (0.5, 0.2, 0.2, 0.35)
-        _TransNormal ("Trans Normal Distortion", Range(0, 1)) = 1.0
-        _TransScattering ("Trans Scattering", Range(1, 50)) = 2
-        _TransDirect ("Trans Direct", Range(0, 1)) = 0.35
-        _TransAmbient ("Trans Ambient", Range(0, 1)) = 1.0
-        _TransStrength ("Trans Strength", Range(0, 10)) = 0.5
+        _Radius_TransNormal_TransScattering_TransDirect ("Radius, TransNormal, TransScattering, TransDirect", Vector) = (45.0, 1.0, 1.0, 0.15)
+        _TransAmbient_TransStrength_LightEffect ("TransAmbient, TransStrength, LightEffect, Null", Vector) = (0.4, 0.65, 1.0, 0.0)
     }
 
     SubShader
     {
-        LOD 0
-
-
-
         Tags { "RenderPipeline" = "UniversalPipeline" "RenderType" = "TransparentCutout" "Queue" = "AlphaTest" }
         Cull Off
         HLSLINCLUDE
@@ -233,20 +221,11 @@ Shader "Chicken/PC/Leaves"
             //#define LOD_FADE_CROSSFADE 1
 
             CBUFFER_START(UnityPerMaterial)
-                //half _WindSpeed;
-                //half _WindWavesScale;
-                //half _WindForce;
-                //half _Cutoff;
                 half4 _WindSpeed_WindWavesScale_WindForce_Cutoff;
+                half4 _Radius_TransNormal_TransScattering_TransDirect;
+                half4 _TransAmbient_TransStrength_LightEffect;
                 half4 _BaseColor;
                 half4 _SecondColor;
-                //half4 _EmissionColor;
-                half _Radius;
-                half _TransNormal;
-                half _TransScattering;
-                half _TransAmbient;
-                half _TransDirect;
-                half _TransStrength;
             CBUFFER_END
 
             struct Attributes
@@ -261,8 +240,8 @@ Shader "Chicken/PC/Leaves"
             struct Varyings
             {
                 float4 positionCS : SV_POSITION;
-                float2 uv0 : TEXCOORD0;
-                float4 lightmapUVOrVertexSH : TEXCOORD1;
+                half2 uv0 : TEXCOORD0;
+                half4 lightmapUVOrVertexSH : TEXCOORD1;
                 half4 normalWSAndCenterLength : TEXCOORD2;
                 half4 viewDirWSAndFogFactor : TEXCOORD3;
                 float3 positionWS : TEXCOORD4;
@@ -270,7 +249,6 @@ Shader "Chicken/PC/Leaves"
             };
 
             TEXTURE2D(_MainTexture);       SAMPLER(sampler_MainTexture);
-
 
             Varyings vert(Attributes input)
             {
@@ -291,7 +269,7 @@ Shader "Chicken/PC/Leaves"
 
                 // use fixed center based
                 half lengthToPivot = length(input.positionOS.xyz);
-                lengthToPivot = saturate(lengthToPivot / _Radius);
+                lengthToPivot = saturate(lengthToPivot / _Radius_TransNormal_TransScattering_TransDirect.x);
                 // fade with height?
                 //perlinNoise *= input.positionOS.y;
                 //perlinNoise *= lengthToPivot;
@@ -318,10 +296,27 @@ Shader "Chicken/PC/Leaves"
                 return output;
             }
 
+            half4 UniversalFragmentPBR(InputData inputData, half3 albedo, half metallic, half3 specular,
+            half smoothness, half occlusion, half3 emission, half alpha, half lightEffect)
+            {
+                BRDFData brdfData;
+                InitializeBRDFData(albedo, metallic, specular, smoothness, alpha, brdfData);
+
+                Light mainLight = GetMainLight(inputData.shadowCoord);
+                // HY style
+                mainLight.color *= lightEffect;
+
+                MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
+
+                half3 color = GlobalIllumination(brdfData, inputData.bakedGI, occlusion, inputData.normalWS, inputData.viewDirectionWS);
+                color += LightingPhysicallyBased(brdfData, mainLight, inputData.normalWS, inputData.viewDirectionWS);
+                return half4(color, alpha);
+            }
+
             half4 frag(Varyings input) : SV_TARGET
             {
-                UNITY_SETUP_INSTANCE_ID(IN);
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
                 /*
                 #ifdef LOD_FADE_CROSSFADE
@@ -344,22 +339,26 @@ Shader "Chicken/PC/Leaves"
 
                 half4 brdfColor = UniversalFragmentPBR(
                     inputData,
-                    Albedo * mainColor.rgb,
+                    Albedo,
                     0.0,
                     0.0,
                     0.0,
                     1,
                     0.0,
-                    mainColor.a);
+                    mainColor.a,
+                    _TransAmbient_TransStrength_LightEffect.z
+                );
+
+                //return half4(brdfColor.rgb, 1.0);
 
                 Light mainLight = GetMainLight();
 
-                float3 mainLightAtten = mainLight.color * mainLight.distanceAttenuation;
-                half3 mainLightDir = mainLight.direction + inputData.normalWS * _TransNormal;
+                half3 mainLightAtten = mainLight.color * mainLight.distanceAttenuation;
+                half3 mainLightDir = mainLight.direction + inputData.normalWS * _Radius_TransNormal_TransScattering_TransDirect.y;
 
-                half mainVdotL = pow(saturate(dot(inputData.viewDirectionWS, -mainLightDir)), _TransScattering);
-                half3 mainTranslucency = mainLightAtten * (mainVdotL * _TransDirect + inputData.bakedGI * _TransAmbient);
-                mainTranslucency = Albedo * mainTranslucency * _TransStrength;
+                half mainVdotL = pow(saturate(dot(inputData.viewDirectionWS, -mainLightDir)), _Radius_TransNormal_TransScattering_TransDirect.z);
+                half3 mainTranslucency = mainLightAtten * (mainVdotL * _Radius_TransNormal_TransScattering_TransDirect.w + inputData.bakedGI * _TransAmbient_TransStrength_LightEffect.x);
+                mainTranslucency = Albedo * mainTranslucency * _TransAmbient_TransStrength_LightEffect.y;
                 brdfColor.rgb += mainTranslucency;
                 brdfColor.rgb = saturate(brdfColor.rgb);
                 brdfColor.rgb = MixFog(brdfColor.rgb, input.viewDirWSAndFogFactor.w);
@@ -394,20 +393,11 @@ Shader "Chicken/PC/Leaves"
             */
 
             CBUFFER_START(UnityPerMaterial)
-                //half _WindSpeed;
-                //half _WindWavesScale;
-                //half _WindForce;
-                //half _Cutoff;
                 half4 _WindSpeed_WindWavesScale_WindForce_Cutoff;
+                half4 _Radius_TransNormal_TransScattering_TransDirect;
+                half4 _TransAmbient_TransStrength_LightEffect;
                 half4 _BaseColor;
                 half4 _SecondColor;
-                //half4 _EmissionColor;
-                half _Radius;
-                half _TransNormal;
-                half _TransScattering;
-                half _TransAmbient;
-                half _TransDirect;
-                half _TransStrength;
             CBUFFER_END
 
             struct Attributes
@@ -421,8 +411,8 @@ Shader "Chicken/PC/Leaves"
             struct Varyings
             {
                 float4 positionCS : SV_POSITION;
-                float2 uv0 : TEXCOORD0;
-                float4 lightmapUVOrVertexSH : TEXCOORD1;
+                half2 uv0 : TEXCOORD0;
+                half4 lightmapUVOrVertexSH : TEXCOORD1;
                 half4 normalWSAndCenterLength : TEXCOORD2;
                 half4 viewDirWSAndFogFactor : TEXCOORD3;
                 float3 positionWS : TEXCOORD4;
@@ -451,7 +441,7 @@ Shader "Chicken/PC/Leaves"
 
                 // use fixed center based
                 half lengthToPivot = length(input.positionOS.xyz);
-                lengthToPivot = saturate(lengthToPivot / _Radius);
+                lengthToPivot = saturate(lengthToPivot / _Radius_TransNormal_TransScattering_TransDirect.x);
 
                 positionWS.xyz += half3(perlinNoise.x, perlinNoise.x, perlinNoise.x);
 
@@ -476,8 +466,8 @@ Shader "Chicken/PC/Leaves"
 
             half4 frag(Varyings input) : SV_TARGET
             {
-                UNITY_SETUP_INSTANCE_ID(IN);
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+                UNITY_SETUP_INSTANCE_ID(input);
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
                 half4 mainColor = SAMPLE_TEXTURE2D(_MainTexture, sampler_MainTexture, input.uv0);
                 clip(mainColor.a - _WindSpeed_WindWavesScale_WindForce_Cutoff.w);
                 return 0;
