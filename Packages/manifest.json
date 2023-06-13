@@ -2,10 +2,11 @@
   "dependencies": {
     "com.unity.adaptiveperformance": "4.0.1",
     "com.unity.adaptiveperformance.samsung.android": "4.0.2",
+    "com.unity.entities.graphics": "1.0.10",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.memoryprofiler": "1.0.0",
-    "com.unity.performance.profile-analyzer": "1.1.1",
-    "com.unity.render-pipelines.universal": "14.0.4",
+    "com.unity.performance.profile-analyzer": "1.2.2",
+    "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.test-framework": "1.1.33",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
