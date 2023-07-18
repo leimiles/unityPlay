@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "com.unity.adaptiveperformance": "4.0.1",
-    "com.unity.adaptiveperformance.samsung.android": "4.0.2",
     "com.unity.entities.graphics": "1.0.10",
     "com.unity.ide.vscode": "1.2.5",
     "com.unity.memoryprofiler": "1.0.0",
