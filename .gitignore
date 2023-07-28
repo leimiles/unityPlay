@@ -60,3 +60,4 @@ crashlytics-build.properties
 
 *.dwlt
 .vscode/settings.json
+ProfileAnalyzer
