@@ -61,3 +61,4 @@ crashlytics-build.properties
 *.dwlt
 .vscode/settings.json
 ProfileAnalyzer
+Assets/com.sofunny.rendering.funnyland
