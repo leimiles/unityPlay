@@ -119,16 +119,17 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "file:com.sofunny.rendering.funnyland",
+      "version": "git@github.com:leimiles/com.sofunny.rendering.funnyland.git",
       "depth": 0,
-      "source": "embedded",
+      "source": "git",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.burst": "1.8.4",
         "com.unity.render-pipelines.core": "14.0.8",
         "com.unity.shadergraph": "14.0.8",
         "com.unity.entities.graphics": "1.0.11"
-      }
+      },
+      "hash": "65a3726d7c53c52622b19513e1a7ae7d2ebe4d2a"
     },
     "com.unity.scriptablebuildpipeline": {
       "version": "1.21.5",
