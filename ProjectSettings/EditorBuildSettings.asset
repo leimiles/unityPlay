@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Art/LowPoly Environment Pack/Demo/Demo 1.unity
+    guid: e1b793c40df980747b159fd6e9176269
   - enabled: 1
     path: Assets/Scenes/multiLights.unity
     guid: dd3f19c7d0806964eb9c6ef7fbb22f02
+  - enabled: 0
+    path: Assets/CustomFeatures/CopyDepth/Scenes/CopyDepth.unity
+    guid: 09a0180bdd717ed44b9635953d1ac457
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b4b35608dc977a444b7794b8ffeeecdc, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 602373a406de2d44ba65dc5eb330a9f3, type: 2}
