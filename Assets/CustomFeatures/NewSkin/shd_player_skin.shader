@@ -30,7 +30,7 @@ Shader "funnyland/chr/skin"
             #pragma exclude_renderers gles gles3 glcore
             #pragma target 4.5
 
-            #define _SPECULAR_SETUP
+            //#define _SPECULAR_SETUP
             #pragma multi_compile _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
