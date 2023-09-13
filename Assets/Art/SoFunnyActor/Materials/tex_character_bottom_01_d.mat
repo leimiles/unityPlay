@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: tex_character_bottom_01_d
-  m_Shader: {fileID: 4800000, guid: 0ea05d74228a3a740a58f4a57429b0ef, type: 3}
+  m_Shader: {fileID: 4800000, guid: 167a636f2b1b4aee9d4bcb79a27b3aa3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -17,7 +17,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -110,6 +111,8 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RoughnessHigh: 0.65
+    - _RoughnessLow: 0.2
     - _RoughnessOffset: -0.5
     - _Shininess: 0
     - _Smoothness: 0

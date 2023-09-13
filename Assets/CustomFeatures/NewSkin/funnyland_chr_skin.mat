@@ -38,17 +38,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BackScattering: 8
+    - _BackScattering: 1.87
     - _Fog_On: 1
-    - _ScatteringStrength: 0.025
+    - _ScatteringStrength: 0
     - _ShadowStrength: 0.8
     - _SkinShadowSampleBias: 0
-    - _Smoothness: 0.45
-    - _SpecularAO: 0.212
+    - _Smoothness: 0.393
+    - _SpecularAO: 0.131
     - _Test: 0
-    - _TranslucencyPower: 2
+    - _TranslucencyPower: 0.48
     m_Colors:
-    - _BaseColor: {r: 0.8867924, g: 0.7838309, b: 0.6399964, a: 1}
-    - _SpecularColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 0}
-    - _SubSurfaceColor: {r: 1, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.8113208, g: 0.66769356, b: 0.5778747, a: 1}
+    - _SpecularColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0}
+    - _SubSurfaceColor: {r: 1, g: 0, b: 0.24595547, a: 1}
   m_BuildTextureStacks: []

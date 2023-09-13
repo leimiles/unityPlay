@@ -1,0 +1,2019 @@
+fileFormatVersion: 2
+guid: 28899c75d2dd2564494c0b218e2f26a8
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_00Mat
+    second: {fileID: 2100000, guid: 523977dfde82f954397d417b16d17376, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_01Mat
+    second: {fileID: 2100000, guid: ca0467ea4c61c914ebcf241d3e7e200f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_03Mat
+    second: {fileID: 2100000, guid: fc6216a8ad2386a4ebf64c18cd441df9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_04Mat
+    second: {fileID: 2100000, guid: 07ad7bba49041544ab6b3aa7bdbc472a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_05Mat
+    second: {fileID: 2100000, guid: 38904ab4355e6514f95835ce55725017, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_06Mat
+    second: {fileID: 2100000, guid: 65c882c2a41475b4cbfa9962426c13d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_07Mat
+    second: {fileID: 2100000, guid: 2766a69eeb162434492188c82ab7b14d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_08Mat
+    second: {fileID: 2100000, guid: f40e7fe8d8f26fd4bbc9b7c7fb5a3e5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_09Mat
+    second: {fileID: 2100000, guid: 5a66758028997f84bb3741751bb1fae9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_100Mat
+    second: {fileID: 2100000, guid: b9482e87b9cfa3448808df06586063f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_101Mat
+    second: {fileID: 2100000, guid: c5f4c2bf4d84a424b9f81ecec1b74bbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_102Mat
+    second: {fileID: 2100000, guid: f1897888769c5c842ba689a0ee8828be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_103Mat
+    second: {fileID: 2100000, guid: 0143c6cf3c6c8dc4eb7172d7ca3e0ce8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_104Mat
+    second: {fileID: 2100000, guid: bfd3e4d83e2635a4e8d8c3b7ace3c609, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_105Mat
+    second: {fileID: 2100000, guid: c099b5222d9b8b94b9984d39bf7b10e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_106Mat
+    second: {fileID: 2100000, guid: f2ac2e297c728a840baa759f62a1b315, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_107Mat
+    second: {fileID: 2100000, guid: cb2e274b37812a8449c8600483d04aa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_108Mat
+    second: {fileID: 2100000, guid: 2a7f510171e09044d8d52f0052a990c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_109Mat
+    second: {fileID: 2100000, guid: ce83f09be5f4d1a40833ed2ed2bc2fc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_10Mat
+    second: {fileID: 2100000, guid: d4f8f797f1abe1b4a89c383a8770796f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_110Mat
+    second: {fileID: 2100000, guid: bcf3e8149c5cb8343ad116129eba87fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_111Mat
+    second: {fileID: 2100000, guid: 53e716359ea2eca4ab23175af0d3d27e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_112Mat
+    second: {fileID: 2100000, guid: 874d2e55f2f346d499c9f30fc62d5c2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_113Mat
+    second: {fileID: 2100000, guid: 2273de7ec6045474e9fcd28f2aee63e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_114Mat
+    second: {fileID: 2100000, guid: a5933f975afe7704a9e003c1ed07fa25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_115Mat
+    second: {fileID: 2100000, guid: 963252b88c1361b4eb8f10eb70500dfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_116Mat
+    second: {fileID: 2100000, guid: 5c52efbf0e02a6843a5717e36f6a68f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_117Mat
+    second: {fileID: 2100000, guid: c6d005b342ee4ed449344d8e20ea82e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_118Mat
+    second: {fileID: 2100000, guid: 2737d55f42cd77e47b26cafffa6594b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_119Mat
+    second: {fileID: 2100000, guid: 539a7b1986e802b418c0bf1c42c7ec9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_11Mat
+    second: {fileID: 2100000, guid: 726c6dd6e68700c4c9a386ae3c464e65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_120Mat
+    second: {fileID: 2100000, guid: 7cef7dc743e39824b81714f671c63a85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_121Mat
+    second: {fileID: 2100000, guid: 91077a6a80fc3344ca52b7df3a2d5756, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_122Mat
+    second: {fileID: 2100000, guid: b73b45e9fbd15e34ca1a319011139313, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_123Mat
+    second: {fileID: 2100000, guid: 1112be4de9aa50143a4ac9f677a941ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_124Mat
+    second: {fileID: 2100000, guid: ba3a8ff968e3bd94bba3b2dddd0a62a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_125Mat
+    second: {fileID: 2100000, guid: ee4b9233f29c13a4fbd33ba473a62539, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_126Mat
+    second: {fileID: 2100000, guid: 87e40ee362a5da94fbbd9def320c77ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_127Mat
+    second: {fileID: 2100000, guid: 6426ef4908e9cde45891fd5472fe76d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_128Mat
+    second: {fileID: 2100000, guid: ae122eb384ac702449b6bec13b4f4a57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_129Mat
+    second: {fileID: 2100000, guid: 67855b7b4308719498244f9ac80dcd55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_12Mat
+    second: {fileID: 2100000, guid: f27cb295dd4141f4b9028246cd511773, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_130Mat
+    second: {fileID: 2100000, guid: 9ae33f5d77ed007468fa57b1d39fdd73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_131Mat
+    second: {fileID: 2100000, guid: f3edcd50873c6a243843a8783d25d45e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_132Mat
+    second: {fileID: 2100000, guid: 46cb028a82590054b8b403858346ef69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_133Mat
+    second: {fileID: 2100000, guid: 6ed47d1af03954a4788ef24b0a5f578d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_134Mat
+    second: {fileID: 2100000, guid: d171704b4fca2ad49aeee0821873c09f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_135Mat
+    second: {fileID: 2100000, guid: 8bc1dd81de008a94f9dded5150ae90f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_136Mat
+    second: {fileID: 2100000, guid: c0989dfc1b0e549459f928f869e7dcf0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_137Mat
+    second: {fileID: 2100000, guid: b32379f6b3e118b4688f2405a45da10e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_138Mat
+    second: {fileID: 2100000, guid: 1e694ed265b40534ba1c0faf9cdd3bce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_139Mat
+    second: {fileID: 2100000, guid: 1db2f739e73d7b34b882a7f0fd4f3f2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_13Mat
+    second: {fileID: 2100000, guid: 8c120e8f94e94ef49b89ca2766529ba2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_140Mat
+    second: {fileID: 2100000, guid: bf888c8b2af390440a8d0925a41b900b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_141Mat
+    second: {fileID: 2100000, guid: 99beaf5c5392d3943bf3ac1360c14f55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_142Mat
+    second: {fileID: 2100000, guid: e4186bb6881492f489bebfe7f4614ffd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_143Mat
+    second: {fileID: 2100000, guid: 46e64c5cd7b48e04585884f87fa7a89a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_144Mat
+    second: {fileID: 2100000, guid: 90ad67ea78f7bf648993f2c831085522, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_145Mat
+    second: {fileID: 2100000, guid: 1bd0a1ec392af7b45aeca064f0b2c496, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_146Mat
+    second: {fileID: 2100000, guid: d5a37f0a43450d24a9a34b6409e83ef8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_147Mat
+    second: {fileID: 2100000, guid: 016e0bef573a145419b566c06c478677, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_148Mat
+    second: {fileID: 2100000, guid: c15eb012a2c084d4e95cf0eaf3bd20c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_149Mat
+    second: {fileID: 2100000, guid: 68243ff8e3e35414fa9df80bd569243e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_14Mat
+    second: {fileID: 2100000, guid: 9ff40c96e3b4ac14ab22d8aeeb82702a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_150Mat
+    second: {fileID: 2100000, guid: cec8bff34acb54e49a11b427002730b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_151Mat
+    second: {fileID: 2100000, guid: d1e7368e4d781e34084f48fc295050f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_152Mat
+    second: {fileID: 2100000, guid: 5fa6e964a451d3742a2da559c6573d10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_153Mat
+    second: {fileID: 2100000, guid: a99b5bc0fe36b5f44acac5d9004d3756, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_154Mat
+    second: {fileID: 2100000, guid: 7dd0acf82d29bb34bb57874c75740983, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_155Mat
+    second: {fileID: 2100000, guid: 988f5780e5478b74a8b28b77df63ac37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_156Mat
+    second: {fileID: 2100000, guid: 6b4b257b1996c104c9f119428fb1b52e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_157Mat
+    second: {fileID: 2100000, guid: 753999def5bd84b42a0704fa60507e19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_158Mat
+    second: {fileID: 2100000, guid: 667c29ab95bae644380371e6b7673f76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_159Mat
+    second: {fileID: 2100000, guid: f126f9ffe5e26c24196e9e3a572e3621, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_15Mat
+    second: {fileID: 2100000, guid: ee75e2c0fa03f8d49b21a80561928757, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_160Mat
+    second: {fileID: 2100000, guid: d05c244818c76414c8e17b377954776d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_161Mat
+    second: {fileID: 2100000, guid: c19a3cfb2609ff84984711c77418d69e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_162Mat
+    second: {fileID: 2100000, guid: 18689b21029055742a37ce41f02e6d28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_163Mat
+    second: {fileID: 2100000, guid: a5e49397f737832429e529b787b019ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_164Mat
+    second: {fileID: 2100000, guid: ac3ec77c144b7d743a475657d9d4de4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_165Mat
+    second: {fileID: 2100000, guid: 58f48b266e088984e9a3078c390bc088, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_166Mat
+    second: {fileID: 2100000, guid: 099fe1f4e60f1b141bbc8fda6ab0b10b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_167Mat
+    second: {fileID: 2100000, guid: 01b3a6100dd64954fb4845b64330a7de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_168Mat
+    second: {fileID: 2100000, guid: ae4446afb3d10814eb258f3769bfdf8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_169Mat
+    second: {fileID: 2100000, guid: c24cda5c158467c479ac125ecefec264, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_16Mat
+    second: {fileID: 2100000, guid: 7bb0cbf9969b6024aa5cc1ad70db9862, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_170Mat
+    second: {fileID: 2100000, guid: a07df98f87dd8b841bcd4e7e16a7df3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_171Mat
+    second: {fileID: 2100000, guid: 34d56467589efec4c9b7f74e7d3436e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_172Mat
+    second: {fileID: 2100000, guid: b9e9934713fbebe44b142b63aaf1e818, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_173Mat
+    second: {fileID: 2100000, guid: d507da27e523256468c11fb12550f61a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_174Mat
+    second: {fileID: 2100000, guid: 5227ac5e6519aed41a0c547943777d92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_175Mat
+    second: {fileID: 2100000, guid: 66671c99863540440b94d214bc560733, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_176Mat
+    second: {fileID: 2100000, guid: 27927b66241d25544b7b3ffe9c116a7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_177Mat
+    second: {fileID: 2100000, guid: 820e5905998ff33459d9edbaf4f95188, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_178Mat
+    second: {fileID: 2100000, guid: 5d9b1c4b39e16c244913d1b0c887cca7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_179Mat
+    second: {fileID: 2100000, guid: de8bfd293e3d02941bcf3878f9b7ae74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_17Mat
+    second: {fileID: 2100000, guid: c2eb0f5c5c655c84ebf505234a546c43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_180Mat
+    second: {fileID: 2100000, guid: 20dc9aa4645335f4c87bb72559c9e292, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_181Mat
+    second: {fileID: 2100000, guid: 931b64e1ac49d544e82623b17efb988b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_182Mat
+    second: {fileID: 2100000, guid: 9f1802284a8a6f542adf129527961ea7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_183Mat
+    second: {fileID: 2100000, guid: 651008d58f10f4945b85634dc9915220, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_184Mat
+    second: {fileID: 2100000, guid: a3e04e098c4abdf449b177be8359b01a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_185Mat
+    second: {fileID: 2100000, guid: 7e2641ca0fffe6e42b49411145692140, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_186Mat
+    second: {fileID: 2100000, guid: a353ef2be8946f64cae655bbc0d4380e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_187Mat
+    second: {fileID: 2100000, guid: 67d97aefe0a912d439facce83cd88003, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_188Mat
+    second: {fileID: 2100000, guid: 1f6e85c8fab47e043b4f954cc8ead43a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_189Mat
+    second: {fileID: 2100000, guid: 9970d49fc902a42428136ec48e17a4c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_18Mat
+    second: {fileID: 2100000, guid: 4fc1b24fd841e6948bcc1042dab98006, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_190Mat
+    second: {fileID: 2100000, guid: 600685f41c4b54c4abee8f9eb2bde3d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_191Mat
+    second: {fileID: 2100000, guid: 67ac9caebf6994e4382a7d43f15c2a51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_192Mat
+    second: {fileID: 2100000, guid: 3498436b41f2de34ba0036dfc427df25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_193Mat
+    second: {fileID: 2100000, guid: 698847c638361294eac3cb16e945c037, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_194Mat
+    second: {fileID: 2100000, guid: ff1f097c1ceeb4543951e1e9f53984fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_195Mat
+    second: {fileID: 2100000, guid: 337c0f997a138bb438f33da41fc4432d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_196Mat
+    second: {fileID: 2100000, guid: 055381b6c51f8a742ba1366121350858, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_197Mat
+    second: {fileID: 2100000, guid: 9024947e23ba3f047980511c68f6e27b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_198Mat
+    second: {fileID: 2100000, guid: 92d098a6e40183d48b0d01f676440812, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_199Mat
+    second: {fileID: 2100000, guid: 79afc54f92dc3bf43b0f4b309553fe5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_19Mat
+    second: {fileID: 2100000, guid: 2eb8a7731d51b394e8f9546b9a0e1f14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_200Mat
+    second: {fileID: 2100000, guid: 5da81f9d492791240b9d9f8287bfac08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_201Mat
+    second: {fileID: 2100000, guid: 56b0889edab3b254cb44895edb3f76a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_202Mat
+    second: {fileID: 2100000, guid: abd3973d6243f8b4ab8843fef0398427, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_203Mat
+    second: {fileID: 2100000, guid: 340fdbe29d879614abf934224a66131f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_204Mat
+    second: {fileID: 2100000, guid: 74a38aaaebb03fa4692ccc4869a88641, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_205Mat
+    second: {fileID: 2100000, guid: 96aafdfc67805f4439d6248d93480c36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_206Mat
+    second: {fileID: 2100000, guid: 127a482ead9a2f64d8cfb27fb84d6446, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_207Mat
+    second: {fileID: 2100000, guid: 0fca5fcf2af3d9242808a4d6fb44f274, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_208Mat
+    second: {fileID: 2100000, guid: 57d45069b62bb534ab413f5a45e9efa2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_209Mat
+    second: {fileID: 2100000, guid: 7c2e5aeeecb422540b60d8c08074b3d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_20Mat
+    second: {fileID: 2100000, guid: c2ff657ca3b293e4e859c4c281305b00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_210Mat
+    second: {fileID: 2100000, guid: 3da48a0fcf703ef4e95c6439c6b0c87f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_211Mat
+    second: {fileID: 2100000, guid: ac1937f9dcce2bc439ff5f870cb94e35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_212Mat
+    second: {fileID: 2100000, guid: 680d7474f8ab46447b5f70dab532da20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_213Mat
+    second: {fileID: 2100000, guid: d30406ea3d929054db946953cb590aa7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_214Mat
+    second: {fileID: 2100000, guid: ee3226891c3f6fa45b560d122864c507, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_215Mat
+    second: {fileID: 2100000, guid: b1b29080aada882468eb505ee405277c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_216Mat
+    second: {fileID: 2100000, guid: 328087b8a10937440a5d3c50d6075f6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_217Mat
+    second: {fileID: 2100000, guid: ed301157f80acfb4f9bc9cad0e871dcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_218Mat
+    second: {fileID: 2100000, guid: fa5dbca4514eba94c88676eb787d4472, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_219Mat
+    second: {fileID: 2100000, guid: e6fc80a6bcf8d2042ba1069b39805daf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_21Mat
+    second: {fileID: 2100000, guid: 869709c2074e2964fafe3114363f8a4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_220Mat
+    second: {fileID: 2100000, guid: 7cdcb4877b3a343409fb5ea46c82dee3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_221Mat
+    second: {fileID: 2100000, guid: de6d4264ee8bdd34797cd28764f5cfe5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_222Mat
+    second: {fileID: 2100000, guid: ba0d6d4689a7e99409f0683e3aa84c06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_223Mat
+    second: {fileID: 2100000, guid: 6593778afbcf80d4db3ca342a9a541ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_224Mat
+    second: {fileID: 2100000, guid: 7563b24e316ca3b4ca0140f8e9cdc85d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_225Mat
+    second: {fileID: 2100000, guid: 644e396678e3b2749bea6d06a61af7ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_226Mat
+    second: {fileID: 2100000, guid: 5f18439122b11f64d8690e10f8e10f33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_227Mat
+    second: {fileID: 2100000, guid: 3aa240b7e28e61b49be1e8b1d59629a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_228Mat
+    second: {fileID: 2100000, guid: 1910b9f2c9b9de445893cf3b2c5641a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_229Mat
+    second: {fileID: 2100000, guid: 87963da0705d72743b98b80616a79247, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_22Mat
+    second: {fileID: 2100000, guid: a38ad60113b978e48a8c84b945cd25c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_230Mat
+    second: {fileID: 2100000, guid: b94e19835da75a742b6d4dcb6e6945f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_231Mat
+    second: {fileID: 2100000, guid: 01503531f68b1c246bcf98b8a56b2aa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_232Mat
+    second: {fileID: 2100000, guid: 3349168ca8792a04cb9da791a7b8e269, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_233Mat
+    second: {fileID: 2100000, guid: 8a2bf8a664f8fd149aa5a62a888abe80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_234Mat
+    second: {fileID: 2100000, guid: d02d29158e9d8734e9727a9ccbead628, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_235Mat
+    second: {fileID: 2100000, guid: 4af740e6586493c4cafb9ce7b85cbbc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_236Mat
+    second: {fileID: 2100000, guid: 64c5c7aea1e3c0f488ca63657b1b3fba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_237Mat
+    second: {fileID: 2100000, guid: 80d9a226b23b76e47b3daefb41f80f74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_238Mat
+    second: {fileID: 2100000, guid: 0a93e1b2aac2c214fa3c75be47c711b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_239Mat
+    second: {fileID: 2100000, guid: 0b82736e7b38bdd49ae410e547fd37b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_23Mat
+    second: {fileID: 2100000, guid: 7fa85d30318de1342809fa5b68d0c9a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_240Mat
+    second: {fileID: 2100000, guid: de1eafe7b6b316b40b96f138cf35992f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_241Mat
+    second: {fileID: 2100000, guid: 83835d75baacae4448a1b985d105099b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_242Mat
+    second: {fileID: 2100000, guid: 816ff25bb6fb3a944940807e2aacd96a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_243Mat
+    second: {fileID: 2100000, guid: 8b497085b54902642876cada8dba027e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_244Mat
+    second: {fileID: 2100000, guid: 4d44712e79a1bf841a4fe63f24b1d96f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_245Mat
+    second: {fileID: 2100000, guid: 39b36b895f18306469585eaef58df768, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_246Mat
+    second: {fileID: 2100000, guid: 45b5051b692f6c947a6f600204dc4a3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_247Mat
+    second: {fileID: 2100000, guid: f6548a58bfb84544cbcbd136356c37de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_248Mat
+    second: {fileID: 2100000, guid: dc1f1fe8bebe4b74c9ce51143faa9291, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_249Mat
+    second: {fileID: 2100000, guid: ecaf9619f8c258f41b3945a1e650b0b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_24Mat
+    second: {fileID: 2100000, guid: 600a980a36e238449aec59c55b64b1d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_250Mat
+    second: {fileID: 2100000, guid: 4dfb9c6fd560e8e4785288b1f9df5903, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_251Mat
+    second: {fileID: 2100000, guid: cd0a1812063047a4c927aa1763c75a02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_252Mat
+    second: {fileID: 2100000, guid: e48499000e401804684b7996f4b505b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_253Mat
+    second: {fileID: 2100000, guid: f95f9cf138aebc04d8a3af925d6756b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_254Mat
+    second: {fileID: 2100000, guid: 5d2211cbcaf7a1c4c9994cbc8b856914, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_255Mat
+    second: {fileID: 2100000, guid: 611b8b703e3d8774d9d1ef9e059f4207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_256Mat
+    second: {fileID: 2100000, guid: 823ad5640aae61a419f673bc2c7e73d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_257Mat
+    second: {fileID: 2100000, guid: 7458dd9b76f408e4ea9783d9065eb990, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_258Mat
+    second: {fileID: 2100000, guid: 787028ba709741244b0946ad28a63345, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_259Mat
+    second: {fileID: 2100000, guid: 293e4e0e218bd2246a364eb53ccd275d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_25Mat
+    second: {fileID: 2100000, guid: 192992d3a7bedcf41b1f02bd84e5f077, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_260Mat
+    second: {fileID: 2100000, guid: 5f6c40b7710b442419dff6b7754076bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_261Mat
+    second: {fileID: 2100000, guid: 27ca065ffa4b23c42b071da2d9f5f3f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_262Mat
+    second: {fileID: 2100000, guid: 50ba074a6740d7148b6258959948df1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_263Mat
+    second: {fileID: 2100000, guid: 748e87bd28ccba94c9d6ecf57b3f9c34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_264Mat
+    second: {fileID: 2100000, guid: 04445e790979b4647a1ee7c6bced76bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_265Mat
+    second: {fileID: 2100000, guid: d4a2a11ec6be81f48aafb70537bc8257, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_266Mat
+    second: {fileID: 2100000, guid: d9698f34d5df2fd458e982013c0bcd80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_267Mat
+    second: {fileID: 2100000, guid: 627d1e825d948824f9dc0fef3d3b2088, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_268Mat
+    second: {fileID: 2100000, guid: feb50ff1a97db8c46843430a479da5c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_269Mat
+    second: {fileID: 2100000, guid: c9935868c789d5f44a1469a29df22cee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_26Mat
+    second: {fileID: 2100000, guid: 23c0648d63464454c85f00178939198e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_270Mat
+    second: {fileID: 2100000, guid: efba099e1a3e71145a9954ff279939bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_271Mat
+    second: {fileID: 2100000, guid: 54520c130d232564f80150ac8ca411d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_272Mat
+    second: {fileID: 2100000, guid: 7b56fa070bd264c4bba387580bb7a982, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_273Mat
+    second: {fileID: 2100000, guid: d4eba8f058019224285b04c245c93a41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_274Mat
+    second: {fileID: 2100000, guid: d33e5a86df2af5c499c903de401940b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_275Mat
+    second: {fileID: 2100000, guid: bdc746b1936dd4e4d8481081b839bd2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_276Mat
+    second: {fileID: 2100000, guid: 6bc5051a7dfb08b49be9208dc29b3e8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_277Mat
+    second: {fileID: 2100000, guid: a28b6f8b635057d4d9f0b38fb892c90d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_278Mat
+    second: {fileID: 2100000, guid: 0800679d68315494285e83a9d15394f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_279Mat
+    second: {fileID: 2100000, guid: 0c2c380693d9b414cb8d82145b6858eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_27Mat
+    second: {fileID: 2100000, guid: 25ec0e532b191f640bf729ef4f11a6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_280Mat
+    second: {fileID: 2100000, guid: 14e9099491719684a9d0023cf68f860d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_281Mat
+    second: {fileID: 2100000, guid: 26dc351cce3d6e04798dfefc58875b60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_282Mat
+    second: {fileID: 2100000, guid: 0c80f16a70f98d744a9eab9a535488d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_283Mat
+    second: {fileID: 2100000, guid: 0963e59d446cb6b40b946df167f6d5d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_284Mat
+    second: {fileID: 2100000, guid: 460d70e714e22b142a06906180c99bf7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_285Mat
+    second: {fileID: 2100000, guid: 9cb9d4e4a0a8e3e40b667a1c0061e37a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_286Mat
+    second: {fileID: 2100000, guid: 4c4556902fb064c44b75e946ed6e8fc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_287Mat
+    second: {fileID: 2100000, guid: 98db9a1a7f128ed4e9711bff7bae8c7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_288Mat
+    second: {fileID: 2100000, guid: 61275cb74783b8749b029dfb9de4e1f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_289Mat
+    second: {fileID: 2100000, guid: c958eb4be2d440146aa0e111b63e4122, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_28Mat
+    second: {fileID: 2100000, guid: 82b08001331706744bd4a5b19b4975da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_290Mat
+    second: {fileID: 2100000, guid: 9d2b8f3c49da24c499d578123c4c1f47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_291Mat
+    second: {fileID: 2100000, guid: 05f29be615cd16a48bda712d2c6dbf03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_292Mat
+    second: {fileID: 2100000, guid: 329b7acc92bf2cb4ca81a361b6fcc33c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_293Mat
+    second: {fileID: 2100000, guid: 9c625f67bb03d8f4ab524c0536b43c88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_294Mat
+    second: {fileID: 2100000, guid: da5b007eb6bd1f54d97fb00d262b0fee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_295Mat
+    second: {fileID: 2100000, guid: c11c06fa0c6992441b8ae0453690b3ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_296Mat
+    second: {fileID: 2100000, guid: c3ea744325ef6d042b8cee5d8b18e3d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_297Mat
+    second: {fileID: 2100000, guid: db2a261090c75614aabd2eac67ec88c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_298Mat
+    second: {fileID: 2100000, guid: bfe73ddc12d8e4d4890ae6f77254bfc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_299Mat
+    second: {fileID: 2100000, guid: c56a4a43f1f45104ebc61c8e70e81084, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_29Mat
+    second: {fileID: 2100000, guid: 6c1e2f6fdb1623e4585f98ee7f27a2fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_300Mat
+    second: {fileID: 2100000, guid: 16f7c06e99f896d4798e8f0dd3040dd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_301Mat
+    second: {fileID: 2100000, guid: 52a8dc4abac733c45ad7dd56e185ed2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_302Mat
+    second: {fileID: 2100000, guid: 6dab6303eb856754eb9714e65505ad47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_303Mat
+    second: {fileID: 2100000, guid: d036f17fc96999c46a204b33b1bbdd16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_304Mat
+    second: {fileID: 2100000, guid: 46c505ef5f057304ab5c19227eb22086, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_305Mat
+    second: {fileID: 2100000, guid: 738df42f209a6154287e91d3c157a16b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_306Mat
+    second: {fileID: 2100000, guid: 4ec24705288d32a4b8fdea4a2828527f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_307Mat
+    second: {fileID: 2100000, guid: dc99747574c856d4fa7c79a752e88fd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_308Mat
+    second: {fileID: 2100000, guid: 9766e3722b78d29409e4ca19a8691d5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_309Mat
+    second: {fileID: 2100000, guid: d476968015eabd14da09f95d56910873, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_30Mat
+    second: {fileID: 2100000, guid: 6c8ec98b4350b5b4d872a0099cd9c0cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_310Mat
+    second: {fileID: 2100000, guid: 101e27523e96671498e314b03dd4775f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_311Mat
+    second: {fileID: 2100000, guid: e4e5d16f99904a44eab67fd9b71ee10a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_312Mat
+    second: {fileID: 2100000, guid: 536ad19f603f70c419635fbc717b9d17, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_313Mat
+    second: {fileID: 2100000, guid: d8bcb7f77e8816040b214107dcd8af6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_314Mat
+    second: {fileID: 2100000, guid: 75a147035fa1ffc47afd35b06688f7bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_315Mat
+    second: {fileID: 2100000, guid: 245e2116dca1a6f42a1bb60bbee12b3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_316Mat
+    second: {fileID: 2100000, guid: 67055ec33667dcd4d962934b27f1549b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_317Mat
+    second: {fileID: 2100000, guid: 94bf21b4e9e78824f83858b523c39ec7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_318Mat
+    second: {fileID: 2100000, guid: 0238badaa8d375144b08a1ecd2c4129c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_319Mat
+    second: {fileID: 2100000, guid: aaa859fdf5faea948aabac4bedb9174c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_31Mat
+    second: {fileID: 2100000, guid: fa4c9e9a1175cc246af2b3aa35bcfc06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_320Mat
+    second: {fileID: 2100000, guid: 895e702ce0fbb1743ae0631a08f68096, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_321Mat
+    second: {fileID: 2100000, guid: ec70954331aebe24aa68879f41307555, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_322Mat
+    second: {fileID: 2100000, guid: 9890638e85dc742448fa32b52b8e2443, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_323Mat
+    second: {fileID: 2100000, guid: 829069b7c4de79d449730ab0cb64e590, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_324Mat
+    second: {fileID: 2100000, guid: 6a4cb33d3f551454095760973500917a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_325Mat
+    second: {fileID: 2100000, guid: 3840b3d64c5547441b1555c6cddaa64d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_326Mat
+    second: {fileID: 2100000, guid: 1b78b6180c232dc42ab5c20d3410f151, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_327Mat
+    second: {fileID: 2100000, guid: 3177ef34af5554c4bac06d5033eb19ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_328Mat
+    second: {fileID: 2100000, guid: 6c99a3c8a7557154e95ff83b1f78afec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_329Mat
+    second: {fileID: 2100000, guid: 92a7054b2faa20a4eb561de3d304577b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_32Mat
+    second: {fileID: 2100000, guid: b87bb5f8ade84f741a423531ea858aee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_330Mat
+    second: {fileID: 2100000, guid: bd064129e1143864ca1d404fb0bf6bb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_331Mat
+    second: {fileID: 2100000, guid: 03cba348c415311458a77111ae293221, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_332Mat
+    second: {fileID: 2100000, guid: 04ca72c34ff62ee4a89c1b5576762ac7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_333Mat
+    second: {fileID: 2100000, guid: c2204ca3a3c6af0478fa6d4a38ddee05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_334Mat
+    second: {fileID: 2100000, guid: c60eb0de91bca034bae36269964066cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_335Mat
+    second: {fileID: 2100000, guid: 0632d9516374b13488b1798d1270c356, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_336Mat
+    second: {fileID: 2100000, guid: 4bc67792a6e46844db4dcf27c4cd9d54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_337Mat
+    second: {fileID: 2100000, guid: b0d98fa14903afe4297191beac5b88e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_338Mat
+    second: {fileID: 2100000, guid: c0f3c0b081aec7b42baa82f2ca877164, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_339Mat
+    second: {fileID: 2100000, guid: 437bf6a428429594bbf26b9912039343, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_33Mat
+    second: {fileID: 2100000, guid: 8eef961ea2e74b64aa09badc340a8299, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_340Mat
+    second: {fileID: 2100000, guid: ec7c07610281e6a438b0fd9a801a78d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_341Mat
+    second: {fileID: 2100000, guid: a253f507052ed9e48bdae9a5aae9255e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_342Mat
+    second: {fileID: 2100000, guid: e2e063d6aeea90243a0eee7c13f96d38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_343Mat
+    second: {fileID: 2100000, guid: a81b95c351eddce4797433183a0ee410, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_344Mat
+    second: {fileID: 2100000, guid: 70f8fc22904224c46a812056466c6976, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_345Mat
+    second: {fileID: 2100000, guid: ba86e18f46adab74abc7eed0e2685662, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_346Mat
+    second: {fileID: 2100000, guid: 08dab23b6a35c4f41a0b8a6dde1c8686, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_347Mat
+    second: {fileID: 2100000, guid: b28f01e862d7aa248a8ff4e56187e8f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_348Mat
+    second: {fileID: 2100000, guid: 44ddf386615d2de4eb16d5a62600b460, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_349Mat
+    second: {fileID: 2100000, guid: 3f05802f781c6c64f993011e102dd41b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_34Mat
+    second: {fileID: 2100000, guid: b37d49b5061e3f746905541c4481f767, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_350Mat
+    second: {fileID: 2100000, guid: bcc3da566cecec142b5afa8251885e22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_351Mat
+    second: {fileID: 2100000, guid: 21fa53713b12dfe40a476edc5a60b879, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_352Mat
+    second: {fileID: 2100000, guid: 7715eef54f6276643bdc8128c6a281d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_353Mat
+    second: {fileID: 2100000, guid: 312e1a2de58b05d40b997cd1af40d73b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_354Mat
+    second: {fileID: 2100000, guid: 65086c1cd6df69c4593a4f4c21f2fb28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_355Mat
+    second: {fileID: 2100000, guid: c9ff04480c4256447ac21c7a0fd852d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_356Mat
+    second: {fileID: 2100000, guid: 794807a1c715a134890b882c34f0eeee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_357Mat
+    second: {fileID: 2100000, guid: 528a30207c714b349a3b8dd899573391, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_358Mat
+    second: {fileID: 2100000, guid: 698314c4755a4d149be9a9a16c1117b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_359Mat
+    second: {fileID: 2100000, guid: ac45280b3af17a04a933a54382196811, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_35Mat
+    second: {fileID: 2100000, guid: fb440ebf9fe569240a044ab74d22725d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_360Mat
+    second: {fileID: 2100000, guid: e0df6c61075c15b489cce9efb31fb750, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_361Mat
+    second: {fileID: 2100000, guid: 19a81991273bc8f4c9a41b6ee01b8c48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_362Mat
+    second: {fileID: 2100000, guid: 289f5593fbf7ec24ea1e4e34d1a21f48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_363Mat
+    second: {fileID: 2100000, guid: d92e56fc3ec8614458e299f559e87df0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_364Mat
+    second: {fileID: 2100000, guid: 72374a2bfb9da4e46a42d0ac109268c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_365Mat
+    second: {fileID: 2100000, guid: 11525d8c25603b94b88030003e741395, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_366Mat
+    second: {fileID: 2100000, guid: e20060bf49b24af4f9a6b20a11fb2ff8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_367Mat
+    second: {fileID: 2100000, guid: 037575210bc7d694b9807ce171ebb8cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_368Mat
+    second: {fileID: 2100000, guid: b4475a38cda704740922f78a337be526, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_369Mat
+    second: {fileID: 2100000, guid: ac31007c566020d4f94aea430d0a653f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_36Mat
+    second: {fileID: 2100000, guid: 96075eb789629794490937f97ae52a0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_370Mat
+    second: {fileID: 2100000, guid: 9e8a252dc9c50524ba5e1c21499cb06c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_371Mat
+    second: {fileID: 2100000, guid: b7cc00f1eae4c3b41981d2c7f72a5e62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_372Mat
+    second: {fileID: 2100000, guid: 3c8215706da4717438bc9d17257b6f29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_373Mat
+    second: {fileID: 2100000, guid: e7376c9dc71acf148bdf36f4b48a5f9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_374Mat
+    second: {fileID: 2100000, guid: 57a6f1891eaee7a4caddd1d47c07a824, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_375Mat
+    second: {fileID: 2100000, guid: cbd6b516f5212d848bd8336dd6aea541, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_376Mat
+    second: {fileID: 2100000, guid: 55188bdfa3811dd4d87acf1ae35ce49f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_377Mat
+    second: {fileID: 2100000, guid: a8abdc1c3adc64f468bed73a9d133f1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_378Mat
+    second: {fileID: 2100000, guid: 9c793d0ba2f7afa4ea357267c35a3d9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_379Mat
+    second: {fileID: 2100000, guid: 83f5c65b79dc5284aa451d1532bcd597, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_37Mat
+    second: {fileID: 2100000, guid: 0e8f42457b6a688468ae29cc5636a2e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_380Mat
+    second: {fileID: 2100000, guid: 0e8054b7928be2849ac84e2a44f18716, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_381Mat
+    second: {fileID: 2100000, guid: c2d609fab6f753f45afafba15786444d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_382Mat
+    second: {fileID: 2100000, guid: 8102640587ebccf43adc783ec757943d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_38Mat
+    second: {fileID: 2100000, guid: 18757dd3368a67a4aa1a95f2d391a5e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_39Mat
+    second: {fileID: 2100000, guid: 637079513e24312408374beeb1d4326d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_40Mat
+    second: {fileID: 2100000, guid: 6f2d2e95aadfef84b958bfc0c0658195, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_41Mat
+    second: {fileID: 2100000, guid: 50d8f6486222d36488ac84e97033c5b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_42Mat
+    second: {fileID: 2100000, guid: 1dc8e05c322a26942bd80ad286caa03d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_43Mat
+    second: {fileID: 2100000, guid: 935182382a6345946821358dce855a99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_44Mat
+    second: {fileID: 2100000, guid: 8f6b9774539294f46a846c249750a3f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_45Mat
+    second: {fileID: 2100000, guid: 39bcba00ad22a44499a14defa2fa6f8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_46Mat
+    second: {fileID: 2100000, guid: f8f402b7088a3864d94a2c8c669b04f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_47Mat
+    second: {fileID: 2100000, guid: 59804a7f830f3404a8c1d8a216894f9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_48Mat
+    second: {fileID: 2100000, guid: 406b1aca130a3c34ba289b28ce08d991, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_49Mat
+    second: {fileID: 2100000, guid: 29a15b6a075cfc041afd66e4b1788fdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_50Mat
+    second: {fileID: 2100000, guid: a8ecaa336d856ee4c9c8f63a6547a564, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_51Mat
+    second: {fileID: 2100000, guid: b12d87db1b8f8624ea0f4f4816ec00b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_52Mat
+    second: {fileID: 2100000, guid: bd6ded4f03a1a684db02d8b0da00e5c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_53Mat
+    second: {fileID: 2100000, guid: ac6d5935d9bc64f41bf54a5b93a9f7d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_54Mat
+    second: {fileID: 2100000, guid: b30c4b1b0737b6d42b169b9c0a8f22b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_55Mat
+    second: {fileID: 2100000, guid: 9a47a07e68c28834e9b1ebc30408f8de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_56Mat
+    second: {fileID: 2100000, guid: 75f9925750916c24ca23e75675be6c75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_57Mat
+    second: {fileID: 2100000, guid: 755868ce3e60903469fb66187a419ff1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_58Mat
+    second: {fileID: 2100000, guid: fdca9e64cd760af42a38833156b4cff5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_59Mat
+    second: {fileID: 2100000, guid: 266615941559f41459ebe3b58dc222cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_60Mat
+    second: {fileID: 2100000, guid: 987b1c97000dfc147988b8f9d40e2fb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_61Mat
+    second: {fileID: 2100000, guid: 14e9aa17df4e85949aecf1ef043501c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_62Mat
+    second: {fileID: 2100000, guid: f2c92f78034051e49bc9f6f5b06c4b61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_63Mat
+    second: {fileID: 2100000, guid: 50db7afc32cc5ea44953fab2df10601f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_64Mat
+    second: {fileID: 2100000, guid: 2d3fd346c7f737249972412b1fb5e734, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_65Mat
+    second: {fileID: 2100000, guid: 3e20f0f280d3bf04d819f2a499646415, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_66Mat
+    second: {fileID: 2100000, guid: 0dae886eb216d2c488b33d101a636663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_67Mat
+    second: {fileID: 2100000, guid: 3357ee9cdd2b5f14790d464f63882c12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_68Mat
+    second: {fileID: 2100000, guid: 839f356034e8c6044a47ccefdb339644, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_69Mat
+    second: {fileID: 2100000, guid: 3317bfbe9b646d8458aa1548013f8a51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_70Mat
+    second: {fileID: 2100000, guid: 51d506dcd8c7adc4bbf5dcf8e09c099d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_71Mat
+    second: {fileID: 2100000, guid: 50a57f9495d6bc443b37013191c67c1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_72Mat
+    second: {fileID: 2100000, guid: a38b5a8a8e7156147b1e635c5ba877ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_73Mat
+    second: {fileID: 2100000, guid: c91831d6d98bc4848bb55ba8ce0e6d90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_74Mat
+    second: {fileID: 2100000, guid: 376c15f500cb8724ba998c1207846fe2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_75Mat
+    second: {fileID: 2100000, guid: 4ad35e9256a0fec44a8cd60333083fd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_76Mat
+    second: {fileID: 2100000, guid: fcbefd8c6bf43294da26ea9fa8f78436, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_77Mat
+    second: {fileID: 2100000, guid: 3b0453308df50ab4094a34185429f73c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_78Mat
+    second: {fileID: 2100000, guid: 4e2290b7c939e0b458c0c44b1d9f4484, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_79Mat
+    second: {fileID: 2100000, guid: 7ecc59019662f0d49a15cc2544565f00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_80Mat
+    second: {fileID: 2100000, guid: 8ca00b64a5b0969418c18f692c4430a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_81Mat
+    second: {fileID: 2100000, guid: ec51fe49e9bdeaa4c9befc7e523d6eb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_82Mat
+    second: {fileID: 2100000, guid: f2520a9e61a3b224a8f705b70ee159e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_83Mat
+    second: {fileID: 2100000, guid: 216230b8342e94e4cbcd900ed5137404, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_84Mat
+    second: {fileID: 2100000, guid: 5a22ca0dfc38e4443b3193f960837c14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_85Mat
+    second: {fileID: 2100000, guid: 2e131661672bd5a47b3b0d2e6e14114e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_86Mat
+    second: {fileID: 2100000, guid: f148a65858aa0c74c98aff791753a42e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_87Mat
+    second: {fileID: 2100000, guid: 6de86793879c28f4bbcb1b8fab8ba1e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_88Mat
+    second: {fileID: 2100000, guid: 4a173f85481da96469ea1e68c9cc03bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_89Mat
+    second: {fileID: 2100000, guid: 744ad24c4ae9ebc46a5b615f8cdd97f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_90Mat
+    second: {fileID: 2100000, guid: b22b0abf2d3e20b4287b5276824d53ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_91Mat
+    second: {fileID: 2100000, guid: 31a9460cdf58d764882302bcb6c9fe9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_92Mat
+    second: {fileID: 2100000, guid: fe2c8ea4cb02d8f4c9965a16bbcc3331, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_93Mat
+    second: {fileID: 2100000, guid: 756f735257e1299499e0ebb11e807e8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_94Mat
+    second: {fileID: 2100000, guid: 081c5e57042696f459d6dd304a033961, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_95Mat
+    second: {fileID: 2100000, guid: 747da8f2116d1a9439828da740baa874, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_96Mat
+    second: {fileID: 2100000, guid: 900ab82089a082b4bb7739d402949cbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_97Mat
+    second: {fileID: 2100000, guid: f2c8f64c86b291e42bb81e12ce639881, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_98Mat
+    second: {fileID: 2100000, guid: c53581618eb4c554d9aa1d64245fb0af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sponza_99Mat
+    second: {fileID: 2100000, guid: 9e811dbbadef775458c8e682e0c862da, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 0
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

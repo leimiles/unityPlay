@@ -21,18 +21,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Bear
-  m_Shader: {fileID: 4800000, guid: 0ea05d74228a3a740a58f4a57429b0ef, type: 3}
+  m_Shader: {fileID: 4800000, guid: 167a636f2b1b4aee9d4bcb79a27b3aa3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _NORMALMAP
-  - _SPECULAR_COLOR
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -70,6 +70,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MixMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 2800000, guid: 9d59c1bd63da7ab41ac54503756927e5, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -100,6 +104,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendRange: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -114,12 +119,17 @@ Material:
     - _Glossiness: 0
     - _GlossinessSource: 0
     - _GlossyReflections: 1
+    - _IndirectSpecularOcclusion: 0.5
     - _Metallic: 0
+    - _MetallicOffset: -1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RoughnessHigh: 0.65
+    - _RoughnessLow: 0.2
+    - _RoughnessOffset: -0.5
     - _Shininess: 0
     - _Smoothness: 0.378
     - _SmoothnessSource: 0
@@ -137,4 +147,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.102941155, g: 0.06131054, b: 0.06131054, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 0.378}
+    - _TillingAndOffset: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
