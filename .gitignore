@@ -64,3 +64,7 @@ ProfileAnalyzer
 Assets/com.sofunny.rendering.funnyland
 Assets/com.sofunny.rendering.funnyland.meta
 UserSettings
+Build_BurstDebugInformation_DoNotShip
+ProjectSettings/BurstAotSettings_iOS.json
+Assets/.DS_Store
+.DS_Store
