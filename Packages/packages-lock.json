@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.burst": {
-      "version": "1.8.7",
+      "version": "1.8.8",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -132,7 +132,7 @@
       "hash": "65a3726d7c53c52622b19513e1a7ae7d2ebe4d2a"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.21.5",
+      "version": "1.21.9",
       "depth": 2,
       "source": "registry",
       "dependencies": {},

@@ -13,10 +13,9 @@ public class CamFreeTransform : MonoBehaviour {
     private Vector2 mousePosMove;
     private bool _isFirstMoveMove;
 
-    private void OnGUI() {
-        GUILayout.Label("Go");
-    }
+
     private void Start() {
+        Application.targetFrameRate = 60;
         mousePos = new Vector2(Screen.width - 400f, 400f);
         _isFirstMove = true;
         ScreenSet();
